@@ -4,64 +4,94 @@
    <meta charset="utf-8">
    <title>Dog Info</title>
    <link rel="stylesheet" type="text/css" href="style.css">
+   <link rel="stylesheet" type="text/css" href="thao-style.css">
 </head>
     <body>
         <h1>Pups to Pet</h1>
-        <form>
+        <form action="/" method="post">
             <fieldset>
                 <legend>Pet's Personal Information</legend>
                
             <!--Options for Pet Name and Pet Breed-->
-                <label for="pet-name">Pet Name: </label>
-                <input type="text" id="pet-name" name="name"><br>
-
-                <label for="pet-breed">Pet Breed: </label>
-                <input type="text" id="pet-breed" name="breed"><br>
+                <div>
+                    <label for="pet-name">Pet Name: </label>
+                    <input type="text" id="pet-name" name="name">
+                </div>
+                <div>
+                    <label for="pet-breed">Pet Breed: </label>
+                    <input type="text" id="pet-breed" name="breed">
+                </div>
                 
             <!--Gender-->
-                <label for="gender-of-pet">Gender: </label>
-                <input type="text" id="gender-of-pet" name="name" value="gender"><br>
-
+                <div>
+                    <label for="gender-of-pet">Gender: </label>
+                    <input type="text" id="gender-of-pet" name="name" value="gender"><br>
+                </div>
+                
             <!--Size option-->    
-                Size (small, medium, large):<br>
+                <div>Size:</div>
+                <div>
+                    <label for="size-choice-small">small (less than 10 lbs)</label>
+                    <input type="radio" id="size-choice-small" name="size" value="small">
+                </div>
+                
+                <div>
+                    <label for="size-choice-medium">medium (between 10-15 lbs)</label>
+                    <input type="radio" id="size-choice-medium" name="size" value="medium"> 
+                </div>
 
-                <input type="radio" id="size-choice-small" name="size" value="small">
-                <label for="size-choice-small">small (less than 10 lbs)</label><br>
+                <div>
+                    <label for="size-choice-large">large (more than 15 lbs)</label>
+                    <input type="radio" id="size-choice-large" name="size" value="large">
+                </div>
+               
 
-                <input type="radio" id="size-choice-medium" name="size" value="medium"> 
-                <label for="size-choice-medium">medium (between 10-15 lbs)</label><br>
-
-                <input type="radio" id="size-choice-large" name="size" value="large">
-                <label for="size-choice-large">large (more than 15 lbs)</label><br>
-
-            <!--Is it a Service animal?-->    
-                <label for="is-it-a-service-animal">Is it a service animal?: </label><br>
-
-                <input type="radio" id="service-animal-choice-1" name="service-animal" value="yes">
-                <label for="service-animal-choice-1">yes</label><br>
-
-                <input type="radio" id="service-animal-choice-2" name="service-animal" value="no">
-                <label for="service-animal-choice-2">no</label><br>
-
+            <!--Is it a Service animal?-->   
+                <div>
+                    <label for="is-it-a-service-animal">Is it a service animal?: </label>
+                </div>
+                <div>
+                    <label for="service-animal-choice-1">yes</label><br>
+                    <input type="radio" id="service-animal-choice-1" name="service-animal" value="yes">
+                </div>
+                <div>
+                    <label for="service-animal-choice-2">no</label><br>
+                    <input type="radio" id="service-animal-choice-2" name="service-animal" value="no">
+                </div>
+                
             <!--Personality/Disposition-->
-                <label for="personality-disposition">Personality/Disposition: </label>
-                <input type="text" id="personality-disposition" name="personlity"><br>
+                <div>
+                    <label for="personality-disposition">Personality/Disposition: </label>
+                    <input type="text" id="personality-disposition" name="personlity">
+                </div>
 
             <!--Miscellaneous Notes about Dog from the owner-->
-                <label for="miscellaneous-notes-about-pet">Miscellaneous Notes about Pet from the owner: </label>
-                <input type="text" id="miscellaneous-notes-about-petr" name="miscellaneous-notes"><br>
+                <div>
+                    <label for="miscellaneous-notes-about-pet">Miscellaneous Notes about Pet from the owner: </label>
+                    <input type="text" id="miscellaneous-notes-about-petr" name="miscellaneous-notes">
+                </div>
 
             <!--Karma (Rating)-->
-                <label for="karma-rating">Karma (Rating): </label>
-                <input type="range" min="0" max="10" step="1" id="karma-rating" name="karma-rating" value="5"><br>
+                <div>
+                    <label for="karma-rating">Karma (Rating): </label>
+                    <input type="range" min="0" max="10" step="1" id="karma-rating" name="karma-rating" value="5">
+                </div>
 
             <!--Audience Comments-->
-                <label for="audience-comments">Audience Comments: </label>
-                <input type="text" id="audience-comments" name="audience-comments"><br>
+                <div>
+                    <label for="audience-comments">Audience Comments: </label>
+                    <input type="text" id="audience-comments" name="audience-comments">
+                </div>
 
             <!--Submit button-->
-                <input type="submit" value="Submit">
+                <div class="button">
+                    <button type="submit">Submit</button>
+                </div>
                 
+            <!--Reset button-->
+                 <div class="button">
+                    <button type="reset">Reset</button>
+                </div>
                 
 
         </fieldset>
