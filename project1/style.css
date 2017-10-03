@@ -9,7 +9,6 @@ nav {
 	top: 0px;
 	left: 0;
     font-family: 'Fredericka the Great', cursive;
-    z-index: 4;
 
 }
 
@@ -39,11 +38,10 @@ nav h1 {
     text-decoration: underline;
     border-style: groove;
     border-color: maroon;
-    text-decoration-color: maroon;
+    text-decoration-color: aquamarine;
     text-shadow: 10px;
     font-family: 'Fredericka the Great', cursive;
     font-weight: 500;
-    z-index: 4;
 }
 
 #page-content {
@@ -120,9 +118,9 @@ ul {
 	margin: 0;
 }
 
-.login-modal {
-	background-color: white;
-	height: 100%;
+#login-modal {
+	background-color: #8EE3EF;
+	height: 350px;
 	width: 30%;
 	margin: auto;
 	margin-top: 10%;
@@ -130,8 +128,6 @@ ul {
 	border-radius: 5px;
 	padding: 20px;
 	text-align: center;
-    box-shadow: 10px 10px 5px red;
-    
     
 }
 
@@ -182,13 +178,12 @@ nav {
 
 }
 
-/*
 #login-page {
+    background-color: white;
     margin-left: 150px;
     margin-right: 150px;
     padding-top: 5%;
     padding-bottom: 100%;
 
 }
-*/
 
