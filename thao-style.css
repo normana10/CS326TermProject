@@ -24,13 +24,11 @@ body {
     font-size: 17px;    
 }
 
-nav {
-    font-family: 'Fredericka the Great', cursive;
-}
-
 nav h1 {
 
-    font-family: 'Fredericka the Great', cursive;
-
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
