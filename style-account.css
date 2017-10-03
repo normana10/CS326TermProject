@@ -1,0 +1,30 @@
+input {
+    width: 400px;
+}
+
+#login-modal {
+    background-color: rgb(142, 165, 239);
+	height: 400px;
+}
+
+h2 {
+    text-align: left;
+}
+
+form { 
+    background-color: white;
+    margin: 0px 120px 0px 120px;
+    padding: 50px;
+}
+
+/*
+p { 
+    display: table-row;  
+}
+label { 
+    display: table-cell; 
+    text-align: right;
+}
+input { 
+    display: table-cell; 
+}*/
