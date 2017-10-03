@@ -1,0 +1,189 @@
+/*Color scheme: #DBFCFF, #A6CFD5, #7F96FF, #E56399, #320E3B*/
+
+nav {
+	height: 97px;
+	background-color: #FB4D3D;
+	box-shadow: 0px 1px 5px rgba(0,0,0,.5);
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	left: 0;
+    font-family: 'Fredericka the Great', cursive;
+
+}
+
+h1,h2,h3,h4,h5,h6,p {
+	font-family: 'Karma', serif;
+	margin: 0;
+}
+
+h1 {
+	display: inline-block;
+	margin: 21px;
+	font-size: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+nav button {
+	float: right;
+	margin: 24.5px;
+	color: black;
+    font-family: 'Fredericka the Great', cursive;
+}
+
+nav h1 {
+    background-color: white;
+    color: maroon;
+    text-decoration: underline;
+    border-style: groove;
+    border-color: maroon;
+    text-decoration-color: aquamarine;
+    text-shadow: 10px;
+    font-family: 'Fredericka the Great', cursive;
+    font-weight: 500;
+}
+
+#page-content {
+	margin-top: 97px;
+	padding: 20px;
+}
+
+#index-page-content {
+	padding: 20px;
+    margin: 97px 120px 0px 120px;
+    background-color: white;
+
+}
+
+button {
+	color: white;
+	/*background-color: #285775;*/
+	background-color: #8EE3EF;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 20px;
+}
+
+button:hover {
+	background-color: white;
+	color: navy;
+}
+
+body {
+	margin: 0;
+	background-color: #8EE3EF;
+}
+
+iframe {
+	float: right;
+	margin: 20px;
+}
+
+img {
+	height: 100px;
+	display: inline-block;
+	float: left;
+	margin: 10px;
+}
+
+#personal-information {
+	padding: 20px;
+	margin: 10px;
+	border: 3px solid black;
+	border-radius: 5px;
+	float: left;
+	width: 140px;
+}
+
+#pet-information {
+	padding: 20px;
+	margin: 10px;
+	border: 3px solid black;
+	border-radius: 5px;
+	float: left;
+	width: 140px;
+	height: 100px;
+	overflow: scroll;
+}
+
+li {
+	list-style: none;
+	padding: 10px;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+}
+
+#login-modal {
+	background-color: #8EE3EF;
+	height: 350px;
+	width: 30%;
+	margin: auto;
+	margin-top: 10%;
+	border: 1px solid rgba(0,0,0,.6);
+	border-radius: 5px;
+	padding: 20px;
+	text-align: center;
+    
+}
+
+input {
+	width: 90%;
+	padding: 5px;
+	margin: 15px;
+	font-family: 'Karma', serif;;
+	font-size: 12px;
+}
+
+select {
+    padding-top: 5px;
+    padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	font-family: 'Karma', serif;;
+	font-size: 12px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:visited {
+	color: black;
+}
+
+a:hover {
+	color: blue;
+}
+
+nav {
+	height: 97px;
+	background-color: #FB4D3D;
+	box-shadow: 0px 1px 5px rgba(0,0,0,.5);
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	left: 0;
+    font-family: 'Fredericka the Great', cursive;
+
+}
+
+.create-event-page {
+    background-color: white;
+
+}
+
+#login-page {
+    background-color: white;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding-top: 5%;
+    padding-bottom: 100%;
+
+}
+
