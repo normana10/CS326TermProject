@@ -1,0 +1,25 @@
+.designing-forms {
+    max-width: 85%;
+    padding: 100px;
+    margin: 20px 225px 0px 225px;
+    position: sticky;
+    background-color: white;
+}
+
+input {
+    margin: 0px;        
+
+}
+
+div {
+    padding: 10px;
+}
+
+body legend{
+    font-size: 25px;
+}
+
+body {
+    font-family: 'Karma', serif;
+    font-size: 17px;
+}
