@@ -21,14 +21,29 @@ body legend{
 
 body {
     font-family: 'Karma', serif;
+<<<<<<< HEAD
     font-size: 17px;    
+=======
+    font-size: 17px;
+    
+}
+
+nav {
+    font-family: 'Fredericka the Great', cursive;
+>>>>>>> 1bda0c829c1188ba3ab25d74c06c2bffdfe6d92e
 }
 
 nav h1 {
 
+<<<<<<< HEAD
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 3px;
     padding-bottom: 3px;
 }
 
+=======
+    font-family: 'Fredericka the Great', cursive;
+
+}
+>>>>>>> 1bda0c829c1188ba3ab25d74c06c2bffdfe6d92e
