@@ -1,15 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>User Information</title>
+    <title>User Information</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style-account.css">
 </head>
+
 <body>
-    <h1>Pets to Pup</h1>
-    <h2>User Information</h2>
-    <h3>First Name: <!-- Pull data from database --> Last Name: <!-- Pull data from database --></h3>
-    <h3>Owner Type: </h3>
-    <h3>Gender: </h3>
-    <h3>Email: </h3>
-    <h3>Occupation: </h3>
+
+    <nav>
+        <h1>
+            Pups To Pet
+        </h1>
+        <a href="index.html">
+                    <button>
+                        &#x1F43E; Log Out &#x1F43E;
+                    </button>
+                </a>
+        <a href="find-event.html">
+                    <button>
+                        &#x1F43E; Find Event &#x1F43E;
+                    </button>
+                </a>
+        <a href="create-event.html">
+                    <button>
+                        &#x1F43E; Create Event &#x1F43E;
+                    </button>
+                </a>
+        <a href="dashboard.html">
+                    <button>
+                        &#x1F43E; Dashboard &#x1F43E;
+                    </button>
+                </a>
+    </nav>
+    <h2 style="padding-top: 150px">User Information</h2>
+    <br>
+    <form>
+        
+        <p> <label>Username: </label>
+            <input type="text" name="Username" value="ihavepuppies">
+        </p>
+
+        <p> <label for="firstname">First Name: </label>
+            <input id="firstname" type="text" name="First Name" value="John">
+        </p>
+
+        <p> <label for="lastname">Last Name:</label>
+            <input id="lastname" type="text" name="Last Name" value="Doe">
+        </p>
+
+        <p> <label for="owner type">Owner Type: </label>
+            <input id="owner type" type="text" name="Owner type" value="Pet Owner">
+        </p>
+
+        <p> <label for="gender"> Gender: </label>
+            <input id="gender" type="text" name="Gender" value="Male">
+        </p>
+
+        <p> <label for="email">Email:</label>
+            <input id="email" type="text" name="Email" value="notsketchy@gmail.com">
+        </p>
+
+        <p> <label for="occupation">Occupation: </label>
+            <input id="occupation" type="text" name="Occupation" value="Student">
+        </p>
+
+        <br>
+            <button type="submit">Update</button>
+        
+    </form>
 </body>
+
 </html>
