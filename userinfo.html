@@ -2,120 +2,27 @@
 <html>
 
 <head>
-<<<<<<< HEAD
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <title>PupsToPet | Pet Info</title>
+    <title>PupsToPet | User Info</title>
+    <link rel="stylesheet" type="text/css" href="style-account.css">
     
     <!-- Bootstrap CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="thao-style.css">
-    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Karma" rel="stylesheet">
-
-=======
-    <title>User Information</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="style-account.css">
->>>>>>> 1bda0c829c1188ba3ab25d74c06c2bffdfe6d92e
+
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Karma" rel="stylesheet">
+    
+    
+    
+    
 </head>
 
 <body>
-<<<<<<< HEAD
+
     <nav>
         <h1>
             PupsToPet
-        </h1>
-            <a href="log-in.html">
-                <button>
-                    &#x1F43E; Log In &#x1F43E;
-                </button>
-            </a>
-            <a href="create-account.html">
-                <button>
-                    &#x1F43E; Create Account &#x1F43E;
-                </button>
-            </a>
-            <a href="find-event.html">
-                <button>
-                    &#x1F43E; Find Event &#x1F43E;
-                </button>
-            </a>
-            <a href="dashboard.html">
-                <button>
-                    &#x1F43E; Dashboard &#x1F43E;
-                </button>
-            </a>
-        </nav>
-    
-    <div class="designing-forms">
-        <form action="/" method="post">
-           
-                <legend>User Information</legend>
-               
-                <div>
-                    <label for="username">Username:</label> <!--Pull data from database -->
-                    <input type="text" class="form-control" id="username" name="username" value="HaroldFlower1234" placeholder="...">
-                </div>
-                <div>
-                    <label for="first-name">First Name:</label><!--Pull data from database -->
-                    <input type="text" class="form-control" name="first-name" value="Harold" placeholder="...">
-                </div>
-                <div >
-                    <label for="last-name">Last Name: </label><!--Pull data from database -->
-                    <input type="text" class="form-control" name="last-name" value="Flower" placeholder="...">
-                </div>
-                
-                <div>
-                <label for="gender">Gender:</label>
-                    <select name="gender">
-                        <!--<option value="---">---</option>-->
-                        <option value="male">male</option>
-                        <option value="female">female</option>
-                        <option value="other">other</option>
-                        <option value="alien">alien from outer space</option>
-                    </select>
-                </div>
-           
-                <div >
-                    <label for="occupation">Occupation: </label>
-                    <input type="text" class="form-control" id="occupation" name="occupation" value="student">
-                </div>
-            
-                <div >
-                    <label for="occupation">About Me: </label>
-                    <input type="text" class="form-control" id="about" name="about" value="I am a fun loving pet-owner. I love all animals and am studying to become a veterinarian.">
-                </div>
-
-                <div>
-                    <label for="email">Email:</label><!--Pull data from database -->
-                    <input type="email" class="form-control" name="email" value="eddy1234@college.edu" placeholder="...">
-                </div>
-        
-                <div>
-                    <label for="email">Verify Email:</label>
-                    <input type="email" class="form-control" name="v-email" value="eddy1234@college.edu" placeholder="...">
-                </div>
-
-            <!--Submit button-->
-                <div>
-                    <button type="submit" class="form-control">Update Info</button>
-                </div>
-  
-        </form>
-            
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-          </div>
-=======
-
-    <nav>
-        <h1>
-            Pups To Pet
         </h1>
         <a href="index.html">
                     <button>
@@ -138,42 +45,43 @@
                     </button>
                 </a>
     </nav>
-    <h2 style="padding-top: 150px">User Information</h2>
     <br>
-    <form>
-        <p> <label for="username">Username: </label>
-            <input id="username" type="text" name="Username" value="ihavepuppies">
-        </p>
+    <form action="/" method="post">
+        <h2 style="padding-top: 100px">User Information</h2>
 
-        <p> <label for="firstname">First Name: </label>
-            <input id="firstname" type="text" name="First Name" value="John">
-        </p>
+        <div> <label for="username">Username: </label>
+            <input class="form-control" id="username" type="text" name="Username" value="ihavepuppies">
+        </div>
 
-        <p> <label for="lastname">Last Name:</label>
-            <input id="lastname" type="text" name="Last Name" value="Doe">
-        </p>
+        <div> <label for="firstname">First Name: </label>
+            <input class="form-control" id="firstname" type="text" name="First Name" value="John">
+        </div>
 
-        <p> <label for="owner type">Owner Type: </label>
-            <input id="owner type" type="text" name="Owner type" value="Pet Owner">
-        </p>
+        <div> <label for="lastname">Last Name:</label>
+            <input class="form-control" id="lastname" type="text" name="Last Name" value="Doe">
+        </div>
 
-        <p> <label for="gender"> Gender: </label>
-            <input id="gender" type="text" name="Gender" value="Male">
-        </p>
+        <div> <label for="owner type">Owner Type: </label>
+            <input class="form-control" id="owner type" type="text" name="Owner type" value="Pet Owner">
+        </div>
 
-        <p> <label for="email">Email:</label>
-            <input id="email" type="text" name="Email" value="notsketchy@gmail.com">
-        </p>
+        <div> <label for="gender"> Gender: </label>
+            <input class="form-control" id="gender" type="text" name="Gender" value="Male">
+        </div>
 
-        <p> <label for="occupation">Occupation: </label>
-            <input id="occupation" type="text" name="Occupation" value="Student">
-        </p>
+        <div> <label for="email">Email:</label>
+            <input class="form-control" id="email" type="text" name="Email" value="notsketchy@gmail.com">
+        </div>
 
-        <br>
-            <button type="submit">Update</button>
+        <div> <label for="occupation">Occupation: </label>
+            <input class="form-control" id="occupation" type="text" name="Occupation" value="Student">
+        </div>
+
+        <div>
+            <button type="submit" class="form-control">Update</button>
+        </div>
         
     </form>
->>>>>>> 1bda0c829c1188ba3ab25d74c06c2bffdfe6d92e
 </body>
 
 </html>
