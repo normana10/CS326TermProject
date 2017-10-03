@@ -69,11 +69,11 @@
             </a> -->
         </nav>
 
-        <div id="login-modal" style="height:425px">
+        <div class="login-modal" style="height:100%">
             <h1>Find Event</h1>
             <form>
                 <h3>Event Location:</h3>
-                <input type="text" name="location"><br>
+                <input class="form-group" type="text" name="location" value="UMASS, Amherst"><br>
                 <h3>Time:</h3>
                 Earliest time (mm/dd/yyyy, hh:mm):
                 <select>
@@ -115,18 +115,20 @@
                 <input type="text" name="type"><br> -->
                 <h3 style="display:inline">Size:</h3>
                     <select>
-                        <option>N/A</option>
+                        <!--<option>N/A</option> Uncomment later-->
                         <option>small</option>
                         <option>medium</option>
                         <option>large</option>
                     </select><br>
                 <h3 style="display:inline">Sex:</h3>
                     <select>
-                        <option>N/A</option>
+                        <!--<option>N/A</option> Uncomment later-->
                         <option>male</option>
                         <option>female</option>
                     </select><br>
-                <Button>Submit</Button>
+                <div>
+                    <Button>Submit</Button>
+                </div>
             </form>
         </div>
     </body>
