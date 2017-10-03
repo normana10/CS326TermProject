@@ -2,12 +2,14 @@
 
 nav {
 	height: 97px;
-	background-color: #6AB2E1;
+	background-color: #FB4D3D;
 	box-shadow: 0px 1px 5px rgba(0,0,0,.5);
 	position: fixed;
 	width: 100%;
 	top: 0px;
 	left: 0;
+    font-family: 'Fredericka the Great', cursive;
+
 }
 
 h1,h2,h3,h4,h5,h6,p {
@@ -18,7 +20,7 @@ h1,h2,h3,h4,h5,h6,p {
 h1 {
 	display: inline-block;
 	margin: 21px;
-	font-size: 48px;
+	font-size: 50px;
 }
 
 nav button {
@@ -36,6 +38,11 @@ nav h1 {
     text-decoration-color: aquamarine;
     text-shadow: 10px;
     font-family: 'Fredericka the Great', cursive;
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 96b3c63c3399d6a63ea79f345c466800dbb69719
 }
 
 #page-content {
@@ -145,4 +152,3 @@ a:visited {
 a:hover {
 	color: blue;
 }
-

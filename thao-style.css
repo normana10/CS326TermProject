@@ -1,6 +1,7 @@
 .designing-forms {
     max-width: 85%;
     padding: 100px;
+    padding-top: 110px;
     margin: 20px 225px 0px 225px;
     position: sticky;
     background-color: white;
@@ -8,7 +9,6 @@
 
 input {
     margin: 0px;        
-
 }
 
 div {
@@ -22,4 +22,15 @@ body legend{
 body {
     font-family: 'Karma', serif;
     font-size: 17px;
+    
+}
+
+nav {
+    font-family: 'Fredericka the Great', cursive;
+}
+
+nav h1 {
+
+    font-family: 'Fredericka the Great', cursive;
+
 }
