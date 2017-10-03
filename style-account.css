@@ -7,13 +7,24 @@ input {
 	height: 400px;
 }
 
-h2{
+h2 {
     text-align: left;
 }
 
-form  { display: table;      }
-p     { display: table-row;  }
-label { display: table-cell; 
-        text-align: right;
-    }
-input { display: table-cell; }
+form { 
+    background-color: white;
+    margin: 0px 120px 0px 120px;
+    padding: 50px;
+}
+
+/*
+p { 
+    display: table-row;  
+}
+label { 
+    display: table-cell; 
+    text-align: right;
+}
+input { 
+    display: table-cell; 
+}*/
