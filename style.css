@@ -27,6 +27,17 @@ nav button {
 	color: black;
 }
 
+nav h1 {
+    background-color: white;
+    color: maroon;
+    text-decoration: underline;
+    border-style: groove;
+    border-color: maroon;
+    text-decoration-color: aquamarine;
+    text-shadow: 10px;
+    font-family: 'Fredericka the Great', cursive;
+}
+
 #page-content {
 	margin-top: 97px;
 	padding: 20px;
@@ -35,7 +46,7 @@ nav button {
 button {
 	color: white;
 	/*background-color: #285775;*/
-	background-color: #FFD96F;
+	background-color: #8EE3EF;
 	border: 1px solid black;
 	border-radius: 5px;
 	padding: 10px;
@@ -43,13 +54,13 @@ button {
 }
 
 button:hover {
-	background-color: #040F16;
-	color: white;
+	background-color: #0496FF;
+	color: navy;
 }
 
 body {
 	margin: 0;
-	background-color: #FFC215;
+	background-color: #8EE3EF;
 }
 
 iframe {
@@ -95,7 +106,7 @@ ul {
 }
 
 #login-modal {
-	background-color: #FF946F;
+	background-color: #8EE3EF;
 	height: 350px;
 	width: 30%;
 	margin: auto;
