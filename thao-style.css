@@ -1,10 +1,7 @@
 .designing-forms {
     max-width: 85%;
     padding: 100px;
-<<<<<<< HEAD
     padding-top: 110px;
-=======
->>>>>>> 96b3c63c3399d6a63ea79f345c466800dbb69719
     margin: 20px 225px 0px 225px;
     position: sticky;
     background-color: white;
@@ -12,10 +9,6 @@
 
 input {
     margin: 0px;        
-<<<<<<< HEAD
-=======
-
->>>>>>> 96b3c63c3399d6a63ea79f345c466800dbb69719
 }
 
 div {
@@ -28,9 +21,7 @@ body legend{
 
 body {
     font-family: 'Karma', serif;
-    font-size: 17px;
-<<<<<<< HEAD
-    
+    font-size: 17px;    
 }
 
 nav {
@@ -42,6 +33,4 @@ nav h1 {
     font-family: 'Fredericka the Great', cursive;
 
 }
-=======
-}
->>>>>>> 96b3c63c3399d6a63ea79f345c466800dbb69719
+
