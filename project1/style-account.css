@@ -2,10 +2,12 @@ input {
     width: 400px;
 }
 
+/*
 #login-modal {
     background-color: rgb(142, 165, 239);
 	height: 400px;
 }
+*/
 
 h2 {
     text-align: left;
@@ -15,6 +17,8 @@ form {
     background-color: white;
     margin: 0px 120px 0px 120px;
     padding: 50px;
+    position:relative;
+    z-index: -1;
 }
 
 /*
