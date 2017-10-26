@@ -1,0 +1,12 @@
+index.html: /pupstopet/
+dashboard.html: /pupstopet/dashboard
+
+create-account.html: /pupstopet/createaccount
+log-in.html: /pupstopet/login
+forgot-password.html: /pupstopet/forgotpassword
+
+create-event.html: /pupstopet/createevent
+find-event.html: /pupstopet/findevent
+
+userinfo.html: /pupstopet/userinfo
+dog-info.html: /pupstopet/doginfo
