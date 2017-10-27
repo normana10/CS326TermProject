@@ -15,16 +15,23 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-# Use include() to add URLS from the catalog application 
 from django.conf.urls import include
-# Use static() to add url mapping to serve static files during development (only)
+from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+# PROBLEM HERE BUT NOT SURE WHY IT'S A PROBLEM. Why isn't it a module?
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^PupsToPet/', include('PupsToPet.urls')),
-    url(r'^$', RedirectView.as_view(url='/PupsToPet/', permanent=True)),
+    url(r'^PuppyCorps/', include('PupsToPet.urls')),
+    url(r'^$', RedirectView.as_view(url='/PuppyCorps/', permanent=True)),
+
+
+
+
+
+    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
