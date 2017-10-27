@@ -6,7 +6,7 @@
 <html>
 <head>
 	<title>PupsToPet | Main Page</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Karma" rel="stylesheet">
 
 </head>
@@ -37,7 +37,7 @@
 	</nav>
     
 	<div id="index-page-content">
-		<iframe
+		<!-- <iframe
 			width="600"
 			height="450"
 			frameborder="0" style="border:0"
@@ -45,7 +45,109 @@
 			&center=42.391138,-72.526812
 			&zoom=14
 			&maptype=satellite" allowfullscreen>
-		</iframe>
+		</iframe> -->
+		<div id="map"></div>
+		<script>
+			var map;
+			function initMap() {
+				map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 14,
+					center: new google.maps.LatLng(42.391138,-72.526812),
+					mapTypeId: 'satellite'
+					});
+
+				var iconBase = "{% static 'images/' %}";
+				// var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+				var icons = {
+					pupper: {
+						icon: iconBase + 'pupClipArt.png'
+					},
+				// 	parking: {
+				// 		icon: iconBase + 'parking_lot_maps.png'
+				// 	},
+				// 	library: {
+				// 		icon: iconBase + 'library_maps.png'
+				// 	},
+				// 	info: {
+				// 		icon: iconBase + 'info-i_maps.png'
+				// 	}
+				};
+
+				var features = [
+					{
+						position: new google.maps.LatLng(42.391138,-72.526812),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.40,-72.526812),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.39,-72.526812),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.38,-72.526812),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.391138,-72.50),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.391138,-72.60),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.391138,-72.51),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.391138,-72.52),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.391138,-72.53),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.391138,-72.54),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.391138,-72.55),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.391138,-72.56),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.391138,-72.57),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.41,-72.526812),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.43,-72.526812),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.42,-72.526812),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.44,-72.526812),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.47,-72.526812),
+						type: 'pupper'
+					}, {
+						position: new google.maps.LatLng(42.48,-72.526812),
+						type: 'pupper'
+					}
+				];
+
+				// Create markers.
+				features.forEach(function(feature) {
+					var marker = new google.maps.Marker({
+					position: feature.position,
+					icon: icons[feature.type].icon,
+					map: map
+					});
+				});
+			}
+		</script>
+		<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQgbR5jdBj36wI9-6SpCOpaBr-Rj14L70&callback=initMap">
+		</script>
+
 		<h2>Welcome to PupsToPet!</h2>
 		<br>
 		<h3>What we do</h3>
