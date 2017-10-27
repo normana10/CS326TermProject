@@ -1,0 +1,62 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}<title>PupsToPet | Dashboard</title>{% endblock %}
+
+{% block navbar %}
+<a href="{% url 'index' %}">
+    <button>
+        &#x1F43E; Log Out &#x1F43E;
+    </button>
+</a>
+<a href="{% url 'userinfo' %}">
+    <button>
+        &#x1F43E; Account Settings &#x1F43E;
+    </button>
+</a>
+{% endblock %}
+
+{% block content %}
+<div id="page-content">
+    <iframe
+        width="80%"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBYB8_cGZklsYTdCQNga90YNrCsX3-NnDE
+        &center=42.391138,-72.526812
+        &zoom=14
+        &maptype=satellite" allowfullscreen>
+    </iframe>
+    <h2>Howdy %NAME%!</h2>
+    <div id="personal-information">
+        <h4>Your Information:</h4>
+        <h6>Name Namey</h6>
+        <h6>Email@email.com</h6>
+    </div>
+    <div id="pet-information">
+        <h4>Your Pet Information:</h4>
+        <ul>
+            <li>
+                <h5>Dog Name</h5>
+                <h6>Dog Breed</h6>
+                <h6>Dog Size</h6>
+            </li>
+            <li>
+                <h5>Dog Name</h5>
+                <h6>Dog Breed</h6>
+                <h6>Dog Size</h6>
+            </li>
+            <li>
+                <h5>Dog Name</h5>
+                <h6>Dog Breed</h6>
+                <h6>Dog Size</h6>
+            </li>
+            <li>
+                <h5>Dog Name</h5>
+                <h6>Dog Breed</h6>
+                <h6>Dog Size</h6>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
