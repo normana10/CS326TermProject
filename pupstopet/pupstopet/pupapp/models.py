@@ -56,7 +56,6 @@ class Event(models.Model):
     id=models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for each event")
     host=models.ForeignKey('Owner',on_delete=models.SET_NULL,null=True,help_text="host of event")
     pet=models.ManyToManyField(Pet,help_text="pets attending event")
-    
     startTime=models.DateTimeField(max_length=10,null=True,help_text="time that event starts")
     endTime=models.DateTimeField(max_length=10,null=True,help_text="time that event ends")
     loc=models.CharField(max_length=100,null=True,help_text="location event takes place") #special data type?
