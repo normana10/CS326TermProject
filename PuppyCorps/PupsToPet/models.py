@@ -3,7 +3,6 @@ from django.db import models
 from django.urls import reverse
 
 
-
 #We will need code that lets the user upload pictures of themselves/their pets
 class Breed(models.Model):
     """

@@ -6,7 +6,7 @@ from .models import Pet, Owner, Event, Breed
 #admin.site.register(Pet)
 #admin.site.register(Owner)
 #admin.site.register(Event)
-#admin.site.register(Breed)
+admin.site.register(Breed)
 
 
 # Define the Pet admin class
@@ -26,9 +26,9 @@ class EventAdmin(admin.ModelAdmin):
 
 admin.site.register(Event, EventAdmin)
 
-class BreedAdmin(admin.ModelAdmin):
-    pass
-
-admin.site.register(Breed, BreedAdmin)
+##class BreedAdmin(admin.ModelAdmin):
+##    pass
+##
+##admin.site.register(Breed, BreedAdmin)
 
 
