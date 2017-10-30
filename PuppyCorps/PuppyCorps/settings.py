@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+#import django
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,7 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'PupsToPet.apps.PupstopetConfig',
+    #'django.contrib.easy_maps',
 ]
+
+##if django.VERSION < (1, 7):
+##    INSTALLED_APPS += (
+##        'south',
+##    )
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

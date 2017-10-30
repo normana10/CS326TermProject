@@ -4,6 +4,7 @@ from django.urls import reverse
 
 
 #We will need code that lets the user upload pictures of themselves/their pets
+
 class Breed(models.Model):
     """
     Defines Breed model (e.g. German Sheperd, Golden Retriever, Poodle)
@@ -23,7 +24,7 @@ class Pet(models.Model):
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Pet's unique id")
     name = models.CharField(max_length=100, null=True, help_text="Enter pet's name")
     age = models.CharField(max_length=2, null=True, help_text="How old is your pet? Enter a number. (ex: '2', '10', or '15')")
-    karma = models.FloatField(null=True, help_text="Pet's average rating")
+  #  karma = models.FloatField(null=True, help_text="Pet's average rating")
     owner = models.ForeignKey('Owner', on_delete=models.SET_NULL, null=True, help_text="Pet's owner")
     service = models.BooleanField(default=False, help_text="Is this a service animal?")
     vaccinated = models.BooleanField(default=False, help_text="Is this pet vaccinated?")
@@ -70,10 +71,12 @@ class Owner(models.Model):
     last_name = models.CharField(max_length=100,null=True,help_text="Owner's last name")
     username = models.CharField(max_length=100,null=True,help_text="Owner's username")
     email = models.EmailField(null=True, help_text="email address")
+    pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
     GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'),)
     gender = models.CharField(max_length=1, default='M', choices=GENDER_CHOICES, blank=True, help_text="Owner's gender")
-#    pet = models.ManyToManyField(Pet, help_text="Who are your pets?") # An owner can have many pets                     
-
+    # An owner can have many pets
+    owners_pets = models.CharField(max_length=1000, null=True, help_text="Write down your dog's name if you have one. If you have several dogs, write all of them.")                      
+    
     def get_absolute_url(self):
         """
         Returns the url to access a particular owner instance.
@@ -107,9 +110,14 @@ class Event(models.Model):
         """
         return self.name
 
-##    class Meta:
-##        ordering = ["ID", "start_time", "end_time", "location", "host"]
-        
+    class Meta:
+        ordering = ["ID", "start_time", "end_time", "location", "host"]
+
+##class Location(models.Model):
+##    """
+##    Defines Location model
+##    """
+##    location = models.CharField(max_length=100), gps = Coo
 # reviews
 # locations
 # sharing/store
