@@ -71,11 +71,11 @@ class Owner(models.Model):
     last_name = models.CharField(max_length=100,null=True,help_text="Owner's last name")
     username = models.CharField(max_length=100,null=True,help_text="Owner's username")
     email = models.EmailField(null=True, help_text="email address")
-#   pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
+    pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
     GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'),)
     gender = models.CharField(max_length=1, default='M', choices=GENDER_CHOICES, blank=True, help_text="Owner's gender")
     # An owner can have many pets
-#    owners_pets = models.CharField(max_length=1000, null=True, help_text="Write down your dog's name if you have one. If you have several dogs, write all of them.")                      
+    owners_pets = models.CharField(max_length=1000, null=True, help_text="Write down your dog's name if you have one. If you have several dogs, write all of them.")                      
     
     def get_absolute_url(self):
         """
