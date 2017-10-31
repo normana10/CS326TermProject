@@ -17,7 +17,7 @@ class PetAdmin(admin.ModelAdmin):
 admin.site.register(Pet, PetAdmin)
 
 class OwnerAdmin(admin.ModelAdmin):
-    list_display = ('ID', 'first_name', 'last_name', 'username', 'email', 'gender', 'pet_owner_status', 'owners_pets')
+    list_display = ('ID', 'first_name', 'last_name', 'username', 'email', 'gender')
 
 admin.site.register(Owner, OwnerAdmin)
 
@@ -32,3 +32,22 @@ admin.site.register(Event, EventAdmin)
 ##admin.site.register(Breed, BreedAdmin)
 
 
+'''
+class PetInline(admin.TabularInline):
+    model = Pet
+    extra = 0
+    
+@admin.register(Owner)
+class OwnerAdmin(admin.ModelAdmin):
+    list_display = ('username','id','firstName', 'lastName')
+    inlines = [PetInline]
+    
+@admin.register(Pet)
+class PetAdmin(admin.ModelAdmin):
+    list_display = ('name','id')
+    
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ('id','host','startTime','endTime')
+    list_filter=('startTime','endTime')
+'''
