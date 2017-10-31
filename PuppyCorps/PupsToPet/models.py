@@ -94,13 +94,14 @@ class Event(models.Model):
     """
     Defines Event model
     """
-    name = models.CharField(max_length=100,null=True,help_text="Event name")
+    name = models.CharField(max_length=75,null=True,help_text="Event name")
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for each event")
     host = models.ForeignKey('Owner',on_delete=models.SET_NULL,null=True,help_text="Host of event")
  #   pet = models.ManyToManyField(Pet,help_text="Pets attending event")
  #   pet = models.ForeignKey('Pet',on_delete=models.SET_NULL,null=True,help_text="Owner's pet")
     start_time = models.DateTimeField(max_length=10,null=True,help_text="Enter time that event starts")
     end_time = models.DateTimeField(max_length=10,null=True,help_text="Enter time that event ends")
+    description = models.CharField(max_length=300, null=True, help_text="Enter event description here!")
     location = models.CharField(max_length=100,null=True,help_text="Enter event location") #special data type?
 
     # Methods
