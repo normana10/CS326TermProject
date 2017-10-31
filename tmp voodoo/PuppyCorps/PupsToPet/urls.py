@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^findevent$', views.findevent, name='findevent'),
     url(r'^userinfo$', views.userinfo, name='userinfo'),
     url(r'^doginfo$', views.doginfo, name='doginfo'),
+    url(r'^vomit$', views.vomit, name='vomit'),
 ]

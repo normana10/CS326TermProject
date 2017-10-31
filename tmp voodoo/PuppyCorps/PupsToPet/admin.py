@@ -1,11 +1,12 @@
 from django.contrib import admin
-from .models import Pet, Owner, Event
+from .models import Pet, Owner, Event, Breed
 
 # Register your models here.
 
 #admin.site.register(Pet)
 #admin.site.register(Owner)
 #admin.site.register(Event)
+admin.site.register(Breed)
 
 class PetInline(admin.TabularInline):
     model = Pet

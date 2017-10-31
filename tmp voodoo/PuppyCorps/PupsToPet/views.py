@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Pet, Owner, Event
+from .models import Pet, Owner, Event, Breed
 
 # Create your views here.
 
@@ -55,4 +55,12 @@ def doginfo(request):
     return render(
         request,
         'dog-info.html',
+    )
+    
+def vomit(request):
+    events=Event.objects.all()
+    return render(
+        request,
+        'list-vomit.html',
+        context={'events':events},
     )
