@@ -177,6 +177,23 @@
             </select>
             <h3>Location:</h3>
             <input type="text"><br>
+            <h3>Co-ordinates</h3>
+            <input id="coords" type="text" name="">
+                <script>
+                    var x = document.getElementById("coords");
+                    function getLocation() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(showPosition);
+                        } else {
+                            x.innerHTML = "Geolocation is not supported by this browser.";
+                        }
+                    }
+                    function showPosition(position) {
+                        x.value = position.coords.latitude + 
+                        "," + position.coords.longitude; 
+                    }
+                    getLocation();
+                </script>
             <button>Submit</button>
             <!-- <input type="submit"> -->
         </form>
