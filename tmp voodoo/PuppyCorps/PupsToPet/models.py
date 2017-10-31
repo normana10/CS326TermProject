@@ -8,8 +8,7 @@ class Pet(models.Model):
     id=models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for each pet")
     name=models.CharField(max_length=100,null=True,help_text="pet name")
     owner=models.ForeignKey('Owner',on_delete=models.SET_NULL,null=True,help_text="owner of pet")
-    breed=models.CharField(max_length=25,null=True,help_text="pet breed")
-    karma=models.FloatField(null=True,help_text="average rating of pet")
+    #karma=models.FloatField(null=True,help_text="average rating of pet")
     
     SIZE=(('S','small'),('M','medium'),('L','large'))
     gender=models.CharField(max_length=1, default='M', choices=SIZE, blank=True, help_text="Pet's size")
@@ -21,6 +20,8 @@ class Pet(models.Model):
     vacinated=models.BooleanField(default=False,help_text="is this pet vacinated")
     disposition=models.CharField(max_length=200,null=True,help_text="notes about pet's disposition")
     additional_notes=models.TextField(max_length=1000,null=True,help_text="summary and additional notes about pet")
+    
+    breed = models.ManyToManyField('Breed', help_text="Your pet might be pure-bred or mixed! Select the breed(s) for this pet.")
     
     def __str__(self):
         """
@@ -55,7 +56,7 @@ class Owner(models.Model):
 class Event(models.Model):
     id=models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for each event")
     host=models.ForeignKey('Owner',on_delete=models.SET_NULL,null=True,help_text="host of event")
-    pet=models.ManyToManyField(Pet,help_text="pets attending event")
+    pet=models.ManyToManyField('Pet',help_text="pets attending event")
     
     startTime=models.DateTimeField(max_length=10,null=True,help_text="time that event starts")
     endTime=models.DateTimeField(max_length=10,null=True,help_text="time that event ends")
@@ -65,10 +66,26 @@ class Event(models.Model):
         """
         String for representing the Model object (in Admin site etc.)
         """
-        return "id"
+        return str(id)
+        
+    def pets(self):
+        return ', '.join([p.name for p in self.pet.all()])
+    
         
     class Meta:
         ordering = ["startTime","id"]
+        
+class Breed(models.Model):
+    """
+    Defines Breed model (e.g. German Sheperd, Golden Retriever, Poodle)
+    """
+    breed = models.CharField(max_length=200, help_text="Enter a dog breed (e.g. German Sheperd, Golden Retriever, Poodle)")
+
+    def __str__(self):
+        """
+        String for representing the Breed object (in Admin site etc.)
+        """
+        return self.breed
         
 # reviews
 # locations
