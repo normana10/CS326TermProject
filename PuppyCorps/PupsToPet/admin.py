@@ -11,13 +11,13 @@ admin.site.register(Breed)
 
 # Define the Pet admin class
 class PetAdmin(admin.ModelAdmin):
-    list_display = ('ID', 'name', 'age', 'owner', 'service', 'vaccinated', 'gender', 'size')
+    list_display = ('ID', 'name', 'age', 'owner', 'service', 'vaccinated', 'gender', 'size', )
 
 # Register the Pet admin class with the associated model
 admin.site.register(Pet, PetAdmin)
 
 class OwnerAdmin(admin.ModelAdmin):
-    list_display = ('ID', 'first_name', 'last_name', 'username', 'email', 'gender', 'pet_owner_status', 'owners_pets')
+    list_display = ('ID', 'first_name', 'last_name', 'username', 'email', 'gender')
 
 admin.site.register(Owner, OwnerAdmin)
 
