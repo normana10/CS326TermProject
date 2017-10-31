@@ -230,6 +230,7 @@
 						// var bounds = new google.maps.LatLngBounds();
 						
 						marker.setPosition(places[0].geometry.location);
+						map.setCenter(places[0].geometry.location);
 						document.getElementById("coords").value = places[0].geometry.location.lat() + "," + places[0].geometry.location.lng();
 
 						// map.fitBounds(bounds);
