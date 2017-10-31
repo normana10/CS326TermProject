@@ -22,3 +22,51 @@ def index(request):
         'index.html',
         context={'num_owners':num_owners,'num_pet':num_pet,'num_breed':num_breed,'num_event':num_event},
     )
+
+def dashboard(request):
+    return render(
+        request,
+        'dashboard.html',
+    )
+    
+def createaccount(request):
+    return render(
+        request,
+        'create-account.html',
+    )
+    
+def login(request):
+    return render(
+        request,
+        'log-in.html',
+    )
+    
+def forgotpassword(request):
+    return render(
+        request,
+        'forgot-password.html',
+    )
+    
+def createevent(request):
+    return render(
+        request,
+        'create-event.html',
+    )
+    
+def findevent(request):
+    return render(
+        request,
+        'find-event.html',
+    )
+    
+def userinfo(request):
+    return render(
+        request,
+        'userinfo.html',
+    )
+    
+def doginfo(request):
+    return render(
+        request,
+        'dog-info.html',
+    )
