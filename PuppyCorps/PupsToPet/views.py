@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 from .models import Pet, Owner, Event, Breed
 
-def index(request):
+def about(request):
     """
     View function for home page of site.
     """
@@ -19,8 +19,7 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(
         request,
-        'index.html',
-        context={'num_owners':num_owners,'num_pet':num_pet,'num_breed':num_breed,'num_event':num_event},
+        'about-page.html',
     )
 
 def dashboard(request):

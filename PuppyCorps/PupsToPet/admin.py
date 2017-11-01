@@ -11,7 +11,7 @@ admin.site.register(Breed)
 
 # Define the Pet admin class
 class PetAdmin(admin.ModelAdmin):
-    list_display = ('ID', 'name', 'age', 'owner', 'service', 'vaccinated', 'gender', 'size')
+    list_display = ('ID', 'name', 'age', 'owner', 'service', 'vaccinated', 'gender', 'size', 'get_absolute_url')
 
 # Register the Pet admin class with the associated model
 admin.site.register(Pet, PetAdmin)
@@ -32,22 +32,3 @@ admin.site.register(Event, EventAdmin)
 ##admin.site.register(Breed, BreedAdmin)
 
 
-'''
-class PetInline(admin.TabularInline):
-    model = Pet
-    extra = 0
-    
-@admin.register(Owner)
-class OwnerAdmin(admin.ModelAdmin):
-    list_display = ('username','id','firstName', 'lastName')
-    inlines = [PetInline]
-    
-@admin.register(Pet)
-class PetAdmin(admin.ModelAdmin):
-    list_display = ('name','id')
-    
-@admin.register(Event)
-class EventAdmin(admin.ModelAdmin):
-    list_display = ('id','host','startTime','endTime')
-    list_filter=('startTime','endTime')
-'''
