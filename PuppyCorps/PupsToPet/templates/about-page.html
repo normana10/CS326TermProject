@@ -61,75 +61,29 @@
             // 	}
             };
 
-            var features = [
-                {
-                    position: new google.maps.LatLng(42.391138,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.40,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.39,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.38,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.50),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.60),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.51),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.52),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.53),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.54),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.55),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.56),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.57),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.41,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.43,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.42,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.44,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.47,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.48,-72.526812),
-                    type: 'pupper'
-                }
-            ];
-
+            // var features = [
+            //     {% for event in events %}
+            //         {
+            //             position: new google.maps.LatLng({{ event.location }}),
+            //             type: 'pupper'
+            //         },  
+            //     {% endfor %}
+            // ];
             // Create markers.
-            features.forEach(function(feature) {
+            // features.forEach(function(feature) {
+            var infowindow = new google.maps.InfoWindow();
+            {% for event in events %}
                 var marker = new google.maps.Marker({
-                position: feature.position,
-                icon: icons[feature.type].icon,
+                position: new google.maps.LatLng({{ event.location }}),
+                icon: icons['pupper'].icon,
                 map: map
                 });
-            });
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent('<div><strong>' + '{{ event.name }}' + '</strong><br>' + 'Host: ' + '{{ event.host }}' + '<br>Starts:' + '{{ event.start_time }}' + '<br>' + 'Ends:{{ event.end_time }}' + '<br>Description:<br>' + '{{ event.description }}' + '</div>');
+                    infowindow.open(map, this);
+                });
+            {% endfor %}
+            // });
         }
     </script>
     <script async defer
