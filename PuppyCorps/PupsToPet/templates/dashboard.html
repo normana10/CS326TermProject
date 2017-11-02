@@ -18,7 +18,7 @@
 
 {% block content %}
 <div id="page-content">
-    <iframe
+    <!-- <iframe
         width="80%"
         height="450"
         frameborder="0" style="border:0"
@@ -26,7 +26,63 @@
         &center=42.391138,-72.526812
         &zoom=14
         &maptype=satellite" allowfullscreen>
-    </iframe>
+    </iframe> -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQgbR5jdBj36wI9-6SpCOpaBr-Rj14L70&callback=initMap">
+    </script>
+    <div id="map" style="height: 450px;width: 80%"></div>
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: new google.maps.LatLng(42.391138,-72.526812),
+                mapTypeId: 'satellite'
+                });
+
+            var iconBase = "{% static 'images/' %}";
+            // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+            var icons = {
+                pupper: {
+                    icon: iconBase + 'pupClipArt.png'
+                },
+            //  parking: {
+            //      icon: iconBase + 'parking_lot_maps.png'
+            //  },
+            //  library: {
+            //      icon: iconBase + 'library_maps.png'
+            //  },
+            //  info: {
+            //      icon: iconBase + 'info-i_maps.png'
+            //  }
+            };
+
+            // var features = [
+            //     {% for event in events %}
+            //         {
+            //             position: new google.maps.LatLng({{ event.location }}),
+            //             type: 'pupper'
+            //         },  
+            //     {% endfor %}
+            // ];
+            // Create markers.
+            // features.forEach(function(feature) {
+            var infowindow = new google.maps.InfoWindow();
+            {% for event in events %}
+                var marker = new google.maps.Marker({
+                position: new google.maps.LatLng({{ event.location }}),
+                icon: icons['pupper'].icon,
+                map: map
+                });
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent('<div><strong>' + '{{ event.name }}' + '</strong><br>' + 'Host: ' + '{{ event.host }}' + '<br>Starts:' + '{{ event.start_time }}' + '<br>' + 'Ends:{{ event.end_time }}' + '<br>Description:<br>' + '{{ event.description }}' + '</div>');
+                    infowindow.open(map, this);
+                });
+            {% endfor %}
+            // });
+        }
+    </script>
+
     <h2>Howdy %NAME%!</h2>
     <div id="personal-information">
         <h4>Your Information:</h4>
@@ -58,8 +114,9 @@
             </li>
         </ul>
     </div>
+    <div style="clear: both;"></div>
     
-    <div style="padding-top:200px;padding-left:5px">
+    <div style="padding-top:10px;padding-left:5px">
         <h2>Event Information</h2>
         {% for eve in events %}
         <div style="border: 3px solid black;margin: 10px;width: 400px;background-color: rgb(200, 249, 255);;">
