@@ -23,9 +23,11 @@ def about(request):
     )
 
 def dashboard(request):
+    events=Event.objects.all()
     return render(
         request,
         'dashboard.html',
+        context={'events':events},
     )
     
 def createaccount(request):

@@ -58,5 +58,16 @@
             </li>
         </ul>
     </div>
+    <br>
+    <div style="padding-top:200px;padding-left:5px">
+        {% for eve in events %}
+              <h3><strong>{{eve.id}}</strong></h3>
+              <p><strong>Host: </strong>{{eve.host}}</p>
+              <p><strong>Description: </strong>{{eve.description}}</p>
+              <p><strong>Time: </strong>{{eve.start_time}} - {{eve.end_time}}</p>
+              <p><strong>Location: </strong>{{eve.location}}</p>
+              <br>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
