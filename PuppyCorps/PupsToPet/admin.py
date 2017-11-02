@@ -11,7 +11,7 @@ admin.site.register(Breed)
 
 # Define the Pet admin class
 class PetAdmin(admin.ModelAdmin):
-    list_display = ('ID', 'name', 'age', 'owner', 'service', 'vaccinated', 'gender', 'size', 'get_absolute_url')
+    list_display = ('ID', 'name', 'age', 'owner', 'service', 'vaccinated', 'gender', 'size')
 
 # Register the Pet admin class with the associated model
 admin.site.register(Pet, PetAdmin)
