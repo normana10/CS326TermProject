@@ -4,18 +4,34 @@
 {% block title %}<title>PupsToPet | Main Page</title>{% endblock %}
 
 {% block navbar %}
-<a href="{% url 'login' %}">
-    <button>
-        &#x1F43E; Log In &#x1F43E;
-    </button>
-</a>
-
-<a href="{% url 'createaccount' %}">
-    <button>
-        &#x1F43E; Create Account &#x1F43E;
-    </button>
-</a>
-
+{% if user.is_authenticated %}
+    <a href="{% url 'logout' %}?next={% url 'about' %}">
+        <button>
+            &#x1F43E; Log Out &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'userinfo' %}">
+        <button>
+            &#x1F43E; Account Settings &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'createevent' %}">
+        <button>
+            &#x1F43E; Create Event &#x1F43E;
+        </button>
+    </a>
+{% else %}
+    <a href="{% url 'login' %}?next={% url 'dashboard' %}">
+        <button>
+            &#x1F43E; Log In &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'createaccount' %}">
+        <button>
+            &#x1F43E; Create Account &#x1F43E;
+        </button>
+    </a>
+{% endif %}
 <a href="{% url 'findevent' %}">
     <button>
         &#x1F43E; Find Event &#x1F43E;
@@ -24,7 +40,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="index-page-content">
+<div id="index-page-content"> <!-- COMMENT: index-page-content is really just the about page--->
     <!-- <iframe
         width="600"
         height="450"
@@ -61,75 +77,29 @@
             // 	}
             };
 
-            var features = [
-                {
-                    position: new google.maps.LatLng(42.391138,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.40,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.39,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.38,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.50),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.60),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.51),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.52),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.53),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.54),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.55),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.56),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.391138,-72.57),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.41,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.43,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.42,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.44,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.47,-72.526812),
-                    type: 'pupper'
-                }, {
-                    position: new google.maps.LatLng(42.48,-72.526812),
-                    type: 'pupper'
-                }
-            ];
-
+            // var features = [
+            //     {% for event in events %}
+            //         {
+            //             position: new google.maps.LatLng({{ event.location }}),
+            //             type: 'pupper'
+            //         },  
+            //     {% endfor %}
+            // ];
             // Create markers.
-            features.forEach(function(feature) {
+            // features.forEach(function(feature) {
+            var infowindow = new google.maps.InfoWindow();
+            {% for event in events %}
                 var marker = new google.maps.Marker({
-                position: feature.position,
-                icon: icons[feature.type].icon,
+                position: new google.maps.LatLng({{ event.location }}),
+                icon: icons['pupper'].icon,
                 map: map
                 });
-            });
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent('<div><strong>' + '{{ event.name }}' + '</strong><br>' + 'Host: ' + '{{ event.host }}' + '<br>Starts:' + '{{ event.start_time }}' + '<br>' + 'Ends:{{ event.end_time }}' + '<br>Description:<br>' + '{{ event.description }}' + '</div>');
+                    infowindow.open(map, this);
+                });
+            {% endfor %}
+            // });
         }
     </script>
     <script async defer

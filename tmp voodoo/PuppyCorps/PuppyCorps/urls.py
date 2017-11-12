@@ -15,13 +15,30 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+]
+
+# Use include() to add URLS from the PupsToPet application 
 from django.conf.urls import include
+
+urlpatterns += [
+    url(r'^PupsToPet/', include('PupsToPet.urls')),
+]
+
+#Add URL maps to redirect the base URL to our application
 from django.views.generic import RedirectView
+urlpatterns += [
+    url(r'^$', RedirectView.as_view(url='/PupsToPet/', permanent=True)),
+]
+
+# Use static() to add url mapping to serve static files during development (only)
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
-    url(r'^admin/', admin.site.urls), 
-    url(r'^pupstopet/', include('PupsToPet.urls')),
-    url(r'^$', RedirectView.as_view(url='/pupstopet/', permanent=True)),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += [
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+]
