@@ -176,16 +176,6 @@ nav {
 
 }
 
-#logged-out-page {
-    background-color: white;
-
-}
-
-#logged-out-page p {
-    font-size: 400px;
-
-}
-
 /*
 #login-page {
     margin-left: 150px;
@@ -209,4 +199,14 @@ html, body {
 	/*height: 100%;*/
 	/*margin: 0;*/
 	/*padding: 0;*/
+}
+
+.logged-out-page {
+    background-color: white;
+    font-family: cursive;
+    text-align: center;
+}
+
+.logged-out-page p {
+    font-size: 400px;
 }
