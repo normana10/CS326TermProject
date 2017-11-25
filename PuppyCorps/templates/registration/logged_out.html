@@ -33,11 +33,13 @@
 
 
 {% block content %}
-<div id="logged-out-page">
-    <br><br><br><br><br><br>
-    <p>HELLO DOLLY</p><br><br><br><br><br><br>
-    <p>You have been logged out!</p>  
-    <a href="{% url 'login'%}">Click here to login again.</a>
+<div>
+    <div id="logged-out-page">
+        <br><br><br><br><br><br>
+        <p>HELLO DOLLY</p><br><br><br><br><br><br>
+        <p>You have been logged out!</p>  
+        <a href="{% url 'login'%}">Click here to login again.</a>
 
+    </div>
 </div>
 {% endblock %}
