@@ -25,10 +25,14 @@ def about(request):
 
 def dashboard(request):
     events=Event.objects.all()
+    if request.user.is_authenticated():
+        dogs=request.user.owner.pet_set.all()
+    else:
+        dogs=None
     return render(
         request,
         'dashboard.html',
-        context={'events':events},
+        context={'events':events,'dogs':dogs},
     )
     
 def createaccount(request):
