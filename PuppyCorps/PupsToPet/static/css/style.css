@@ -169,11 +169,20 @@ nav {
 	top: 0px;
 	left: 0;
     font-family: 'Fredericka the Great', cursive;
-
 }
 
 .create-event-page {
     background-color: white;
+
+}
+
+#logged-out-page {
+    background: white;
+
+}
+
+#logged-out-page p {
+    font-size: 400px;
 
 }
 
