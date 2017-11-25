@@ -39,9 +39,11 @@ nav h1 {
 
 .findeventdiv {
     max-width: 100%;
+}
 
+#logged-out-page {
 
-
+    font-size: 400px;
 
 }
 
