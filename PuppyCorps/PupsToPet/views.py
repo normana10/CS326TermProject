@@ -46,6 +46,12 @@ def login(request):
         request,
         'log-in.html',
     )
+
+def loggedout(request):
+    return render(
+        request,
+        'logged-out.html',
+)
     
 def forgotpassword(request):
     return render(

@@ -208,5 +208,7 @@ html, body {
 }
 
 .logged-out-page p {
-    font-size: 400px;
+    font-size: 40px;
+    font-family: 'Fredericka the Great', cursive;
+
 }
