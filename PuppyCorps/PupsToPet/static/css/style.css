@@ -46,6 +46,21 @@ nav h1 {
     z-index: 4;
 }
 
+button {
+    color: white;
+    /*background-color: #285775;*/
+    background-color: #8EE3EF;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+button:hover {
+    background-color: white;
+    color: navy;
+}
+
 #page-content {
 	margin-top: 97px;
 	padding: 20px;
@@ -58,20 +73,7 @@ nav h1 {
 
 }
 
-button {
-	color: white;
-	/*background-color: #285775;*/
-	background-color: #8EE3EF;
-	border: 1px solid black;
-	border-radius: 5px;
-	padding: 10px;
-	font-size: 18px;
-}
 
-button:hover {
-	background-color: white;
-	color: navy;
-}
 
 body {
 	margin: 0;
