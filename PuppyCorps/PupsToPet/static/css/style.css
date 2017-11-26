@@ -206,9 +206,8 @@ html, body {
 .logged-out-page {
     background-color: white;
     text-align: center;
-    margin: 150px;
-    padding: 50px;
-    padding-top: 100%;
+    margin-left: 200px;
+    margin-right: 200px;
 
 
 }
