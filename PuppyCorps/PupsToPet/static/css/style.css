@@ -73,8 +73,6 @@ button:hover {
 
 }
 
-
-
 body {
 	margin: 0;
 	background-color: #8EE3EF;
@@ -206,12 +204,10 @@ html, body {
 }
 
 .logged-out-page {
-    padding-top: 300px;
     background-color: white;
     text-align: center;
-    padding-bottom: 150px;
-    padding-left: 150px;
-    padding-right: 150px;
+    margin: 150px;
+
 
 }
 
