@@ -65,7 +65,7 @@ button {
 	border: 1px solid black;
 	border-radius: 5px;
 	padding: 10px;
-	font-size: 15px;
+	font-size: 18px;
 }
 
 button:hover {
@@ -160,7 +160,8 @@ a:hover {
 	color: blue;
 }
 
-nav {
+/*
+ nav {
 	height: 97px;
 	background-color: #FB4D3D;
 	box-shadow: 0px 1px 5px rgba(0,0,0,.5);
@@ -170,6 +171,7 @@ nav {
 	left: 0;
     font-family: 'Fredericka the Great', cursive;
 }
+ */
 
 .create-event-page {
     background-color: white;
