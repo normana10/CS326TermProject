@@ -203,12 +203,18 @@ html, body {
 	/*padding: 0;*/
 }
 
-.logged-out-page {
-
-}
-
 .logged-out-page p {
     font-size: 40px;
     font-family: 'Fredericka the Great', cursive;
+    background-color: white;
+    height: 100%;
+    width: 30%;
+    margin: auto;
+    margin-top: 10%;
+    border: 1px solid rgba(0,0,0,.6);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 10px 10px 5px red;
 
 }
