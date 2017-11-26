@@ -218,3 +218,8 @@ html, body {
     box-shadow: 10px 10px 5px red;
 
 }
+
+.logged-out-page p {
+    font-family: 'Fredericka the Great', cursive;
+
+}
