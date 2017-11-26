@@ -19,7 +19,7 @@ urlpatterns = [
                #    Depends on if we want to do password reset for our app
     url(r'^passwordresetform$', views.passwordresetform, name='passwordresetform'),
     url(r'^passwordresetdone$', views.passwordresetdone, name='passwordresetdone'),
-    url(r'^passwordresetemail$', views.passwordresetemail, name='passwordresetemail')
+    url(r'^passwordresetemail$', views.passwordresetemail, name='passwordresetemail'),
     url(r'^passwordresetconfirm$', views.passwordresetconfirm, name='passwordresetconfirm'),
     url(r'^passwordresetcomplete$', views.passwordresetcomplete, name='passwordresetcomplete'),
 
