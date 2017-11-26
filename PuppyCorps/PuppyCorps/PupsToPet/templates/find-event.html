@@ -1,0 +1,131 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}<title>PupsToPet | Find Events</title>{% endblock %}
+
+{% block navbar %}
+{% if user.is_authenticated %}
+    <a href="{% url 'logout' %}?next={% url 'about' %}">
+        <button>
+            &#x1F43E; Log Out &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'userinfo' %}">
+        <button>
+            &#x1F43E; Account Settings &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'createevent' %}">
+        <button>
+            &#x1F43E; Create Event &#x1F43E;
+        </button>
+    </a>
+{% else %}
+    <a href="{% url 'login' %}?next={% url 'dashboard' %}">
+        <button>
+            &#x1F43E; Log In &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'createaccount' %}">
+        <button>
+            &#x1F43E; Create Account &#x1F43E;
+        </button>
+    </a>
+{% endif %}
+<a href="{% url 'dashboard' %}">
+    <button>
+        &#x1F43E; Dashboard &#x1F43E;
+    </button>
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="findeventdiv login-modal" style="height:100%">
+  <h1>Find Events</h1>
+  <form>
+    <h3>Event Name:</h3>
+    
+    <input class="form-group" type="text" name="eventname" value="Enter event name"><br>
+    
+    <h3>Event Location:</h3>
+    <input class="form-group" type="text" name="location" value="Enter UMASS location"><br>
+    <h3>Event Host:</h3>
+    <input class="form-group" type="text" name="host" value="Enter host's first and last name OR their username"><br>
+    
+    
+    <div class="nativeDateTimePicker">
+      
+      <h3 class="fallbackLabel">Choose a date of the event(s) you want to find:</h3>
+      <div class="fallbackDateTimePicker">
+        <div>
+          <span>
+            <label for="day">Day:</label>
+            <select id="day" name="day">
+            </select>
+          </span>
+          <span>
+            <label for="month">Month:</label>
+            <select id="month" name="month">
+              <option selected>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+          </span>
+          <span>
+            <label for="year">Year:</label>
+            <select id="year" name="year">
+            </select>
+          </span>
+        </div>
+        <div>
+          <span>
+            <label for="hour">Hour:</label>
+            <select id="hour" name="hour">
+            </select>
+          </span>
+          <span>
+            <label for="minute">Minute:</label>
+            <select id="minute" name="minute">
+            </select>
+          </span>
+        </div>
+      </div>
+      
+<!-- <h3>Type:</h3>
+<input type="text" name="type"><br> -->
+        
+    <h3 for="hostpet">Enter Host's Pet's Name:</h3>
+    <input class="form-group" type="text" name="hostpet" value="Don't know your host's name? Enter their pet's name instead!"><br>
+        
+<!-- If the below stuff is deemed necessary, then uncomment it.
+<h3 style="display:inline">Pet Size:</h3>
+<select>
+<option>N/A</option> 
+  <option>small</option>
+  <option>medium</option>
+  <option>large</option>
+</select><br>
+        
+<h3 style="display:inline">Pet Gender:</h3>
+<select>
+  <option>N/A</option> 
+  <option>male</option>
+  <option>female</option>
+</select><br>
+-->
+        
+<div>
+  <Button>Submit</Button>
+</div>
+</form>
+</div>
+{% endblock %}
