@@ -202,8 +202,8 @@ html, body {
 }
 
 .logged-out-page {
+    padding-top: 50px;
     background-color: white;
-    font-family: cursive;
     text-align: center;
 }
 
