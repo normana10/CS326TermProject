@@ -38,7 +38,6 @@ class Pet(models.Model):
     size = models.CharField(max_length=1, choices=SIZE_CHOICES, blank=True, help_text="Pet's size")
 
 
-    # ManyToManyField used because a pet can contain one or many breeds (they can be pure-bred or mixed).
     # Breed class has already been defined so we can specify the object below.
     breed = models.ManyToManyField(Breed, help_text="Your pet might be pure-bred or mixed! Select the breed(s) for this pet.")     
 
@@ -67,15 +66,14 @@ class Owner(models.Model):
     Defines Owner model
     """
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Owner's unique id")
-    first_name = models.CharField(max_length=100,null=True,help_text="Owner's first name")
-    last_name = models.CharField(max_length=100,null=True,help_text="Owner's last name")
-    username = models.CharField(max_length=100,null=True,help_text="Owner's username")
-    email = models.EmailField(null=True, help_text="email address")
-#   pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
+# first_name = models.CharField(max_length=100,null=True,help_text="Owner's first name")
+# last_name = models.CharField(max_length=100,null=True,help_text="Owner's last name")
+# username = models.CharField(max_length=100,null=True,help_text="Owner's username")
+# email = models.EmailField(null=True, help_text="email address")
+# pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
+user = models.OneToOneField(User, on_delete=models.CASCADE)
     GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'),)
     gender = models.CharField(max_length=1, default='M', choices=GENDER_CHOICES, blank=True, help_text="Owner's gender")
-    # An owner can have many pets
-#    owners_pets = models.CharField(max_length=1000, null=True, help_text="Write down your dog's name if you have one. If you have several dogs, write all of them.")                      
     
     def get_absolute_url(self):
         """
@@ -90,6 +88,15 @@ class Owner(models.Model):
         """
         return '%s, %s, %s' % (self.username, self.last_name, self.first_name)
 
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Owner.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.owner.save()
+
 class Event(models.Model):
     """
     Defines Event model
@@ -97,7 +104,7 @@ class Event(models.Model):
     name = models.CharField(max_length=75,null=True,help_text="Event name")
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for each event")
     host = models.ForeignKey('Owner',on_delete=models.SET_NULL,null=True,help_text="Host of event")
- #   pet = models.ManyToManyField(Pet,help_text="Pets attending event")
+    pet = models.ManyToManyField(Pet,help_text="Pets attending event")
  #   pet = models.ForeignKey('Pet',on_delete=models.SET_NULL,null=True,help_text="Owner's pet")
     start_time = models.DateTimeField(max_length=10,null=True,help_text="Enter time that event starts")
     end_time = models.DateTimeField(max_length=10,null=True,help_text="Enter time that event ends")

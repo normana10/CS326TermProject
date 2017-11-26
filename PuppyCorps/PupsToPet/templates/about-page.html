@@ -4,18 +4,34 @@
 {% block title %}<title>PupsToPet | Main Page</title>{% endblock %}
 
 {% block navbar %}
-<a href="{% url 'login' %}">
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next={% url 'about' %}">
+    <button>
+        &#x1F43E; Log Out &#x1F43E;
+    </button>
+</a>
+<a href="{% url 'userinfo' %}">
+    <button>
+        &#x1F43E; Account Settings &#x1F43E;
+    </button>
+</a>
+<a href="{% url 'createevent' %}">
+    <button>
+        &#x1F43E; Create Event &#x1F43E;
+    </button>
+</a>
+{% else %}
+<a href="{% url 'login' %}?next={% url 'dashboard' %}">
     <button>
         &#x1F43E; Log In &#x1F43E;
     </button>
 </a>
-
 <a href="{% url 'createaccount' %}">
     <button>
         &#x1F43E; Create Account &#x1F43E;
     </button>
 </a>
-
+{% endif %}
 <a href="{% url 'findevent' %}">
     <button>
         &#x1F43E; Find Event &#x1F43E;
@@ -26,100 +42,101 @@
 {% block content %}
 <div id="index-page-content"> <!-- COMMENT: index-page-content is really just the about page--->
     <!-- <iframe
-        width="600"
-        height="450"
-        frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBYB8_cGZklsYTdCQNga90YNrCsX3-NnDE
-        &center=42.391138,-72.526812
-        &zoom=14
-        &maptype=satellite" allowfullscreen>
-    </iframe> -->
+     width="600"
+     height="450"
+     frameborder="0" style="border:0"
+     src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBYB8_cGZklsYTdCQNga90YNrCsX3-NnDE
+     &center=42.391138,-72.526812
+     &zoom=14
+     &maptype=satellite" allowfullscreen>
+     </iframe> -->
     <div id="map"></div>
     <script>
         var map;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 14,
-                center: new google.maps.LatLng(42.391138,-72.526812),
-                mapTypeId: 'satellite'
-                });
-
-            var iconBase = "{% static 'images/' %}";
-            // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-            var icons = {
-                pupper: {
-                    icon: iconBase + 'pupClipArt.png'
-                },
-            // 	parking: {
-            // 		icon: iconBase + 'parking_lot_maps.png'
-            // 	},
-            // 	library: {
-            // 		icon: iconBase + 'library_maps.png'
-            // 	},
-            // 	info: {
-            // 		icon: iconBase + 'info-i_maps.png'
-            // 	}
-            };
-
-            // var features = [
-            //     {% for event in events %}
-            //         {
-            //             position: new google.maps.LatLng({{ event.location }}),
-            //             type: 'pupper'
-            //         },  
-            //     {% endfor %}
-            // ];
-            // Create markers.
-            // features.forEach(function(feature) {
-            var infowindow = new google.maps.InfoWindow();
-            {% for event in events %}
-                var marker = new google.maps.Marker({
-                position: new google.maps.LatLng({{ event.location }}),
-                icon: icons['pupper'].icon,
-                map: map
-                });
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.setContent('<div><strong>' + '{{ event.name }}' + '</strong><br>' + 'Host: ' + '{{ event.host }}' + '<br>Starts:' + '{{ event.start_time }}' + '<br>' + 'Ends:{{ event.end_time }}' + '<br>Description:<br>' + '{{ event.description }}' + '</div>');
-                    infowindow.open(map, this);
-                });
-            {% endfor %}
-            // });
+                                      zoom: 14,
+                                      center: new google.maps.LatLng(42.391138,-72.526812),
+                                      mapTypeId: 'satellite'
+                                      });
+                                      
+                                      var iconBase = "{% static 'images/' %}";
+                                      // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+                                      var icons = {
+                                          pupper: {
+                                              icon: iconBase + 'pupClipArt.png'
+                                          },
+                                          //     parking: {
+                                          //         icon: iconBase + 'parking_lot_maps.png'
+                                          //     },
+                                          //     library: {
+                                          //         icon: iconBase + 'library_maps.png'
+                                          //     },
+                                          //     info: {
+                                          //         icon: iconBase + 'info-i_maps.png'
+                                          //     }
+                                      };
+                                      
+                                      // var features = [
+                                      //     {% for event in events %}
+                                      //         {
+                                      //             position: new google.maps.LatLng({{ event.location }}),
+                                      //             type: 'pupper'
+                                      //         },
+                                      //     {% endfor %}
+                                      // ];
+                                      // Create markers.
+                                      // features.forEach(function(feature) {
+                                      var infowindow = new google.maps.InfoWindow();
+                                      {% for event in events %}
+                                      var marker = new google.maps.Marker({
+                                                                          position: new google.maps.LatLng({{ event.location }}),
+                                                                          icon: icons['pupper'].icon,
+                                                                          map: map
+                                                                          });
+                                                                          google.maps.event.addListener(marker, 'click', function() {
+                                                                                                        infowindow.setContent('<div><strong>' + '{{ event.name }}' + '</strong><br>' + 'Host: ' + '{{ event.host }}' + '<br>Starts:' + '{{ event.start_time }}' + '<br>' + 'Ends:{{ event.end_time }}' + '<br>Description:<br>' + '{{ event.description }}' + '</div>');
+                                                                                                        infowindow.open(map, this);
+                                                                                                        });
+                                                                                                        {% endfor %}
+                                                                                                        // });
         }
     </script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQgbR5jdBj36wI9-6SpCOpaBr-Rj14L70&callback=initMap">
-    </script>
-
+        </script>
+    
     <h2>Welcome to PupsToPet!</h2>
     <br>
     <h3>What we do</h3>
     <a href="images/1.jpg"><img src="{% static 'images/1.jpg' %}"></a>
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac sapien diam. Vestibulum viverra nulla sed egestas vehicula. Praesent sed diam sem. Sed porttitor, massa nec tempor accumsan, velit tellus pulvinar massa, ac vestibulum velit purus vitae odio. Quisque eget nulla lobortis, consequat urna quis, sollicitudin elit. Mauris convallis, leo id commodo pulvinar, lorem tellus varius nisi, non suscipit metus velit non velit. Nulla at tincidunt lorem. Vestibulum id ligula lectus. Praesent varius arcu ut quam tincidunt rhoncus. Fusce erat nunc, tincidunt id accumsan sit amet, fringilla in est. Curabitur laoreet tortor sit amet vulputate aliquet. Cras ac tellus dapibus, mattis nisl sed, varius nisi. Vestibulum tempor, ligula et iaculis porta, dui elit rhoncus mi, vitae sagittis sem orci ultricies metus. Aliquam et nulla nec enim rutrum fringilla.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac sapien diam. Vestibulum viverra nulla sed egestas vehicula. Praesent sed diam sem. Sed porttitor, massa nec tempor accumsan, velit tellus pulvinar massa, ac vestibulum velit purus vitae odio. Quisque eget nulla lobortis, consequat urna quis, sollicitudin elit. Mauris convallis, leo id commodo pulvinar, lorem tellus varius nisi, non suscipit metus velit non velit. Nulla at tincidunt lorem. Vestibulum id ligula lectus. Praesent varius arcu ut quam tincidunt rhoncus. Fusce erat nunc, tincidunt id accumsan sit amet, fringilla in est. Curabitur laoreet tortor sit amet vulputate aliquet. Cras ac tellus dapibus, mattis nisl sed, varius nisi. Vestibulum tempor, ligula et iaculis porta, dui elit rhoncus mi, vitae sagittis sem orci ultricies metus. Aliquam et nulla nec enim rutrum fringilla.
     </p>
     <br>
     <h3>How it works</h3>
     <a href="images/2.jpg"><img src="{% static 'images/2.jpg' %}"></a>
     <p>
-        Praesent dapibus tristique consequat. Proin sed fringilla lacus, vel vestibulum lectus. Duis ultrices et lacus nec cursus. Donec a tortor ultrices dolor accumsan bibendum in sit amet ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc consequat diam ut felis cursus tincidunt vel sit amet lacus. Morbi aliquam sed nunc tempor dignissim. In hac habitasse platea dictumst. Integer tempus, orci quis vehicula pretium, magna est pulvinar massa, non ullamcorper magna felis ut elit.
+    Praesent dapibus tristique consequat. Proin sed fringilla lacus, vel vestibulum lectus. Duis ultrices et lacus nec cursus. Donec a tortor ultrices dolor accumsan bibendum in sit amet ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc consequat diam ut felis cursus tincidunt vel sit amet lacus. Morbi aliquam sed nunc tempor dignissim. In hac habitasse platea dictumst. Integer tempus, orci quis vehicula pretium, magna est pulvinar massa, non ullamcorper magna felis ut elit.
     </p>
     <br>
     <h3>Why</h3>
     <a href="images/3.jpg"><img src="{% static 'images/3.jpg' %}"></a>
     <p>
-        Nunc felis nibh, placerat at neque id, commodo finibus justo. Mauris sed justo fringilla, iaculis lorem in, molestie nibh. In eu elementum mauris. Praesent augue mi, scelerisque quis dui id, pellentesque dapibus felis. Mauris sed sodales risus. Phasellus rutrum velit eu dui fringilla, sed auctor dui ultricies. Fusce mollis, diam non tempus sagittis, tortor quam ornare tortor, ac aliquet augue dolor at magna. Nunc volutpat quis orci a rutrum. Cras sit amet sapien molestie, semper justo vel, rhoncus enim. Etiam vestibulum tristique ex, eget hendrerit felis vehicula vitae. Mauris non diam non augue faucibus tristique sed sit amet odio. Phasellus tristique aliquam purus quis porttitor.
+    Nunc felis nibh, placerat at neque id, commodo finibus justo. Mauris sed justo fringilla, iaculis lorem in, molestie nibh. In eu elementum mauris. Praesent augue mi, scelerisque quis dui id, pellentesque dapibus felis. Mauris sed sodales risus. Phasellus rutrum velit eu dui fringilla, sed auctor dui ultricies. Fusce mollis, diam non tempus sagittis, tortor quam ornare tortor, ac aliquet augue dolor at magna. Nunc volutpat quis orci a rutrum. Cras sit amet sapien molestie, semper justo vel, rhoncus enim. Etiam vestibulum tristique ex, eget hendrerit felis vehicula vitae. Mauris non diam non augue faucibus tristique sed sit amet odio. Phasellus tristique aliquam purus quis porttitor.
     </p>
     <br>
     <h3>How can you contribute</h3>
     <a href="images/4.jpg"><img src="{% static 'images/4.jpg' %}"></a>
     <p>
-        Donec lacinia nibh in laoreet viverra. Etiam suscipit vehicula sapien et egestas. Nam non vestibulum leo. Aliquam eget viverra justo. Suspendisse vitae ultrices turpis. Vivamus auctor imperdiet nunc, sit amet volutpat quam efficitur non. Morbi at lobortis neque, nec suscipit purus. Curabitur sed nulla elementum, sagittis sapien non, pharetra eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ac neque ut nibh bibendum pretium.
+    Donec lacinia nibh in laoreet viverra. Etiam suscipit vehicula sapien et egestas. Nam non vestibulum leo. Aliquam eget viverra justo. Suspendisse vitae ultrices turpis. Vivamus auctor imperdiet nunc, sit amet volutpat quam efficitur non. Morbi at lobortis neque, nec suscipit purus. Curabitur sed nulla elementum, sagittis sapien non, pharetra eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ac neque ut nibh bibendum pretium.
     </p>
     <br>
     <h3>Wee!</h3>
     <a href="images/5.jpg"><img src="{% static 'images/5.jpg' %}"></a>
     <p>
-        Nullam molestie fringilla diam at rhoncus. Donec in ultrices lorem. Cras nec risus sed mi blandit pretium. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur mattis sollicitudin ante id blandit. Nam ac cursus tellus, nec feugiat magna. In rhoncus, neque sit amet ullamcorper volutpat, sem purus ultricies leo, in varius sem risus vel nulla. Integer porta sodales sem et consequat. Maecenas mi ligula, maximus et tellus in, faucibus fermentum dui. Nam mollis nec leo at euismod. Nullam et tortor eleifend, eleifend libero non, tempus massa. Aenean euismod ipsum purus, at finibus ipsum gravida vel.
+    Nullam molestie fringilla diam at rhoncus. Donec in ultrices lorem. Cras nec risus sed mi blandit pretium. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur mattis sollicitudin ante id blandit. Nam ac cursus tellus, nec feugiat magna. In rhoncus, neque sit amet ullamcorper volutpat, sem purus ultricies leo, in varius sem risus vel nulla. Integer porta sodales sem et consequat. Maecenas mi ligula, maximus et tellus in, faucibus fermentum dui. Nam mollis nec leo at euismod. Nullam et tortor eleifend, eleifend libero non, tempus massa. Aenean euismod ipsum purus, at finibus ipsum gravida vel.
     </p>
 </div>
 {% endblock %}
+
