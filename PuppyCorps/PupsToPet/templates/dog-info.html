@@ -6,136 +6,135 @@
 {% block styles %}
 <!-- Bootstrap CSS -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-            <link rel="stylesheet" type="text/css" href="{% static 'css/thao-style.css' %}">
-                <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Karma" rel="stylesheet">
-                    {% endblock %}
-                    
-                    {% block navbar %}
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}?next={% url 'about' %}">
-                        <button>
-                            &#x1F43E; Log Out &#x1F43E;
-                        </button>
-                    </a>
-                    <a href="{% url 'userinfo' %}">
-                        <button>
-                            &#x1F43E; Account Settings &#x1F43E;
-                        </button>
-                    </a>
-                    {% else %}
-                    <a href="{% url 'login' %}?next={% url 'dashboard' %}">
-                        <button>
-                            &#x1F43E; Log In &#x1F43E;
-                        </button>
-                    </a>
-                    <a href="{% url 'createaccount' %}">
-                        <button>
-                            &#x1F43E; Create Account &#x1F43E;
-                        </button>
-                    </a>
-                    {% endif %}
-                    <a href="{% url 'findevent' %}">
-                        <button>
-                            &#x1F43E; Find Event &#x1F43E;
-                        </button>
-                    </a>
-                    <a href="{% url 'dashboard' %}">
-                        <button>
-                            &#x1F43E; Dashboard &#x1F43E;
-                        </button>
-                    </a>
-                    {% endblock %}
-                    
-                    {% block content %}
-                    <div class="designing-forms">
-                        <form action="/" method="post">
-                            
-                            <legend>Pet's Personal Information</legend>
-                            
-                            <!--Options for Pet Name and Pet Breed-->
-                            <div>
-                                <label for="pet-name">Pet's Name:</label>
-                                <input type="text" class="form-control" id="pet-name" name="pet-name" value="Harold" placeholder="...">
-                                    </div>
-                            <div >
-                                <label for="pet-breed">Breed: </label>
-                                <input type="text" class="form-control" id="pet-breed" name="pet-breed" value="poodle" placeholder="...">
-                                    </div>
-                            
-                            <!--Gender-->
-                            <div>
-                                <label for="size">Gender:</label>
-                                <select name="gender">
-                                    <!--<option value="---">---</option>-->
-                                    <option value="male">male</option>
-                                    <option value="female">female</option>
-                                </select>
-                            </div>
-                            
-                            
-                            <!--Size option-->
-                            <div>
-                                <label for="size">Size:</label>
-                                <select name="size">
-                                    <!--<option value="---">---</option>-->
-                                    <option value="small">small (less than 10 lbs)</option>
-                                    <option value="medium">medium (between 10-15 lbs)</option>
-                                    <option value="large">large (more than 15 lbs)</option>
-                                </select>
-                            </div>
-                            
-                            <!--Is it a Service animal?-->
-                            <div>
-                                <label for="service-animal">Is it a service animal?: </label>
-                                
-                                <select name="service-animal">
-                                    <!--<option value="---">---</option>-->
-                                    <option value="yes">yes</option>
-                                    <option value="no">no</option>
-                                </select>
-                            </div>
-                            
-                            <!--Vaccinations and shots-->
-                            <div>
-                                <label for="vaccinations">Is it up to date on its vaccinations and has it been tested for diseases such as heartworm?</label>
-                                
-                                <select name="vaccinations">
-                                    <!--<option value="---">---</option>-->
-                                    <option value="yes">yes</option>
-                                    <option value="no">no</option>
-                                </select>
-                            </div>
-                            
-                            <!--Personality/Disposition-->
-                            <div>
-                                <label for="personality">Personality/Disposition: </label>
-                                <input type="text" class="form-control" id="personality" name="personlity" value="He is a sweet dog. Very happy and loves people. A ball of energy. Loves to play!!!">
-                                    </div>
-                            
-                            <!--Miscellaneous Notes about Dog from the owner-->
-                            <div>
-                                <label for="misc-notes">Miscellaneous Notes about Pet from the owner: </label>
-                                <input type="text" class="form-control" id="misc-notes" name="miscellaneous-notes" value="I hope you enjoy your time with him!">
-                                    </div>
-                            
-                            
-                            <!--Submit button-->
-                            <div>
-                                <button type="submit" class="form-control">Save</button>
-                                
-                                <!--Reset button-->
-                                <button type="reset" class="form-control">Reset</button>
-                            </div>
-                            
-                        </form>
-                        
-                        <!-- Optional JavaScript -->
-                        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-                        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-                    </div>
-                    {% endblock %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/thao-style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Karma" rel="stylesheet">
+{% endblock %}
 
+{% block navbar %}
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next={% url 'about' %}">
+  <button>
+    &#x1F43E; Log Out &#x1F43E;
+  </button>
+</a>
+<a href="{% url 'userinfo' %}">
+  <button>
+    &#x1F43E; Account Settings &#x1F43E;
+  </button>
+</a>
+{% else %}
+<a href="{% url 'login' %}?next={% url 'dashboard' %}">
+  <button>
+    &#x1F43E; Log In &#x1F43E;
+  </button>
+</a>
+<a href="{% url 'createaccount' %}">
+  <button>
+    &#x1F43E; Create Account &#x1F43E;
+  </button>
+</a>
+{% endif %}
+<a href="{% url 'findevent' %}">
+  <button>
+    &#x1F43E; Find Event &#x1F43E;
+  </button>
+</a>
+<a href="{% url 'dashboard' %}">
+  <button>
+    &#x1F43E; Dashboard &#x1F43E;
+  </button>
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="designing-forms">
+  <form action="/" method="post">
+
+    <legend>Pet's Personal Information</legend>
+
+    <!--Options for Pet Name and Pet Breed-->
+    <div>
+      <label for="pet-name">Pet's Name:</label>
+      <input type="text" class="form-control" id="pet-name" name="pet-name" value="Harold" placeholder="...">
+    </div>
+    <div >
+      <label for="pet-breed">Breed: </label>
+      <input type="text" class="form-control" id="pet-breed" name="pet-breed" value="poodle" placeholder="...">
+    </div>
+
+    <!--Gender-->
+    <div>
+      <label for="size">Gender:</label>
+      <select name="gender">
+        <!--<option value="---">---</option>-->
+        <option value="male">male</option>
+        <option value="female">female</option>
+      </select>
+    </div>
+
+
+    <!--Size option-->
+    <div>
+      <label for="size">Size:</label>
+      <select name="size">
+        <!--<option value="---">---</option>-->
+        <option value="small">small (less than 10 lbs)</option>
+        <option value="medium">medium (between 10-15 lbs)</option>
+        <option value="large">large (more than 15 lbs)</option>
+      </select>
+    </div>
+
+    <!--Is it a Service animal?-->
+    <div>
+      <label for="service-animal">Is it a service animal?: </label>
+
+      <select name="service-animal">
+        <!--<option value="---">---</option>-->
+        <option value="yes">yes</option>
+        <option value="no">no</option>
+      </select>
+    </div>
+
+    <!--Vaccinations and shots-->
+    <div>
+      <label for="vaccinations">Is it up to date on its vaccinations and has it been tested for diseases such as heartworm?</label>
+
+      <select name="vaccinations">
+        <!--<option value="---">---</option>-->
+        <option value="yes">yes</option>
+        <option value="no">no</option>
+      </select>
+    </div>
+
+    <!--Personality/Disposition-->
+    <div>
+      <label for="personality">Personality/Disposition: </label>
+      <input type="text" class="form-control" id="personality" name="personlity" value="He is a sweet dog. Very happy and loves people. A ball of energy. Loves to play!!!">
+    </div>
+
+    <!--Miscellaneous Notes about Dog from the owner-->
+    <div>
+      <label for="misc-notes">Miscellaneous Notes about Pet from the owner: </label>
+      <input type="text" class="form-control" id="misc-notes" name="miscellaneous-notes" value="I hope you enjoy your time with him!">
+    </div>
+
+
+    <!--Submit button-->
+    <div>
+      <button type="submit" class="form-control">Save</button>
+
+      <!--Reset button-->
+      <button type="reset" class="form-control">Reset</button>
+    </div>
+
+  </form>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</div>
+{% endblock %}

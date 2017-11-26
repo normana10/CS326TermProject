@@ -39,7 +39,7 @@ class Pet(models.Model):
 
 
     # Breed class has already been defined so we can specify the object below.
-    breed = models.ManyToManyField(Breed, help_text="Your pet might be pure-bred or mixed! Select the breed(s) for this pet.")     
+    breed = models.ManyToManyField(Breed, help_text="Your pet might be pure-bred or mixed! Select the breed(s) for this pet.")
 
     # Methods
     def get_absolute_url(self):
@@ -47,7 +47,7 @@ class Pet(models.Model):
          Returns the url to access a particular instance of MyModelName.
          """
          return reverse('pet-detail', args=[str(self.ID)])
-    
+
     def __str__(self):
         """
         String for representing the Pet object (in Admin site etc.)
@@ -74,13 +74,13 @@ class Owner(models.Model):
 user = models.OneToOneField(User, on_delete=models.CASCADE)
     GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'),)
     gender = models.CharField(max_length=1, default='M', choices=GENDER_CHOICES, blank=True, help_text="Owner's gender")
-    
+
     def get_absolute_url(self):
         """
         Returns the url to access a particular owner instance.
         """
         return reverse('owner-detail', args=[str(self.ID)])
-        
+
     # Methods
     def __str__(self):
         """

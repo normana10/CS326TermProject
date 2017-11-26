@@ -14,52 +14,52 @@
 
 {% block navbar %}
 <a href="{% url 'createaccount' %}">
-    <button>
-        &#x1F43E; Create Account &#x1F43E;
-    </button>
+  <button>
+    &#x1F43E; Create Account &#x1F43E;
+  </button>
 </a>
 <a href="{% url 'findevent' %}">
-    <button>
-        &#x1F43E; Find Event &#x1F43E;
-    </button>
+  <button>
+    &#x1F43E; Find Event &#x1F43E;
+  </button>
 </a>
 <a href="{% url 'dashboard' %}">
-    <button>
-        &#x1F43E; Dashboard &#x1F43E;
-    </button>
+  <button>
+    &#x1F43E; Dashboard &#x1F43E;
+  </button>
 </a>
 {% endblock %}
 
 {% block content %}
 <div id="login-page">
-	<div class="login-modal" style="height:100%">
-		<h1>Login</h1>
-		<form>
-            <div>
-                <h3>Username:</h3>
-                <input type="text" class="form-control" id="username" name="username" value="Harold12345" placeholder="...">
-            </div>
-            <div>        
-                <h3>Password:</h3>
-            
-                <input type="password" class="form-control" id="password" name="password" value="fakepassword" placeholder="...">
-            
-                <br>
-                <button>Submit</button>
-            </div>
-        
-            <br>
-            <a href="{% url 'passwordresetform' %}">
-                <h4>heyyyyyyy forgot your password?</h4>
-            </a>
-            
-<!--
-            <a href="{% url 'dashboard' %}">
-                <h4>&#8592;Back to main page</h4>
-            </a>
--->
+  <div class="login-modal" style="height:100%">
+    <h1>Login</h1>
+    <form>
+      <div>
+        <h3>Username:</h3>
+        <input type="text" class="form-control" id="username" name="username" value="Harold12345" placeholder="...">
+      </div>
+      <div>
+        <h3>Password:</h3>
 
-        </form>
-    </div>
+        <input type="password" class="form-control" id="password" name="password" value="fakepassword" placeholder="...">
+
+        <br>
+        <button>Submit</button>
+      </div>
+
+      <br>
+      <a href="{% url 'passwordresetform' %}">
+        <h4>heyyyyyyy forgot your password?</h4>
+      </a>
+
+      <!--
+      <a href="{% url 'dashboard' %}">
+      <h4>&#8592;Back to main page</h4>
+    </a>
+  -->
+
+</form>
+</div>
 </div>
 {% endblock %}

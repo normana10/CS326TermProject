@@ -14,29 +14,29 @@
 
 {% block navbar %}
 <a href="{% url 'createaccount' %}">
-    <button>
-        &#x1F43E; Create Account &#x1F43E;
-    </button>
+  <button>
+    &#x1F43E; Create Account &#x1F43E;
+  </button>
 </a>
 <a href="{% url 'findevent' %}">
-    <button>
-        &#x1F43E; Find Event &#x1F43E;
-    </button>
+  <button>
+    &#x1F43E; Find Event &#x1F43E;
+  </button>
 </a>
 <a href="{% url 'dashboard' %}">
-    <button>
-        &#x1F43E; Dashboard &#x1F43E;
-    </button>
+  <button>
+    &#x1F43E; Dashboard &#x1F43E;
+  </button>
 </a>
 {% endblock %}
 
 {% block content %}
 <div>
-    <div class="logged-out-page login-modal ">
-        <p>Hello Dolly!</p><br>
-        <p>You have been logged out!</p><br>
-        <a href="{% url 'login'%}">Click here to login again.</a>
+  <div class="logged-out-page login-modal ">
+    <p>Hello Dolly!</p><br>
+    <p>You have been logged out!</p><br>
+    <a href="{% url 'login'%}">Click here to login again.</a>
 
-    </div>
+  </div>
 </div>
 {% endblock %}
