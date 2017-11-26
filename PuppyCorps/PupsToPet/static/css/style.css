@@ -202,9 +202,13 @@ html, body {
 }
 
 .logged-out-page {
-    padding-top: 50px;
+    padding-top: 150px;
     background-color: white;
     text-align: center;
+    padding-bottom: 150px;
+    padding-left: 150px;
+    padding-right: 150px;
+
 }
 
 .logged-out-page p {

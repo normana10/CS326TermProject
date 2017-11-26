@@ -15,4 +15,7 @@ urlpatterns = [
     url(r'^forgotpassword$', views.forgotpassword, name='forgotpassword'),
     url(r'^findevent$', views.findevent, name='findevent'),
     url(r'^doginfo$', views.doginfo, name='doginfo'),
+    url(r'^passwordresetform$', views.passwordresetform, name='passwordresetform'),
+    url(r'^passwordresetdone$', views.passwordresetdone, name='passwordresetdone'),
+    
 ]

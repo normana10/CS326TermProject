@@ -82,3 +82,24 @@ def doginfo(request):
         request,
         'dog-info.html',
     )
+
+def passwordresetform(request):
+    return render(
+        request,
+        'password_reset_form.html',
+    )
+
+def passwordresetdone(request):
+    return render(
+        request,
+        'password_reset_done.html',
+    )
+
+def passwordresetcomplete(request):
+    return render(
+        request,
+        'password_reset_complete.html',
+    )
+
+
+
