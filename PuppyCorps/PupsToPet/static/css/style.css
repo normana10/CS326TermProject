@@ -223,3 +223,9 @@ html, body {
     font-family: 'Fredericka the Great', cursive;
 
 }
+
+.logged-out-page a {
+    font-family: 'Karma', serif;
+    font-size: 20px;
+
+}
