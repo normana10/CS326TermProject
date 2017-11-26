@@ -66,10 +66,10 @@ class Owner(models.Model):
     Defines Owner model
     """
     ID = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Owner's unique id")
-# first_name = models.CharField(max_length=100,null=True,help_text="Owner's first name")
-# last_name = models.CharField(max_length=100,null=True,help_text="Owner's last name")
-# username = models.CharField(max_length=100,null=True,help_text="Owner's username")
-# email = models.EmailField(null=True, help_text="email address")
+ first_name = models.CharField(max_length=100,null=True,help_text="Owner's first name")
+ last_name = models.CharField(max_length=100,null=True,help_text="Owner's last name")
+ username = models.CharField(max_length=100,null=True,help_text="Owner's username")
+ email = models.EmailField(null=True, help_text="email address")
 # pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
 user = models.OneToOneField(User, on_delete=models.CASCADE)
     GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'),)
