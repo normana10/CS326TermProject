@@ -52,12 +52,13 @@ def loggedout(request):
         request,
         'logged-out.html',
 )
-    
-def forgotpassword(request):
+
+
+'''def forgotpassword(request):
     return render(
         request,
         'forgot-password.html',
-    )
+    )'''
     
 def createevent(request):
     return render(
@@ -93,6 +94,18 @@ def passwordresetdone(request):
     return render(
         request,
         'password_reset_done.html',
+    )
+
+def passwordresetemail(request):
+    return render(
+        request,
+        'password_reset_email.html',
+    )
+
+def passwordresetconfirm(request):
+    return render(
+        request,
+        'password_reset_confirm.html',
     )
 
 def passwordresetcomplete(request):
