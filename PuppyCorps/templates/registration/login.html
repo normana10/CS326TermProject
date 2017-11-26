@@ -59,16 +59,18 @@
                 <h3>{{ form.password.label_tag }}</h3>
                 <td>{{ form.password }}</td>
                 <!-- <input type="password" class="form-control" id="password" name="password" value="fakepassword" placeholder="..."> -->
-            </div>
             <div>
-                <!-- <button>Submit</button> -->
-                <input type="submit" value="login" />
-                <input type="hidden" name="next" value="{{ next }}" />
+            </div>
+                <div>
+                    <!-- <button>Submit</button> -->
+                    <input type="submit" value="login" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </div>
             </div>
         
             <br>
-            <a href="{% url 'passwordresetform' %}">
-                <h4>Hey you, forgot your password? <br>Click here for help!</h4>
+            <a href="{% url 'forgotpassword' %}">
+                <h4>Forgot Password?</h4>
             </a>
             
 <!--

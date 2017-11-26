@@ -20,7 +20,6 @@ def about(request):
     return render(
         request,
         'about-page.html',
-        context={'events':Event.objects.all()},
     )
 
 def dashboard(request):
@@ -41,24 +40,17 @@ def createaccount(request):
         'create-account.html',
     )
     
-def login(request):
-    return render(
-        request,
-        'log-in.html',
-    )
-
-def loggedout(request):
-    return render(
-        request,
-        'logged-out.html',
-)
-
-
-'''def forgotpassword(request):
+#def login(request):
+#    return render(
+#        request,
+#        'log-in.html',
+#    )
+    
+def forgotpassword(request):
     return render(
         request,
         'forgot-password.html',
-    )'''
+    )
     
 def createevent(request):
     return render(
@@ -84,35 +76,8 @@ def doginfo(request):
         'dog-info.html',
     )
 
-def passwordresetform(request):
+def test(request):
     return render(
         request,
-        'password_reset_form.html',
+        'test.html',
     )
-
-def passwordresetdone(request):
-    return render(
-        request,
-        'password_reset_done.html',
-    )
-
-def passwordresetemail(request):
-    return render(
-        request,
-        'password_reset_email.html',
-    )
-
-def passwordresetconfirm(request):
-    return render(
-        request,
-        'password_reset_confirm.html',
-    )
-
-def passwordresetcomplete(request):
-    return render(
-        request,
-        'password_reset_complete.html',
-    )
-
-
-
