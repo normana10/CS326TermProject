@@ -212,11 +212,11 @@
 					});
 
 					google.maps.event.addListener(marker, 'mouseup', function (event) {
-						document.getElementById("coords").value = event.latLng.lat() + "," + event.latLng.lng();
+						document.getElementById("id_location").value = event.latLng.lat() + "," + event.latLng.lng();
 					});
 
 					google.maps.event.addListener(marker, 'mousedown', function (event) {
-						document.getElementById("coords").value = event.latLng.lat() + "," + event.latLng.lng();
+						document.getElementById("id_location").value = event.latLng.lat() + "," + event.latLng.lng();
 					});
 
 					var input = document.getElementById('query')
@@ -234,7 +234,7 @@
 
 						marker.setPosition(places[0].geometry.location);
 						map.setCenter(places[0].geometry.location);
-						document.getElementById("coords").value = places[0].geometry.location.lat() + "," + places[0].geometry.location.lng();
+						document.getElementById("id_location").value = places[0].geometry.location.lat() + "," + places[0].geometry.location.lng();
 
 						// map.fitBounds(bounds);
 					});
@@ -251,6 +251,11 @@
 					function showPosition(position) {
 						x.value = position.coords.latitude +
 							"," + position.coords.longitude;
+						var pos = {
+							lat: position.coords.latitude,
+							lng: position.coords.longitude
+						};
+						marker.setPosition(pos);
 					}
 						// getLocation();
 				</script>
