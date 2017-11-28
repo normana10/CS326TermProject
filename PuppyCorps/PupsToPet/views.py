@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 from .models import Pet, Owner, Event, Breed
@@ -24,6 +24,7 @@ def about(request):
         context={'events':events},
     )
 
+@login_required
 def dashboard(request):
     events=Event.objects.all()
     if request.user.is_authenticated():
