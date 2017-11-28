@@ -1,5 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+
 # Create your views here.
 
 from .models import Pet, Owner, Event, Breed
@@ -37,11 +42,7 @@ def dashboard(request):
         context={'events':events,'dogs':dogs},
     )
     
-def createaccount(request):
-    return render(
-        request,
-        'create-account.html',
-    )
+
     
 def login(request):
    return render(
@@ -111,4 +112,56 @@ def createpet(request):
     else:
         form = NewPetForm(initial = {})
     return render(request, 'createpet.html', {'form': form})
+
+from .forms import UpdateUserInfoForm
+
+def UpdateUserInfo(request):
+
+    owner = get_object_or_404(Owner, pk = pk)
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+
+        # Create a form instance and populate it with data from the request (binding)
+        form = UpdateUserInfoForm(request.POST)
+
+        #Check if form is valid
+        if form.is_valid():
+            #process the data in form.cleaned_data as required 
+            owner.first_name = form.cleaned_data['first_name']
+            owner.last_name = form.cleaned_data['last_name']
+            owner.email = form.cleaned_data['email']
+            owner.gender = form.cleaned_data['gender']
+            owner.save()
+
+            #redirect to a new URL:
+            return HttpResponseRedirect(reverse('dashboard'))
+
+        #If this is a GET (or any other method) create the default form.
+    else:
+        form = UpdateUserInfoForm()
+
+    return render(
+            request, 
+            'userinfo.html', 
+            {'form': form}
+        )
+
+from .forms import NewAccountForm
+
+def NewAccount(request):
+    if request.method == 'POST':
+        form = NewAccount(request.POST)    
+        user = Owner.objects.create(first_name = form.fields['first_name'], last_name = form.fields['last_name'])
+        return HttpResponseRedirect(reverse('dashboard'))
+
+    else:
+        form = NewAccountForm(initial = {})
     
+    return render(
+            request, 
+            'userinfocreateaccount.html', 
+            {'form': form}
+    )
+
+
+
