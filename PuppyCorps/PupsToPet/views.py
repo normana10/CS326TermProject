@@ -52,11 +52,11 @@ def forgotpassword(request):
         'forgot-password.html',
     )
     
-def createevent(request):
-    return render(
-        request,
-        'create-event.html',
-    )
+#def createevent(request):
+#    return render(
+#        request,
+#       'create-event.html',
+#    )
     
 def findevent(request):
     return render(
@@ -81,3 +81,13 @@ def test(request):
         request,
         'test.html',
     )
+
+from .forms import CreateNewEvent
+
+def createevent(request):
+    if request.method == 'POST':
+        form = CreateNewEvent(request.POST)
+    else:
+        form = CreateNewEvent(initial = {})
+    return render(request, 'create-event.html', {'form': form})
+    

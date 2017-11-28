@@ -1,36 +1,35 @@
-{% extends "base_generic.html" %}
-{% load static %}
-
-{% block title %}<title>PupsToPet | Create Event</title>{% endblock %}
-
-{% block navbar %}
+{% extends "base_generic.html" %} {% load static %} {% block title %}
+<title>PupsToPet | Create Event</title>{% endblock %} {% block navbar %}
 <a href="{% url 'logout' %}?next={% url 'about' %}">
-    <button>
-        &#x1F43E; Log Out &#x1F43E;
-    </button>
+	<button>
+		&#x1F43E; Log Out &#x1F43E;
+	</button>
 </a>
 <a href="{% url 'userinfo' %}">
-    <button>
-        &#x1F43E; Account Settings &#x1F43E;
-    </button>
+	<button>
+		&#x1F43E; Account Settings &#x1F43E;
+	</button>
 </a>
 <a href="{% url 'findevent' %}">
-    <button>
-        &#x1F43E; Find Event &#x1F43E;
-    </button>
+	<button>
+		&#x1F43E; Find Event &#x1F43E;
+	</button>
 </a>
 <a href="{% url 'dashboard' %}">
-    <button>
-        &#x1F43E; Dashboard &#x1F43E;
-    </button>
+	<button>
+		&#x1F43E; Dashboard &#x1F43E;
+	</button>
 </a>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div id="create-event-page">
 	<div class="login-modal" style="height:100%;width:70%">
 		<form>
-			<div style="float: left; width: 50%">
+
+			<table>
+				{{ form }}
+			</table>
+			<!--
+			 <div style="float: left; width: 50%">
 				<h1>Create Event</h1>
 					<h3>Pet:</h3>
 					<select>
@@ -179,10 +178,14 @@
 				<h3>Location:</h3>
 				<input type="text"><br>
 				<h3>Coordinates</h3>
-				<input id="coords" type="text" name="">
+				!-->
+				
+				<!--<input id="coords" type="text" name="">!-->
 				<input id="query" type="text" name="">
 				<button type="button" onclick="getLocation()">Set to current location</button>
+				<!--
 			</div>
+			!-->
 			<div style="float: right; width: 50%">
 				<div id="map"></div>
 
@@ -197,15 +200,15 @@
 					var mapOptions = {
 						zoom: 4,
 						zoom: 14,
-						center: new google.maps.LatLng(42.391138,-72.526812),
+						center: new google.maps.LatLng(42.391138, -72.526812),
 						mapTypeId: 'satellite',
 					}
 					var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(42.391138,-72.526812),
+						position: new google.maps.LatLng(42.391138, -72.526812),
 						map: map,
-						draggable:true,
-						title:"Drag me!",
+						draggable: true,
+						title: "Drag me!",
 					});
 
 					google.maps.event.addListener(marker, 'mouseup', function (event) {
@@ -218,17 +221,17 @@
 
 					var input = document.getElementById('query')
 					var searchBox = new google.maps.places.SearchBox(input);
-					map.addListener('bounds_changed', function() {
+					map.addListener('bounds_changed', function () {
 						searchBox.setBounds(map.getBounds());
 					});
-					searchBox.addListener('places_changed', function() {
+					searchBox.addListener('places_changed', function () {
 						var places = searchBox.getPlaces();
 						if (places.length == 0) {
 							return;
 						}
 						// For each place, get the icon, name and location.
 						// var bounds = new google.maps.LatLngBounds();
-						
+
 						marker.setPosition(places[0].geometry.location);
 						map.setCenter(places[0].geometry.location);
 						document.getElementById("coords").value = places[0].geometry.location.lat() + "," + places[0].geometry.location.lng();
@@ -237,7 +240,7 @@
 					});
 
 					map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-					var x = document.getElementById("coords");
+					var x = document.getElementById("id_location");
 					function getLocation() {
 						if (navigator.geolocation) {
 							navigator.geolocation.getCurrentPosition(showPosition);
@@ -246,8 +249,8 @@
 						}
 					}
 					function showPosition(position) {
-						x.value = position.coords.latitude + 
-						"," + position.coords.longitude; 
+						x.value = position.coords.latitude +
+							"," + position.coords.longitude;
 					}
 						// getLocation();
 				</script>
