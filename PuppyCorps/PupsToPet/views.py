@@ -40,11 +40,11 @@ def createaccount(request):
         'create-account.html',
     )
     
-#def login(request):
-#    return render(
-#        request,
-#        'log-in.html',
-#    )
+def login(request):
+   return render(
+       request,
+       'log-in.html',
+   )
     
 def forgotpassword(request):
     return render(
