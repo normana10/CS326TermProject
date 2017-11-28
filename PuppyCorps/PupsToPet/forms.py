@@ -12,13 +12,13 @@ class NewEventForm(forms.Form):
 
 class NewPetForm(forms.Form):
     pass
-    Name = forms.CharField()
-    Age = forms.IntegerField()
-    Owner = 12345
-    Service = forms.BooleanField()
-    Vaccinated = forms.BooleanField()
-    Gender = forms.ChoiceField(choices=[('Male','Male'),('Female','Female')])
-    Size = forms.ChoiceField(choices=[('small','Small'),('medium','Medium'),('large','Large')])
+    name = forms.CharField()
+    age = forms.IntegerField()
+    owner = 12345
+    service = forms.BooleanField()
+    vaccinated = forms.BooleanField()
+    gender = forms.ChoiceField(choices=[('Male','Male'),('Female','Female')])
+    size = forms.ChoiceField(choices=[('small','Small'),('medium','Medium'),('large','Large')])
 
  #   def CreateEvent(self):
  #       return Event.objects.create(name = eventName, pets = pets, start_time = start_time, end_time = end_time, description = description, location = location)
