@@ -97,3 +97,17 @@ def createevent(request):
         form = NewEventForm(initial = {})
     return render(request, 'create-event.html', {'form': form})
     
+
+from .forms import NewPetForm
+
+def createpet(request):
+    if request.method == 'POST':
+        form = NewPetForm(request.POST)
+        
+        pet = Pet.objects.create(name = form.fields['eventName'], start_time = form.fields['start_time'], end_time = form.fields['end_time'], description = form.fields['description'], location = form.fields['location'])
+        return HttpResponseRedirect(reverse('dashboard'))
+
+    else:
+        form = NewPetForm(initial = {})
+    return render(request, 'createpet.html', {'form': form})
+    
