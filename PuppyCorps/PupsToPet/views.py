@@ -9,6 +9,7 @@ def about(request):
     View function for home page of site.
     """
     # Generate counts of some of the main objects
+    events=Event.objects.all()
     num_owners = Owner.objects.all().count()
     num_breed = Breed.objects.all().count()
     num_pet = Pet.objects.all().count()
@@ -20,6 +21,7 @@ def about(request):
     return render(
         request,
         'about-page.html',
+        context={'events':events},
     )
 
 def dashboard(request):
