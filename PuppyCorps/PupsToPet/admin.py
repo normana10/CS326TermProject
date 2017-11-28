@@ -17,7 +17,7 @@ class PetAdmin(admin.ModelAdmin):
 admin.site.register(Pet, PetAdmin)
 
 class OwnerAdmin(admin.ModelAdmin):
-    list_display = ('ID', 'first_name', 'last_name', 'username', 'email', 'gender')
+    list_display = ('ID', '__str__', 'gender')
 
 admin.site.register(Owner, OwnerAdmin)
 

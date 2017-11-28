@@ -13,16 +13,29 @@
 {% endblock %}
 
 {% block navbar %}
-<a href="{% url 'login' %}">
-    <button>
-        &#x1F43E; Log In &#x1F43E;
-    </button>
-</a>
-<a href="{% url 'createaccount' %}">
-    <button>
-        &#x1F43E; Create Account &#x1F43E;
-    </button>
-</a>
+{% if user.is_authenticated %}
+    <a href="{% url 'logout' %}?next={% url 'about' %}">
+        <button>
+            &#x1F43E; Log Out &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'userinfo' %}">
+        <button>
+            &#x1F43E; Account Settings &#x1F43E;
+        </button>
+    </a>
+{% else %}
+    <a href="{% url 'login' %}?next={% url 'dashboard' %}">
+        <button>
+            &#x1F43E; Log In &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'createaccount' %}">
+        <button>
+            &#x1F43E; Create Account &#x1F43E;
+        </button>
+    </a>
+{% endif %}
 <a href="{% url 'findevent' %}">
     <button>
         &#x1F43E; Find Event &#x1F43E;
@@ -107,32 +120,6 @@
             <input type="text" class="form-control" id="misc-notes" name="miscellaneous-notes" value="I hope you enjoy your time with him!">
         </div>
 
-        
-        <!-- This code should go to a small page where users can rate their experience.
-        <div>
-            <label for="karma">Rate your experience with this pet!: </label>
-            <select name="service-animal">
-                <option value="---">---</option>
-                <option value="1">1/10 Awful! >:( </option>
-                <option value="2">2/10 It was pretty bad.</option>
-                <option value="3">3/10</option>
-                <option value="4">4/10</option>
-                <option value="5">5/10 Meh :P</option>
-                <option value="6">6/10</option>
-                <option value="7">7/10</option>
-                <option value="8">8/10 Pretty swell! :)</option>
-                <option value="9">9/10</option>
-                <option value="10">10/10 Wonderful! :D</option>
-            </select>
-        </div> -->
-
-       
-        <!--This code should also go to that user's experience rating page.
-        Audience Comments
-        <div>
-            <label for="audience-comments">Audience Comments: </label>
-            <input type="text" class="form-control" id="audience-comments" name="comments">
-        </div> -->
 
         <!--Submit button-->
         <div>

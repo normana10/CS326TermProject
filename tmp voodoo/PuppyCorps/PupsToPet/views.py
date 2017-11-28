@@ -20,7 +20,6 @@ def about(request):
     return render(
         request,
         'about-page.html',
-        context={'events':Event.objects.all()},
     )
 
 def dashboard(request):

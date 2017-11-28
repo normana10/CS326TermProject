@@ -4,25 +4,38 @@
 {% block title %}<title>PupsToPet | Find Events</title>{% endblock %}
 
 {% block navbar %}
-<a href="{% url 'about' %}">
-  <button>
-    &#x1F43E; Log Out &#x1F43E;
-  </button>
-</a>
-<a href="{% url 'userinfo' %}">
-  <button>
-    &#x1F43E; Account Settings &#x1F43E;
-  </button>
-</a>
-<a href="{% url 'createevent' %}">
-  <button>
-    &#x1F43E; Create Event &#x1F43E;
-  </button>
-</a>
+{% if user.is_authenticated %}
+    <a href="{% url 'logout' %}?next={% url 'about' %}">
+        <button>
+            &#x1F43E; Log Out &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'userinfo' %}">
+        <button>
+            &#x1F43E; Account Settings &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'createevent' %}">
+        <button>
+            &#x1F43E; Create Event &#x1F43E;
+        </button>
+    </a>
+{% else %}
+    <a href="{% url 'login' %}?next={% url 'dashboard' %}">
+        <button>
+            &#x1F43E; Log In &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'createaccount' %}">
+        <button>
+            &#x1F43E; Create Account &#x1F43E;
+        </button>
+    </a>
+{% endif %}
 <a href="{% url 'dashboard' %}">
-  <button>
-    &#x1F43E; Dashboard &#x1F43E;
-  </button>
+    <button>
+        &#x1F43E; Dashboard &#x1F43E;
+    </button>
 </a>
 {% endblock %}
 

@@ -4,14 +4,37 @@
 {% block title %}<title>PupsToPet | Dashboard</title>{% endblock %}
 
 {% block navbar %}
-<a href="{% url 'about' %}">
+{% if user.is_authenticated %}
+    <a href="{% url 'logout' %}?next={% url 'about' %}">
+        <button>
+            &#x1F43E; Log Out &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'userinfo' %}">
+        <button>
+            &#x1F43E; Account Settings &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'createevent' %}">
+        <button>
+            &#x1F43E; Create Event &#x1F43E;
+        </button>
+    </a>
+{% else %}
+    <a href="{% url 'login' %}?next={% url 'dashboard' %}">
+        <button>
+            &#x1F43E; Log In &#x1F43E;
+        </button>
+    </a>
+    <a href="{% url 'createaccount' %}">
+        <button>
+            &#x1F43E; Create Account &#x1F43E;
+        </button>
+    </a>
+{% endif %}
+<a href="{% url 'findevent' %}">
     <button>
-        &#x1F43E; Log Out &#x1F43E;
-    </button>
-</a>
-<a href="{% url 'userinfo' %}">
-    <button>
-        &#x1F43E; Account Settings &#x1F43E;
+        &#x1F43E; Find Event &#x1F43E;
     </button>
 </a>
 {% endblock %}
@@ -83,37 +106,28 @@
         }
     </script>
 
-    <h2>Howdy %NAME%!</h2>
+    {% if user.is_authenticated %}
+    <h2>Howdy {{user.username}}</h2>
     <div id="personal-information">
         <h4>Your Information:</h4>
-        <h6>Name Namey</h6>
-        <h6>Email@email.com</h6>
+        <h6>{{user.get_full_name}}</h6>
+        <h6>{{user.email}}</h6>
     </div>
     <div id="pet-information">
         <h4>Your Pet Information:</h4>
         <ul>
+            {% for dog in dogs %}
             <li>
-                <h5>Dog Name</h5>
-                <h6>Dog Breed</h6>
-                <h6>Dog Size</h6>
+                <h5>{{dog.name}}</h5>
+                <h6>breed: {{dog.display_breed}}</h6>
+                <h6>size: {{dog.size}}</h6>
             </li>
-            <li>
-                <h5>Dog Name</h5>
-                <h6>Dog Breed</h6>
-                <h6>Dog Size</h6>
-            </li>
-            <li>
-                <h5>Dog Name</h5>
-                <h6>Dog Breed</h6>
-                <h6>Dog Size</h6>
-            </li>
-            <li>
-                <h5>Dog Name</h5>
-                <h6>Dog Breed</h6>
-                <h6>Dog Size</h6>
-            </li>
+            {% endfor %}
         </ul>
     </div>
+    
+    {% endif %}
+    
     <div style="clear: both;"></div>
     
     <div style="padding-top:10px;padding-left:5px">

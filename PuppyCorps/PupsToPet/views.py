@@ -20,15 +20,18 @@ def about(request):
     return render(
         request,
         'about-page.html',
-        context={'events':Event.objects.all()},
     )
 
 def dashboard(request):
     events=Event.objects.all()
+    if request.user.is_authenticated():
+        dogs=request.user.owner.pet_set.all()
+    else:
+        dogs=None
     return render(
         request,
         'dashboard.html',
-        context={'events':events},
+        context={'events':events,'dogs':dogs},
     )
     
 def createaccount(request):
@@ -37,11 +40,11 @@ def createaccount(request):
         'create-account.html',
     )
     
-def login(request):
-    return render(
-        request,
-        'log-in.html',
-    )
+#def login(request):
+#    return render(
+#        request,
+#        'log-in.html',
+#    )
     
 def forgotpassword(request):
     return render(
@@ -49,11 +52,11 @@ def forgotpassword(request):
         'forgot-password.html',
     )
     
-def createevent(request):
-    return render(
-        request,
-        'create-event.html',
-    )
+#def createevent(request):
+#    return render(
+#        request,
+#       'create-event.html',
+#    )
     
 def findevent(request):
     return render(
@@ -72,3 +75,23 @@ def doginfo(request):
         request,
         'dog-info.html',
     )
+
+def test(request):
+    return render(
+        request,
+        'test.html',
+    )
+
+from .forms import NewEventForm
+
+def createevent(request):
+    if request.method == 'POST':
+        form = NewEventForm(request.POST)
+        
+        eve = Event.objects.create(name = form.fields['eventName'], start_time = form.fields['start_time'], end_time = form.fields['end_time'], description = form.fields['description'], location = form.fields['location'])
+        return HttpResponseRedirect(reverse('dashboard'))
+
+    else:
+        form = NewEventForm(initial = {})
+    return render(request, 'create-event.html', {'form': form})
+    

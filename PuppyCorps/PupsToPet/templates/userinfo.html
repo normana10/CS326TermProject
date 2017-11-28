@@ -13,19 +13,19 @@
 {% endblock %}
 
 {% block navbar %}
-<a href="{% url 'about' %}">
+<a href="{% url 'logout' %}?next={% url 'about' %}">
     <button>
         &#x1F43E; Log Out &#x1F43E;
-    </button>
-</a>
-<a href="{% url 'findevent' %}">
-    <button>
-        &#x1F43E; Find Event &#x1F43E;
     </button>
 </a>
 <a href="{% url 'createevent' %}">
     <button>
         &#x1F43E; Create Event &#x1F43E;
+    </button>
+</a>
+<a href="{% url 'findevent' %}">
+    <button>
+        &#x1F43E; Find Event &#x1F43E;
     </button>
 </a>
 <a href="{% url 'dashboard' %}">

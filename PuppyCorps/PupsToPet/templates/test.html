@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}<title>PupsToPet | </title>{% endblock %}
+
+{% block navbar %}
+
+{% if user.is_authenticated %}
+    <a href="{% url 'logout' %}?next={% url 'about' %}">
+        <button>
+            &#x1F43E; Log Out &#x1F43E;
+        </button>
+    </a>
+{% else %}
+    <a href="{% url 'login' %}?next={% url 'dashboard' %}">
+        <button>
+            &#x1F43E; Log In &#x1F43E;
+        </button>
+    </a>
+{% endif %}
+
+{% endblock %}
