@@ -10,5 +10,24 @@ class NewEventForm(forms.Form):
     description = forms.CharField()
     location = forms.CharField()
 
+class NewPetForm(forms.Form):
+ 
+    Name = forms.CharField()
+    Age = forms.IntegerField()
+    Owner = 12345
+    Service = forms.BooleanField()
+    Vaccinated = forms.BooleanField()
+    Gender = forms.ChoiceField(choices=['Male','Female'])
+    Size = forms.ChoiceField(choices=['small','medium','large'])
+
+
+
+    #  = forms.CharField()
+    # pets = forms.ModelMultipleChoiceField(Pet.objects.all())
+    # start_time = forms.CharField(help_text="Enter starting time in the form YYYY-MM-DD HH:MM.")
+    # end_time = forms.CharField(help_text="Enter the event ending timein the form YYYY-MM-DD HH:MM.")
+    # description = forms.CharField()
+    # location = forms.CharField()
+
  #   def CreateEvent(self):
  #       return Event.objects.create(name = eventName, pets = pets, start_time = start_time, end_time = end_time, description = description, location = location)
