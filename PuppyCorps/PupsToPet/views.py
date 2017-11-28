@@ -87,12 +87,9 @@ from .forms import NewEventForm
 def createevent(request):
     if request.method == 'POST':
         form = NewEventForm(request.POST)
-        if form.isValid():
-            eve = Event.objects.create(name = form.cleaned_data['eventName'], pets = form.cleaned_data['pets'], start_time = form.cleaned_data['start_time'], end_time = form.cleaned_data['end_time'], description = form.cleaned_data['description'], location = form.cleaned_data['location'])
-            eve = CreateEvent()
-            eve.update(host = request.user)
-            eve.save()
-            return HttpResponseRedirect(reverse('dashboard'))
+        
+        eve = Event.objects.create(name = form.fields['eventName'], start_time = form.fields['start_time'], end_time = form.fields['end_time'], description = form.fields['description'], location = form.fields['location'])
+        return HttpResponseRedirect(reverse('dashboard'))
 
     else:
         form = NewEventForm(initial = {})
