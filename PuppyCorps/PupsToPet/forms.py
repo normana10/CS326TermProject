@@ -84,11 +84,20 @@ class NewAccountForm(forms.Form):
         data = self.cleaned_data['password']
         return data
     def clean_verify_password(self):
-        orig_password = self.cleaned_data['password']
-        confirmed_password = self.cleaned_data['verify_password']
-        if orig_password != confirmed_password:
+        pwd = self.cleaned_data['password']
+        verify_pwd = self.cleaned_data['verify_password']
+        if pwd != verify_pwd:
             raise ValidationError(_('Your passwords do not match.'))
-        return confirmed_password
+        else:
+            return verify_pwd
+
+
+ # def clean_verify_password(self):
+  #      orig_password = self.cleaned_data['password']
+   #     confirmed_password = self.cleaned_data['verify_password']
+    #    if orig_password != confirmed_password:
+     #       raise ValidationError(_('Your passwords do not match.'))
+      #  return confirmed_password
 
             
 

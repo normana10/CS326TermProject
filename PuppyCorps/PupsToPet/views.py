@@ -160,10 +160,13 @@ def NewAccount(request):
                     last_name = form.clean_last_name(),
                     email = form.clean_email(),
                     password = form.clean_password(),
-                    verify_password = form.clean_verify_password()
                    # profile_picture = form.clean_profile_picture(),
                     )
-            
+           #owner = Owner.objects.create(
+            #        verify_password = form.clean_verify_password()
+                    
+             #       )
+                              
 
 
             return HttpResponseRedirect(reverse('dashboard'))

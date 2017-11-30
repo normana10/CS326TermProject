@@ -77,7 +77,7 @@ class Owner(models.Model):
     # user contains username, first_name, last_name, and email
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'),)
-    gender = models.CharField(max_length=1)  
+    gender = models.CharField(max_length=1),  
     #profile_picture = models.ImageField(upload_to='static/images/profile_pictures')
     def get_absolute_url(self):
         """
