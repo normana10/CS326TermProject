@@ -2,6 +2,9 @@ from django import forms
 from .models import Pet, Event, Owner
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+from django.forms import ModelForm
+
+
 
 class NewEventForm(forms.Form):
  
@@ -83,8 +86,8 @@ class NewAccountForm(forms.Form):
       #  return data
 
 
-
-
+#class NewAccountForm(ModelForm):
+#    pass
 
 
 class UpdateUserInfoForm(forms.Form):

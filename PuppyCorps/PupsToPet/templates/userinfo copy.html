@@ -36,40 +36,23 @@
 {% endblock %}
 
 {% block content %}
-<div class="designing-forms">
-  <form action="/" method="post">
-    <h2 style="padding-top: 20px">User Information</h2>
+<div id="update-user-info-page">
+  <div class="login-modal" style="height:100%; width:70%">
+	
+  <form action="" method="post">
+    {% csrf_token %}	  
+    <h1>User Information</h1>
+    <table>
+    	{{ form }}
+    </table>
 
-    <div>
-      <label for="username">Username: </label>
-      <input class="form-control" id="username" type="text" name="Username">
-    </div>
-
-    <div>
-      <label for="first_name"><strong>First Name</strong> (at least 2 characters)</label>
-      <input type="text" id="first_name" name="first_name" required minlength="2">
-    </div>
-
-    <div>
-      <label for="last_name"><strong>Last Name</strong> (at least 2 characters)</label>
-      <input type="text" id="last_name" name="last_name" required minlength="2">
-    </div>
-
-
-    <div>
-      <label for="email"><strong>Enter a Valid Email</strong></label>
-      <input type="email" id="email" name="email" required>
-    </div>
-
-    <div>
-      <label for="vemail"><strong>Confirm Your Email</strong></label>
-      <input type="email" id="vemail" name="vemail" required>
-    </div>
-
-
-    <div>
       <button type="submit" class="form-control">Update</button>
-    </div>
   </form>
+  </div>
 </div>
 {% endblock %}
+
+
+
+
+

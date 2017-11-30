@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 
 # Create your views here.
 
-from .models import Pet, Owner, Event, Breed
+from .models import Pet, Owner, Event, Breed, User
 
 def about(request):
     """
@@ -127,10 +127,10 @@ def UpdateUserInfo(request):
 
         if form.is_valid():
             #process the data in form.cleaned_data as required 
-            owner.first_name = form.cleaned_data['first_name']
-            owner.last_name = form.cleaned_data['last_name']
-            owner.email = form.cleaned_data['email']
-            owner.gender = form.cleaned_data['gender']
+            owner.user.first_name = form.cleaned_data['first_name']
+            owner.user.last_name = form.cleaned_data['last_name']
+            owner.user.email = form.cleaned_data['email']
+            owner.user.gender = form.cleaned_data['gender']
             owner.save()
 
             #redirect to a new URL:
@@ -138,7 +138,7 @@ def UpdateUserInfo(request):
 
         #If this is a GET (or any other method) create the default form.
     else:
-        form = UpdateUserInfoForm()
+        form = UpdateUserInfoForm( initial={} )
 
     return render(
             request, 
@@ -149,12 +149,12 @@ def UpdateUserInfo(request):
 from .forms import NewAccountForm
 
 def NewAccount(request):
+
     if request.method == 'POST':
         form = NewAccountForm(request.POST) 
 
         if form.is_valid():
-            owner = Owner.objects.create(
-                    
+            new_user = User.object.create(
                     username = form.clean_username(), 
                     first_name = form.clean_first_name(), 
                     last_name = form.clean_last_name(),
