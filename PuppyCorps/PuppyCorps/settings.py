@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'PupsToPet.apps.PupstopetConfig',
+    'datetimewidget'
+    'jquery'
     #'django.contrib.easy_maps',
 ]
 
