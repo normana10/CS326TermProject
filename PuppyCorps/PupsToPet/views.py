@@ -105,7 +105,7 @@ def createpet(request):
     if request.method == 'POST':
         form = NewPetForm(request.POST)
         
-        pet = Pet.objects.create(name = form.fields['eventName'], start_time = form.fields['start_time'], end_time = form.fields['end_time'], description = form.fields['description'], location = form.fields['location'])
+        pet = Pet.objects.create(name = form.clean_name(), age = form.clean_age(), owner = Owner.objects.all().filter(user_id=request.user.id)[0], service = form.clean_service(), vaccinated = form.clean_vaccinated(), gender = form.clean_gender(), size = form.clean_size())
         return HttpResponseRedirect(reverse('dashboard'))
 
     else:
