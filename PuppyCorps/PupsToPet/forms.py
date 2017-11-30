@@ -68,7 +68,14 @@ class NewAccountForm(forms.Form):
     def clean_first_name(self):
         data = self.cleaned_data['first_name']
         return data
-    
+    def clean_last_name(self):
+        data = self.cleaned_data['last_name']
+    def clean_email(self):
+        data = self.cleaned_data['email']
+    def clean_gender(self):
+        data = self.cleaned_data['gender']
+    def clean_profile_picture(self):
+        data = self.cleaned_data['profile_picture']
 
 
 

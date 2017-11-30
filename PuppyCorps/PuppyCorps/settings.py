@@ -130,3 +130,15 @@ STATIC_URL = '/static/'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+
+
+#MEDIA_ROOT = "/PupsToPet/static/images/profile_pictures/root/media/"
+
+MEDIA_URL = '/media/'
+
+#STATIC_ROOT = "/PupsToPet/static/images/profile_pictures/root/static/"
+
+ENV_PATH = os.path.abspath(os.path.dirname(__file__))
+MEDIA_ROOT = os.path.join(ENV_PATH, 'media/')
+
+

@@ -122,13 +122,9 @@ from .forms import UpdateUserInfoForm
 def UpdateUserInfo(request):
 
     owner = get_object_or_404(Owner, pk = pk)
-    # If this is a POST request then process the Form data
     if request.method == 'POST':
-
-        # Create a form instance and populate it with data from the request (binding)
         form = UpdateUserInfoForm(request.POST)
 
-        #Check if form is valid
         if form.is_valid():
             #process the data in form.cleaned_data as required 
             owner.first_name = form.cleaned_data['first_name']
@@ -154,9 +150,19 @@ from .forms import NewAccountForm
 
 def NewAccount(request):
     if request.method == 'POST':
-        form = NewAccount(request.POST)    
-        user = Owner.objects.create(first_name = form.fields['first_name'], last_name = form.fields['last_name'])
-        return HttpResponseRedirect(reverse('dashboard'))
+        form = NewAccountForm(request.POST) 
+
+        if form.is_valid():
+
+            owner = Owner.objects.create(
+                    
+                    username = form.clean_username(), 
+                    first_name = form.clean_first_name(), 
+                    last_name = form.clean_last_name(),
+                    email = form.clean_email()
+                    profile_picture = form.clean_profile_picture()
+                    )
+            return HttpResponseRedirect(reverse('dashboard'))
 
     else:
         form = NewAccountForm(initial = {})
