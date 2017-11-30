@@ -64,7 +64,7 @@ class NewAccountForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField( widget=forms.PasswordInput() )
     verify_password = forms.CharField( widget=forms.PasswordInput() )
-    gender = forms.ChoiceField(choices=[('M','Male'),('F','Female'), ('O', 'Space Bear')])
+    #gender = forms.ChoiceField(choices=[('M','Male'),('F','Female'), ('O', 'Space Bear')])
    # profile_picture = forms.ImageField(required=False)
 
 
@@ -80,16 +80,25 @@ class NewAccountForm(forms.Form):
     def clean_email(self):
         data = self.cleaned_data['email']
         return data
+    #def clean_gender(self):
+     #   data = self.cleaned_data['gender']
+      #  return data
+
     def clean_password(self):
         data = self.cleaned_data['password']
         return data
+
     def clean_verify_password(self):
+        data = self.cleaned_data['verify_password']
+        return data
+   
+    def clean(self):
         pwd = self.cleaned_data['password']
         verify_pwd = self.cleaned_data['verify_password']
+
         if pwd != verify_pwd:
-            raise ValidationError(_('Your passwords do not match.'))
-        else:
-            return verify_pwd
+            raise ValidationError(_('Your passwords dont match! hEYYY, TRY AGAIN.'))
+
 
 
  # def clean_verify_password(self):
@@ -102,10 +111,6 @@ class NewAccountForm(forms.Form):
             
 
     
-    def clean_gender(self):
-        data = self.cleaned_data['gender']
-        return data
-
 
 
 
