@@ -153,14 +153,13 @@ def NewAccount(request):
         form = NewAccountForm(request.POST) 
 
         if form.is_valid():
-
             owner = Owner.objects.create(
                     
                     username = form.clean_username(), 
                     first_name = form.clean_first_name(), 
                     last_name = form.clean_last_name(),
                     email = form.clean_email()
-                    profile_picture = form.clean_profile_picture()
+                   # profile_picture = form.clean_profile_picture(),
                     )
             return HttpResponseRedirect(reverse('dashboard'))
 

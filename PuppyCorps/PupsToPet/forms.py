@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pet, Event
+from .models import Pet, Event, Owner
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
@@ -60,22 +60,27 @@ class NewAccountForm(forms.Form):
     last_name = forms.CharField()
     email = forms.EmailField()
     gender = forms.ChoiceField(choices=[('M','Male'),('F','Female'), ('O', 'Space Bear')])
-    profile_picture = forms.ImageField(required=False)
+   # profile_picture = forms.ImageField(required=False)
 
 
     def clean_username(self):
         data = self.cleaned_data['username']
+        return data
     def clean_first_name(self):
         data = self.cleaned_data['first_name']
         return data
     def clean_last_name(self):
         data = self.cleaned_data['last_name']
+        return data
     def clean_email(self):
         data = self.cleaned_data['email']
+        return data
     def clean_gender(self):
         data = self.cleaned_data['gender']
-    def clean_profile_picture(self):
-        data = self.cleaned_data['profile_picture']
+        return data
+    #def clean_profile_picture(self):
+     #   data = self.cleaned_data['profile_picture']
+      #  return data
 
 
 
