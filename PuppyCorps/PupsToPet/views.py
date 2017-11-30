@@ -106,8 +106,9 @@ def createpet(request):
     if request.method == 'POST':
         form = NewPetForm(request.POST)
         
-        pet = Pet.objects.create(name = form.clean_name(), age = form.clean_age(), owner = Owner.objects.all().filter(user_id=request.user.id)[0], service = form.clean_service(), vaccinated = form.clean_vaccinated(), gender = form.clean_gender(), size = form.clean_size())
-        return HttpResponseRedirect(reverse('dashboard'))
+        if form.is_valid():
+            pet = Pet.objects.create(name = form.clean_name(), age = form.clean_age(), owner = Owner.objects.all().filter(user_id=request.user.id)[0], service = form.clean_service(), vaccinated = form.clean_vaccinated(), gender = form.clean_gender(), size = form.clean_size())
+            return HttpResponseRedirect(reverse('dashboard'))
 
     else:
         form = NewPetForm(initial = {})
@@ -159,7 +160,7 @@ def NewAccount(request):
     
     return render(
             request, 
-            'userinfocreateaccount.html', 
+            'create-account.html', 
             {'form': form}
     )
 
