@@ -85,13 +85,16 @@ def test(request):
     )
 
 from .forms import NewEventForm
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 def createevent(request):
     if request.method == 'POST':
         form = NewEventForm(request.POST)
         
-        eve = Event.objects.create(name = form.fields['eventName'], start_time = form.fields['start_time'], end_time = form.fields['end_time'], description = form.fields['description'], location = form.fields['location'])
-        return HttpResponseRedirect(reverse('dashboard'))
+        if form.is_valid():
+            eve = Event.objects.create(name = form.cleaned_data.get('name'), description = form.cleaned_data.get('description'), location = form.cleaned_data.get('location'))
+            return HttpResponseRedirect(reverse('dashboard'))
 
     else:
         form = NewEventForm(initial = {})
