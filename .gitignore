@@ -1,3 +1,8 @@
 PuppyCorps/PuppyCorps/__pycache__
 PuppyCorps/PupsToPet/migrations/__pycache__
 PuppyCorps/PupsToPet/__pycache__
+venv
+*.pyc
+staticfiles
+.env
+
