@@ -1,4 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 # Create your views here.
 
@@ -24,6 +29,7 @@ def about(request):
         context={'events':events},
     )
 
+@login_required
 def dashboard(request):
     events=Event.objects.all()
     if request.user.is_authenticated():
@@ -36,11 +42,7 @@ def dashboard(request):
         context={'events':events,'dogs':dogs},
     )
     
-def createaccount(request):
-    return render(
-        request,
-        'create-account.html',
-    )
+
     
 def login(request):
    return render(
@@ -100,3 +102,70 @@ def createevent(request):
         form = NewEventForm(initial = {})
     return render(request, 'create-event.html', {'form': form})
     
+
+from .forms import NewPetForm
+
+def createpet(request):
+    if request.method == 'POST':
+        form = NewPetForm(request.POST)
+        
+        if form.is_valid():
+            pet = Pet.objects.create(name = form.clean_name(), age = form.clean_age(), owner = Owner.objects.all().filter(user_id=request.user.id)[0], service = form.clean_service(), vaccinated = form.clean_vaccinated(), gender = form.clean_gender(), size = form.clean_size())
+            return HttpResponseRedirect(reverse('dashboard'))
+
+    else:
+        form = NewPetForm(initial = {})
+    return render(request, 'createpet.html', {'form': form})
+
+from .forms import UpdateUserInfoForm
+
+def UpdateUserInfo(request):
+
+    owner = get_object_or_404(Owner, pk = pk)
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+
+        # Create a form instance and populate it with data from the request (binding)
+        form = UpdateUserInfoForm(request.POST)
+
+        #Check if form is valid
+        if form.is_valid():
+            #process the data in form.cleaned_data as required 
+            owner.first_name = form.cleaned_data['first_name']
+            owner.last_name = form.cleaned_data['last_name']
+            owner.email = form.cleaned_data['email']
+            owner.gender = form.cleaned_data['gender']
+            owner.save()
+
+            #redirect to a new URL:
+            return HttpResponseRedirect(reverse('dashboard'))
+
+        #If this is a GET (or any other method) create the default form.
+    else:
+        form = UpdateUserInfoForm()
+
+    return render(
+            request, 
+            'userinfo.html', 
+            {'form': form}
+        )
+
+from .forms import NewAccountForm
+
+def NewAccount(request):
+    if request.method == 'POST':
+        form = NewAccount(request.POST)    
+        user = Owner.objects.create(first_name = form.fields['first_name'], last_name = form.fields['last_name'])
+        return HttpResponseRedirect(reverse('dashboard'))
+
+    else:
+        form = NewAccountForm(initial = {})
+    
+    return render(
+            request, 
+            'create-account.html', 
+            {'form': form}
+    )
+
+
+
