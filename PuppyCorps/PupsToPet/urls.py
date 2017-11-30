@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^doginfo$', views.doginfo, name='doginfo'),
     url(r'^test$', views.test, name='test'),
     url(r'^createpet$', views.createpet, name='createpet'),
-]
+    
+    ]
