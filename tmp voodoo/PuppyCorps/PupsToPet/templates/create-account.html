@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/thao-style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/validation.css' %}">
+    
 <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Karma" rel="stylesheet">
 {% endblock %}
 
@@ -34,27 +36,27 @@
     <form form action="/" method="post" >
         <legend>Account Creation</legend>
         <div>
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" value="Eddy123" placeholder="...">
+            <label for="usrname">Create a username:</label>
+            <input id="usrname" name="usrname" required minlength="6" maxlength="12" pattern="[A-Za-z]">
         </div>
         <div>
-            <label for="first-name">First Name:</label>
-            <input type="text" class="form-control" id="first-name" name="first-name" value="Eddy" placeholder="...">
-        </div>
-        
-        <div>
-            <label for="last-name">Last Name:</label>
-            <input type="text" class="form-control" id="last-name" name="last-name" value="LastNamey" placeholder="...">
+            <label for="firstname">First Name:</label>
+            <input id="firstname" name="fname" required minlength="2" maxlength="25">
         </div>
         
         <div>
-            <label for="password">Create Password:</label>
-            <input type="password" class="form-control" id="password" name="password" value="fakepassword" placeholder="...">
+            <label for="lastname">Last Name:</label>
+            <input id="lastname" name="lname" required minlength="2" maxlength="25">
         </div>
         
         <div>
-            <label for="v-password">Verify Password:</label>
-            <input type="password" class="form-control" id="v-password" name="v-password" value="fakepassword" placeholder="...">
+            <label for="createpassword">Create Password:</label>
+            <input id="createpassword" name="createpassword" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+        </div>
+        
+        <div>
+            <label for="confirmpassword">Confirm Password:</label>
+            <input id="confirmpassword" name="confirmpassword" required >
         </div>
         
         <div>
@@ -77,4 +79,7 @@
         </div>
     </form>
 </div>
+
+<script src="myScript.js"></script>
+
 {% endblock %}
