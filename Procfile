@@ -1,1 +1,1 @@
-web: python3 PuppyCorps/manage.py runserver
+web: gunicorn PuppyCorps.wsgi --log-file -
