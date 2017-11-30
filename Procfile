@@ -1,1 +1,1 @@
-web: gunicorn PuppyCorps.wsgi --log-file -
+web: cd PuppyCorps && gunicorn PuppyCorps.wsgi --log-file -
