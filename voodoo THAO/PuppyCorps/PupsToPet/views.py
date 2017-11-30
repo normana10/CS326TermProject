@@ -154,18 +154,21 @@ def NewAccount(request):
         form = NewAccountForm(request.POST) 
 
         if form.is_valid():
-            new_user = User.objects.create_user( 
-                    username = form.clean_username(), 
-                    email = form.clean_email(), 
-                    password = form.clean_password() 
-                    )
-            new_user.first_name = form.clean_first_name()
-            new_user.last_name = form.clean_last_name()
-#            new_user.gender = form.clean_gender()
-            new_user.save()   
-                              
+            if form.cleaned_data['password'] == form.cleaned_data['verify_password']:
 
-            return HttpResponseRedirect(reverse('dashboard'))
+                new_user = User.objects.create_user( 
+                        username = form.clean_username(), 
+                        email = form.clean_email(), 
+                        password = form.clean_password(), 
+                        )
+                new_user.first_name = form.clean_first_name()
+                new_user.last_name = form.clean_last_name()
+#            new_user.gender = form.clean_gender()
+                new_user.save()   
+
+                return HttpResponseRedirect(reverse('dashboard'))
+            elif form.cleaned_data['password'] != form.cleaned_data['verify_password']:
+                form.add_error('verify_password', 'The passwords do not match!')
 
     else:
         form = NewAccountForm(initial = {})
