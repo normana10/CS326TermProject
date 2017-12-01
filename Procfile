@@ -1,1 +1,1 @@
-web: gunicorn PuppyCorps/PuppyCorps.wsgi --log-file -
+web: gunicorn PuppyCorps.wsgi --pythonpath PuppyCorps --log-file -
