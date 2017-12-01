@@ -64,7 +64,8 @@ class NewAccountForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField( widget=forms.PasswordInput() )
     verify_password = forms.CharField( widget=forms.PasswordInput() )
-    gender = forms.ChoiceField(choices=[('M','Male'),('F','Female'), ('O', 'Space Bear')])
+    
+    #gender = forms.ChoiceField(choices=[('M','Male'),('F','Female'), ('O', 'Space Bear')])
    # profile_picture = forms.ImageField(required=False)
 
 
@@ -80,16 +81,34 @@ class NewAccountForm(forms.Form):
     def clean_email(self):
         data = self.cleaned_data['email']
         return data
+    #def clean_gender(self):
+     #   data = self.cleaned_data['gender']
+      #  return data
+
     def clean_password(self):
         data = self.cleaned_data['password']
         return data
+
     def clean_verify_password(self):
-        pwd = self.cleaned_data['password']
-        verify_pwd = self.cleaned_data['verify_password']
-        if pwd != verify_pwd:
-            raise ValidationError(_('Your passwords do not match.'))
-        else:
-            return verify_pwd
+        data = self.cleaned_data['verify_password']
+        return data
+
+    def clean(self):
+        cleaned_data = super(NewAccountForm, self).clean()
+        password = cleaned_data.get("password")
+        verify_password = cleaned_data.get("verify_password")
+        
+        if password != verify_password:
+            raise ValidationError(_('Your passwords dont match! hEYYY, TRY AGAIN.'))
+
+   
+  #  def clean(self):
+   #     pwd = self.cleaned_data['password']
+    #    verify_pwd = self.cleaned_data['verify_password']
+
+     #   if pwd != verify_pwd:
+      #      raise ValidationError(_('Your passwords dont match! hEYYY, TRY AGAIN.'))
+
 
 
  # def clean_verify_password(self):
@@ -102,10 +121,6 @@ class NewAccountForm(forms.Form):
             
 
     
-    def clean_gender(self):
-        data = self.cleaned_data['gender']
-        return data
-
 
 
 
@@ -113,9 +128,6 @@ class NewAccountForm(forms.Form):
      #   data = self.cleaned_data['profile_picture']
       #  return data
 
-
-#class NewAccountForm(ModelForm):
-#    pass
 
 
 class UpdateUserInfoForm(forms.Form):

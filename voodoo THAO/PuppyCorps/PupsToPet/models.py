@@ -42,7 +42,7 @@ class Pet(models.Model):
 
     # ManyToManyField used because a pet can contain one or many breeds (they can be pure-bred or mixed).
     # Breed class has already been defined so we can specify the object below.
-    breed = models.ManyToManyField(Breed, help_text="Your pet might be pure-bred or mixed! Select the breed(s) for this pet.")     
+    breed = models.ManyToManyField(Breed, help_text="Your pet might be pure-bred or mixed! Select the breed(s) for this pet.")  
 
     # Methods
     def get_absolute_url(self):
@@ -76,8 +76,8 @@ class Owner(models.Model):
 #    pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
     # user contains username, first_name, last_name, and email
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'),)
-    gender = models.CharField(max_length=1),  
+   # GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'), ('O', 'Space Bear'))
+   # gender = models.CharField(max_length=1, choices=GENDER_CHOICES),  
     #profile_picture = models.ImageField(upload_to='static/images/profile_pictures')
     def get_absolute_url(self):
         """
@@ -141,3 +141,4 @@ class Event(models.Model):
 # reviews
 # locations
 # sharing/store
+

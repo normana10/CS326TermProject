@@ -1,0 +1,52 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}<title>PupsToPet | Create an Account </title>{% endblock %}
+
+{% block styles %}
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/thao-style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/validation.css' %}">
+<link type="text/javascript" href="{% static 'javascript/validation.js' %}">
+
+
+<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Karma" rel="stylesheet">
+{% endblock %}
+
+{% block navbar %}
+<a href="{% url 'login' %}?next={% url 'dashboard' %}">
+  <button>
+    &#x1F43E; Log In &#x1F43E;
+  </button>
+</a>
+<a href="{% url 'findevent' %}">
+  <button>
+    &#x1F43E; Find Event &#x1F43E;
+  </button>
+</a>
+<a href="{% url 'dashboard' %}">
+  <button>
+    &#x1F43E; Dashboard &#x1F43E;
+  </button>
+</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div id="create-account-page"> 
+  <div class="login-modal" style="height:100%; width:70%">
+    <form action="" method="post">
+        {% csrf_token %}
+  	<h1>Create an Account with Us!</h1>
+	<table>
+           {{ form }}
+        </table>
+        <input type="submit" value="Submit" />
+    </form>
+  </div>
+</div>
+{% endblock %}
+

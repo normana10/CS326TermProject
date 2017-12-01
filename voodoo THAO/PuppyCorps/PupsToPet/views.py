@@ -130,7 +130,7 @@ def UpdateUserInfo(request):
             owner.user.first_name = form.cleaned_data['first_name']
             owner.user.last_name = form.cleaned_data['last_name']
             owner.user.email = form.cleaned_data['email']
-            owner.user.gender = form.cleaned_data['gender']
+            #owner.user.gender = form.cleaned_data['gender']
             owner.save()
 
             #redirect to a new URL:
@@ -154,15 +154,21 @@ def NewAccount(request):
         form = NewAccountForm(request.POST) 
 
         if form.is_valid():
-            username = form.clean_username()
-            email = form.clean_email()
-            password = form.clean_password()
-            new_user = User.objects.create_user( str(username), str(email), str(password) )
-            new_user.first_name = form.clean_first_name()
-            new_user.last_name = form.clean_last_name()
-            new_user.save()                  
+            if form.cleaned_data['password'] == form.cleaned_data['verify_password']:
 
-            return HttpResponseRedirect(reverse('dashboard'))
+                new_user = User.objects.create_user( 
+                        username = form.clean_username(), 
+                        email = form.clean_email(), 
+                        password = form.clean_password(), 
+                        )
+                new_user.first_name = form.clean_first_name()
+                new_user.last_name = form.clean_last_name()
+#            new_user.gender = form.clean_gender()
+                new_user.save()   
+
+                return HttpResponseRedirect(reverse('dashboard'))
+            elif form.cleaned_data['password'] != form.cleaned_data['verify_password']:
+                form.add_error('verify_password', 'The passwords do not match!')
 
     else:
         form = NewAccountForm(initial = {})
@@ -172,6 +178,7 @@ def NewAccount(request):
             'create-account.html', 
             {'form': form}
     )
+
 
 
 
