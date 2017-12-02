@@ -154,10 +154,7 @@ def NewAccount(request):
         form = NewAccountForm(request.POST) 
 
         if form.is_valid():
-            username = form.clean_username()
-            email = form.clean_email()
-            password = form.clean_password()
-            new_user = User.objects.create_user( str(username), str(email), str(password) )
+            new_user = User.objects.create_user( str(username = form.clean_username()), str( email = form.clean_email() ), str(password = form.clean_password()) )
             new_user.first_name = form.clean_first_name()
             new_user.last_name = form.clean_last_name()
             new_user.save()                  
