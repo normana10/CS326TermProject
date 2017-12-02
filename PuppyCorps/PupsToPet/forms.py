@@ -57,65 +57,93 @@ class NewPetForm(forms.Form):
  #   def CreateEvent(self):
  #       return Event.objects.create(name = eventName, pets = pets, start_time = start_time, end_time = end_time, description = description, location = location)
 
-class NewAccountForm(forms.Form):
-    username = forms.CharField()
+class CreateAccountForm(forms.Form):
+    username = forms.CharField(error_messages={'required': 'Please enter a valid username'})
     first_name = forms.CharField()
     last_name = forms.CharField()
+    gender = forms.ChoiceField(
+            choices=[('M','Male'),('F','Female'),('SCB','Space Cowboy'), ('SCG', 'Space Cowgirl'), ('SB', 'Space Bear')]
+            )
     email = forms.EmailField()
     password = forms.CharField( widget=forms.PasswordInput() )
-    verify_password = forms.CharField( widget=forms.PasswordInput() )
-    gender = forms.ChoiceField(choices=[('M','Male'),('F','Female'), ('O', 'Space Bear')])
-   # profile_picture = forms.ImageField(required=False)
+    confirm_password= forms.CharField( widget=forms.PasswordInput() ) 
+    profile_picture = forms.ImageField(label='Upload a profile picture!', required=False)
 
 
     def clean_username(self):
-        data = self.cleaned_data['username']
-        return data
+        username = self.cleaned_data["username"]
+        return username
+
     def clean_first_name(self):
-        data = self.cleaned_data['first_name']
-        return data
+        firstname = self.cleaned_data['first_name']
+        return firstname
+
     def clean_last_name(self):
-        data = self.cleaned_data['last_name']
-        return data
+        lastname = self.cleaned_data['last_name']
+        return lastname
+
     def clean_email(self):
-        data = self.cleaned_data['email']
-        return data
-    def clean_password(self):
-        data = self.cleaned_data['password']
-        return data
-    def clean_verify_password(self):
-        pwd = self.cleaned_data['password']
-        verify_pwd = self.cleaned_data['verify_password']
-        if pwd != verify_pwd:
-            raise ValidationError(_('Your passwords do not match.'))
-        else:
-            return verify_pwd
-
-
- # def clean_verify_password(self):
-  #      orig_password = self.cleaned_data['password']
-   #     confirmed_password = self.cleaned_data['verify_password']
-    #    if orig_password != confirmed_password:
-     #       raise ValidationError(_('Your passwords do not match.'))
-      #  return confirmed_password
-
-            
-
+        email_passed = self.cleaned_data['email']
+        return email_passed
     
     def clean_gender(self):
-        data = self.cleaned_data['gender']
-        return data
+        gender = self.cleaned_data['gender']
+        return gender
+
+    def clean_password(self):
+        password = self.cleaned_data['password']
+        return password
+
+    def clean_confirm_password(self):
+        confirmed_pwd = self.cleaned_data['confirm_password']
+        return confirmed_pwd 
+
+    def clean_profile_picture(self):
+        picture_passed = self.cleaned_data['profile_picture']
+        return picture_passed
+
+    def clean(self):
+        password = self.cleaned_data['password']
+        confirmed_password = self.cleaned_data['confirm_password'] 
+        firstname = self.cleaned_data['first_name']
+        lastname = self.cleaned_data['last_name']
+        username = self.cleaned_data['username']
+
+        if (len(username) < 6):
+            raise ValidationError(_('Error: Username is too short. Must be between 6 to 25 characters.'))
+
+        if (len(username) > 25):
+            raise ValidationError(_('Error: Username is too long. Must be between 6 to 25 characters.'))
+        
+        if (re.search(r"\s", str(username))):
+            raise ValidationError(_('Error: Username cannot contain spaces.'))
+
+        if (any(char.isdigit() for char in str(username)) != True):
+            raise ValidationError(_('Error: Username must contain at least 1 number.'))
+
+        if (password != confirmed_password):
+            raise ValidationError(_('Error: Passwords do not match.'))
+
+        if (len(password) < 6):
+            raise ValidationError(_('Error: Password is too short. Must contain at least 6 characters'))
+
+        if (any(char.isdigit() for char in str(password)) != True):
+            raise ValidationError(_('Error: Password must contain at least 1 number.'))
+
+        if (str(firstname.lower()) in str(password).lower()):
+            raise ValidationError(_('Error(101): Password cannot contain your name/username.'))
+
+        if (str(lastname.lower()) in str(password).lower()):
+            raise ValidationError(_('Error(102): Password cannot contain your name/username.'))
+
+        if (str(username.lower()) in str(password).lower()):
+            raise ValidationError(_('Error(103): Password cannot contain your name/username.'))
 
 
 
 
-    #def clean_profile_picture(self):
-     #   data = self.cleaned_data['profile_picture']
-      #  return data
 
 
-#class NewAccountForm(ModelForm):
-#    pass
 
 
 class UpdateUserInfoForm(forms.Form):

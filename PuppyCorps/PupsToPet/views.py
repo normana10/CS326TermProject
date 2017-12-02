@@ -146,23 +146,26 @@ def UpdateUserInfo(request):
             {'form': form}
         )
 
-from .forms import NewAccountForm
+from .forms import CreateAccountForm
 
-def NewAccount(request):
+def CreateAccount(request):
 
     if request.method == 'POST':
-        form = NewAccountForm(request.POST) 
-
+        form = CreateAccountForm(request.POST) 
         if form.is_valid():
-            new_user = User.objects.create_user( str(username = form.clean_username()), str( email = form.clean_email() ), str(password = form.clean_password()) )
-            new_user.first_name = form.clean_first_name()
-            new_user.last_name = form.clean_last_name()
-            new_user.save()                  
+            new_user = User.objects.create_user( 
+                    str(form.cleaned_data.get('username')), 
+                    str(form.cleaned_data.get('email')), 
+                    str(form.cleaned_data.get('password'))
+                    )
+            new_user.first_name = form.cleaned_data.get('first_name')
+            new_user.last_name = form.cleaned_data.get('last_name')
+            new_user.save()   
 
             return HttpResponseRedirect(reverse('dashboard'))
 
     else:
-        form = NewAccountForm(initial = {})
+        form = CreateAccountForm(initial = {})
     
     return render(
             request, 
