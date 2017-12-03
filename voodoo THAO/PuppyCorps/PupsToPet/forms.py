@@ -63,6 +63,8 @@ class NewPetForm(forms.Form):
  #   def CreateEvent(self):
  #       return Event.objects.create(name = eventName, pets = pets, start_time = start_time, end_time = end_time, description = description, location = location)
 
+from django.contrib.auth.models import User
+
 class CreateAccountForm(forms.Form):
     username = forms.CharField(error_messages={'required': 'Please enter a valid username'})
     first_name = forms.CharField()
@@ -114,6 +116,10 @@ class CreateAccountForm(forms.Form):
         firstname = self.cleaned_data['first_name']
         lastname = self.cleaned_data['last_name']
         username = self.cleaned_data['username']
+        
+        # Check that username is not already taken
+        #if User.objects.filter(username.exists()):
+         #   raise ValidationError(_('Error: Username is already taken.'))
 
         if (len(username) < 6):
             raise ValidationError(_('Error: Username is too short. Must be between 6 to 25 characters.'))
@@ -146,26 +152,36 @@ class CreateAccountForm(forms.Form):
             raise ValidationError(_('Error(103): Password cannot contain your name/username.'))
 
 
-
-class UpdateUserInfoForm(forms.Form):
-    username = forms.CharField(disabled = True)
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
-    email = forms.EmailField(required=False)
-    gender = forms.ChoiceField(required=False, choices=[('M','Male'),('F','Female'), ('O', 'Space Bear')])
-   # profile_picture = forms.ImageField(required=False)
-
+class UpdateProfileForm(forms.ModelForm):
+        
     def clean_first_name(self):
         data = self.cleaned_data['first_name']
         return data
+
     def clean_last_name(self):
         data = self.cleaned_data['last_name']
         return data
+    
     def clean_email(self):
         data = self.cleaned_data['email']
         return data
 
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
 
+
+class UpdateProfileExtendedForm(forms.ModelForm):
+        
+    def clean_gender(self):
+        gender = self.cleaned_data['gender']
+        return gender
+    
+    class Meta:
+        model = Owner
+        fields = ['gender']
+
+        
 
 
 

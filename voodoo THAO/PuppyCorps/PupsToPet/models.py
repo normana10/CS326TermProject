@@ -88,7 +88,7 @@ class Owner(models.Model):
     SPACE_COWBOY = 'SCB'
     SPACE_COWGIRL = 'SCG'
     SPACE_BEAR ='SB'
-    
+   
 
     GENDER_CHOICES = (
             (MALE, 'Male'), 
@@ -98,7 +98,7 @@ class Owner(models.Model):
             (SPACE_BEAR, 'Space Bear'),
             )
     gender = models.CharField(
-            max_length=2,
+            max_length=4,
             choices=GENDER_CHOICES,
             default=SPACE_BEAR,
             )
