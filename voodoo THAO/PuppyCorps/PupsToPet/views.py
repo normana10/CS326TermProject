@@ -149,25 +149,6 @@ def CreateAccount(request):
 from .forms import UpdateProfileForm
 from .forms import UpdateProfileExtendedForm
 
-#@login_required
-#def UpdateProfile(request):
- #   if request.method == 'POST':
-  #      form = UpdateProfileForm(data=request.POST, instance=request.user)
-   #     if form.is_valid():
-    #        form.save()
-        
- #   else:
-  #      form = UpdateProfileForm(instance=request.user)
-
-   # return render(
-    #        request, 
-     #       'update_profile_info.html',
-      #      {'form': form}
-       #     )
-
-
-
-
 @login_required
 def UpdateProfile(request):
 

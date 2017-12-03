@@ -1,39 +1,65 @@
 {% extends "base_generic.html" %}
 {% load static %}
-{% block title %}<title>PupsToPet | Update User Info</title>{% endblock%}
+{% block title %}<title>PupsToPet | Update Your Info</title>{% endblock%}
 
 {% block styles %}
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/thao-style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/validation.css' %}">
-<link type="text/javascript" href="{% static 'javascript/validation.js' %}">
-<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Karma" rel="stylesheet">
+
+ <!-- Bootstrap core CSS -->
+
+ <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    
 {% endblock %}
 
 {% block navbar %}
 
-<a href="{% url 'logout' %}?next={% url 'about' %}">
-    <button>
-        &#x1F43E; Log Out &#x1F43E;
-    </button>
-</a>
-<a href="{% url 'userinfo' %}">
-    <button>
-        &#x1F43E; Account Settings &#x1F43E;
-    </button>
-</a>
-<a href="{% url 'findevent' %}">
-    <button>
-        &#x1F43E; Find Event &#x1F43E;
-    </button>
-</a>
-<a href="{% url 'dashboard' %}">
-    <button>
-        &#x1F43E; Dashboard &#x1F43E;
-    </button>
-</a>
+   <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">PupsToPet</a>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+      </li>
+
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'createpet' %}">Add a Pet</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'createevent' %}">Add an Event</a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'findevent' %}">Search for Specific Events</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account Settings
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Update Your Personal Info</a>
+          <a class="dropdown-item" href="#">Delete Your Account</a>
+          <a class="dropdown-item" href="#">Change Password</a>
+          <a class="dropdown-item" href="#">About PupsToPet</a>
+	  
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</nav>
 
 {% endblock %}
 
@@ -45,7 +71,7 @@
     <div class="login-modal" style="height:100%;width:70%">
 	<form action="" method="post">
     		{% csrf_token %}
-            	<h1>Update Your Info!</h1>
+            	<h1>Update Your Personal Down Below!</h1>
 		<table border="1" width="100%">
     			{{ form_user.as_table }}
     			{{ form_extended.as_table }}
@@ -55,4 +81,9 @@
 	</form>	
     </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 {% endblock %}
