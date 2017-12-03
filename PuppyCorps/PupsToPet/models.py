@@ -65,20 +65,30 @@ class Pet(models.Model):
     display_breed.short_description = 'Breed'
 
 class Owner(models.Model):
-    """
+   """
     Defines Owner model
     """
-    ID = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Owner's unique id")
-    # user contains the following fields: username, first_name, last_name, email and password
+    ID = models.UUIDField(
+            primary_key=True,
+            default=uuid.uuid4, 
+            help_text="Owner's unique id"
+            )
+   # first_name = models.CharField(max_length=50,null=True,help_text="Owner's first name")
+   # last_name = models.CharField(max_length=50,null=True,help_text="Owner's last name")
+   # username = models.CharField(max_length=50,null=True,help_text="Owner's username")
+   # email = models.EmailField(null=True, help_text="email address")
+#    pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
+    # user contains username, first_name, last_name, and email
     user = models.OneToOneField(
             User, on_delete=models.CASCADE
             )
-    
+
     MALE = 'M'
     FEMALE = 'F'
     SPACE_COWBOY = 'SCB'
     SPACE_COWGIRL = 'SCG'
     SPACE_BEAR ='SB'
+   
 
     GENDER_CHOICES = (
             (MALE, 'Male'), 
@@ -88,7 +98,7 @@ class Owner(models.Model):
             (SPACE_BEAR, 'Space Bear'),
             )
     gender = models.CharField(
-            max_length=2,
+            max_length=4,
             choices=GENDER_CHOICES,
             default=SPACE_BEAR,
             )
