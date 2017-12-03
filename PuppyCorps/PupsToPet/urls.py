@@ -6,8 +6,12 @@ from . import views
 urlpatterns = [
     url(r'^$', views.about, name='about'),
     url(r'^dashboard$', views.dashboard, name='dashboard'), # main page
+
     url(r'^createaccount$', views.CreateAccount, name='createaccount'),
+    url(r'^updateprofile$', views.UpdateProfile, name='updateprofile')
+
     url(r'^userinfo$', views.userinfo, name='userinfo'),
+
     url(r'^createevent$', views.createevent, name='createevent'),
 #    url(r'^eventdetail$', views.eventdetail, name='eventdetail') #not made
 #    url(r'^login$', views.login, name='login'),
@@ -17,5 +21,5 @@ urlpatterns = [
     url(r'^doginfo$', views.doginfo, name='doginfo'),
     url(r'^test$', views.test, name='test'),
     url(r'^createpet$', views.createpet, name='createpet'),
-    
+
     ]
