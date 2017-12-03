@@ -141,32 +141,34 @@ class CreateAccountForm(forms.Form):
 
 
 
-
-
-
-
-
-class UpdateUserInfoForm(forms.Form):
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
-    email = forms.EmailField(required=False)
-    gender = forms.ChoiceField(required=False, choices=[('M','Male'),('F','Female'), ('O', 'Space Bear')])
-   # profile_picture = forms.ImageField(required=False)
-
+class UpdateProfileForm(forms.ModelForm):
+        
     def clean_first_name(self):
         data = self.cleaned_data['first_name']
         return data
+
     def clean_last_name(self):
         data = self.cleaned_data['last_name']
         return data
+    
     def clean_email(self):
         data = self.cleaned_data['email']
         return data
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+
+class UpdateProfileExtendedForm(forms.ModelForm):
+        
     def clean_gender(self):
-        data = self.cleaned_data['gender']
-        return data
-
-
+        gender = self.cleaned_data['gender']
+        return gender
+    
+    class Meta:
+        model = Owner
+        fields = ['gender']
 
 
 
