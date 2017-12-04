@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^dashboard$', views.dashboard, name='dashboard'), # main page
 
     url(r'^createaccount$', views.CreateAccount, name='createaccount'),
-    url(r'^updateprofile$', views.UpdateProfile, name='updateprofile')
+    url(r'^updateprofile$', views.UpdateProfile, name='updateprofile'),
 
     url(r'^userinfo$', views.userinfo, name='userinfo'),
 
