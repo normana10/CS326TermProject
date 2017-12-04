@@ -1,22 +1,4 @@
 {% extends "base_generic.html" %}
-{% block content %}
-
-    <h1>Renew: {{bookinst.book.title}}</h1>
-    <p>Borrower: {{bookinst.borrower}}</p>
-    <p{% if bookinst.is_overdue %} class="text-danger"{% endif %}>Due date: {{bookinst.due_back}}</p>
-    
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-        {{ form }}
-        </table>
-        <input type="submit" value="Submit" />
-    </form>
-
-{% endblock %}
-
-
-{% extends "base_generic.html" %}
 {% load static %}
 
 {% block title %}<title>PupsToPet | Create an Account </title>{% endblock %}
@@ -28,8 +10,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/thao-style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/validation.css' %}">
 <link type="text/javascript" href="{% static 'javascript/validation.js' %}">
-
-
 <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Karma" rel="stylesheet">
 {% endblock %}
 
@@ -60,7 +40,7 @@
         {% csrf_token %}
   	<h1>Create an Account with Us!</h1>
 	<table>
-           {{ form }}
+           {{ form.as_table }}
         </table>
         <input type="submit" value="Submit" />
     </form>
