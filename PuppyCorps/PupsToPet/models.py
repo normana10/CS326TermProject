@@ -71,12 +71,12 @@ class Owner(models.Model):
             default=uuid.uuid4, 
             help_text="Owner's unique id"
             )
-    first_name = models.CharField(max_length=50,null=True,help_text="Owner's first name")
-    last_name = models.CharField(max_length=50,null=True,help_text="Owner's last name")
-    username = models.CharField(max_length=50,null=True,help_text="Owner's username")
-    email = models.EmailField(null=True, help_text="email address")
-    pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
-    user contains username, first_name, last_name, and email
+    # first_name = models.CharField(max_length=50,null=True,help_text="Owner's first name")
+    # last_name = models.CharField(max_length=50,null=True,help_text="Owner's last name")
+    # username = models.CharField(max_length=50,null=True,help_text="Owner's username")
+    # email = models.EmailField(null=True, help_text="email address")
+    # pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
+    # user contains username, first_name, last_name, and email
     user = models.OneToOneField(
             User, on_delete=models.CASCADE
             )
