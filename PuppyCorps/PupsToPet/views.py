@@ -99,7 +99,8 @@ def createevent(request):
                                         description = form.cleaned_data.get('description'), 
                                         location = form.cleaned_data.get('location'),
                                         start_time = form.cleaned_data.get('start_time'),
-                                        end_time = form.cleaned_data.get('end_time'))
+                                        end_time = form.cleaned_data.get('end_time'),
+                                        host = Owner.objects.all().filter(user_id=request.user.id)[0])
             return HttpResponseRedirect(reverse('dashboard'))
 
     else:
