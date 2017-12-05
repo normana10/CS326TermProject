@@ -49,15 +49,13 @@
 
       
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Account Settings
-        </a>
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account Settings $ More</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Update Your Personal Info</a>
-          <a class="dropdown-item" href="#">Delete Your Account</a>
-          <a class="dropdown-item" href="#">Change Password</a>
+          <a class="dropdown-item" href="{% url 'updateprofile' %}">Update Your Personal Info</a>
+         <!-- <a class="dropdown-item" href="#">Delete Your Account</a>
+	 <a class="dropdown-item" href="#">Change Password</a>-->
           <a class="dropdown-item" href="#">About PupsToPet</a>
-	  
+	 
         </div>
       </li>
 
