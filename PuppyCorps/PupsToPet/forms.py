@@ -22,8 +22,11 @@ class NewEventForm(forms.Form):
     def clean_description(self):
         return self.cleaned_data['description']
 
-    def clean_location(self):
-        return self.cleaned_data['location']
+    def clean_start_time(self):
+        return self.cleaned_data['start_time']
+    
+    def clean_end_time(self):
+        return self.cleaned_data['end_time']
 
 
 class NewPetForm(forms.Form):
