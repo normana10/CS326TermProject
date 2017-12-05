@@ -1,5 +1,9 @@
 {% extends "base_generic.html" %}
+{% load widget_tweaks %}
+
 {% load static %}
+
+
 {% block title %}<title>PupsToPet | Update Your Info</title>{% endblock%}
 
 {% block styles %}
@@ -7,7 +11,7 @@
  <!-- Bootstrap core CSS -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
- <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<!-- <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     
 {% endblock %}
@@ -56,23 +60,36 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-12 text-center">	
+	      <!-- <div class="col-lg-12 text-center">	-->
 
 	<div class=createaccount>
 	  <form action="" method="post">
         	{% csrf_token %}
 
 		<h1 class="mt-5">Create an Account with Us Today!</h1>
-		<table>
 		
-		{{ form.as_p }}
-        	</table>
-        	<input type="submit" value="Submit" />
+		
+			<!--	{{ form.as_p }}-->
+		{% for hidden in form.hidden_fields %}
+  			{{ hidden }}
+		{% endfor %}
+
+		{% for field in form.visible_fields %}
+  		   <div class="form-group">
+    			<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+			{{ field|add_class:'form-control' }}
+   		   </div>
+		{% endfor %}
+
+		
+    		<div class="form-group">
+			<input class="btn" type="submit" name="Submit" value="Submit" />
+		</div>
     	  </form>
 	</div>
 
 
-        </div>
+	<!-- </div> -->
       </div>
     </div>
 

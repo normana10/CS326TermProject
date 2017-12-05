@@ -135,7 +135,7 @@ def CreateAccount(request):
             new_user.last_name = form.cleaned_data.get('last_name')
             new_user.save()   
 
-            return HttpResponseRedirect(reverse('dashboard'))
+            return HttpResponseRedirect(reverse('login'))
 
     else:
         form = CreateAccountForm(initial = {})

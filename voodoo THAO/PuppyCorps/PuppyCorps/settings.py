@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'PupsToPet.apps.PupstopetConfig',
-    #'widget_tweaks',
-  
+    'widget_tweaks',
+ 
     #'django.contrib.easy_maps',
    
 ]
