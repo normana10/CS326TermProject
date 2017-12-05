@@ -12,8 +12,13 @@ class NewEventForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop("request")
         super(NewEventForm, self).__init__(*args, **kwargs)
-        self.fields['host'] = self.request.user
-        self.fields['pets'] = forms.ModelMultipleChoiceField(Pet.objects.all().filter(owner=self.request.user))
+        currentOwner = Owner.objects.all().filter(user=self.request.user)
+        # self.fields['host'] = currentOwner
+        # self.fields['pets'] = forms.ModelMultipleChoiceField(Pet.objects.all().filter(owner=currentOwner))
+        if len(Pet.objects.all().filter(owner=currentOwner)) == 0:
+            self.fields['pets'] = forms.MultipleChoiceField([("YOU HAVE NO PETS","YOU HAVE NO PETS")])
+        else:
+            self.fields['pets'] = forms.ModelMultipleChoiceField(Pet.objects.all().filter(owner=currentOwner))
 
     name = forms.CharField()
 #    pets = forms.ModelMultipleChoiceField(Pet.objects.all())
