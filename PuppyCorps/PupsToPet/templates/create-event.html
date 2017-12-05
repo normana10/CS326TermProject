@@ -1,5 +1,13 @@
 {% extends "base_generic.html" %} {% load static %} {% block title %}
+
 <title>PupsToPet | Create Event</title>{% endblock %} {% block navbar %}
+
+<head>
+	{{ form.media }}
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css"/!-->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+	<script src="{% static 'js/bootstrap.js' %}"></script>
+</head>
 <a href="{% url 'logout' %}?next={% url 'about' %}">
 	<button>
 		&#x1F43E; Log Out &#x1F43E;

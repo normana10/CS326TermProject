@@ -3,6 +3,13 @@ from django.shortcuts import render
 # Create your views here.
 
 from .models import Pet, Owner, Event, Breed
+from django.contrib.auth.models import User
+from .forms import CreateUserForm
+
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+import datetime
 
 def about(request):
     """
@@ -20,6 +27,7 @@ def about(request):
     return render(
         request,
         'about-page.html',
+        context={'events':Event.objects.all()},
     )
 
 def dashboard(request):
@@ -35,10 +43,17 @@ def dashboard(request):
     )
     
 def createaccount(request):
-    return render(
-        request,
-        'create-account.html',
-    )
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            newuser = User.objects.create_user(str(form.cleaned_data['username']),str(form.cleaned_data['email']),str(form.cleaned_data['password1']))
+            newuser.first_name = form.cleaned_data['firstname']
+            newuser.last_name = form.cleaned_data['lastname']
+            newuser.save()
+            return HttpResponseRedirect(reverse('about'))
+    else:
+        form = CreateUserForm(initial={'username': 'tmp','password1': 'tmp','password2': 'tmp','firstname': 'tmp','lastname': 'tmp','email': 'tmp@tmp.com',})
+    return render(request,'create-account.html',{'form':form})
     
 #def login(request):
 #    return render(

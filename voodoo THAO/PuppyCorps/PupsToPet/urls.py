@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^createaccount$', views.CreateAccount, name='createaccount'),
 
     url(r'^userinfo$', views.userinfo, name='userinfo'),
-    
+   
     url(r'^createevent$', views.createevent, name='createevent'),
 #    url(r'^eventdetail$', views.eventdetail, name='eventdetail') #not made
 #    url(r'^login$', views.login, name='login'),

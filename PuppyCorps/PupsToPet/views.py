@@ -92,14 +92,18 @@ from django.core.urlresolvers import reverse
 
 def createevent(request):
     if request.method == 'POST':
-        form = NewEventForm(request.POST)
+        form = NewEventForm(request.POST, request=request)
         
         if form.is_valid():
-            eve = Event.objects.create(name = form.cleaned_data.get('name'), description = form.cleaned_data.get('description'), location = form.cleaned_data.get('location'))
+            eve = Event.objects.create(name = form.cleaned_data.get('name'), 
+                                        description = form.cleaned_data.get('description'), 
+                                        location = form.cleaned_data.get('location'),
+                                        start_time = form.cleaned_data.get('start_time'),
+                                        end_time = form.cleaned_data.get('end_time'))
             return HttpResponseRedirect(reverse('dashboard'))
 
     else:
-        form = NewEventForm(initial = {})
+        form = NewEventForm(request=request)
     return render(request, 'create-event.html', {'form': form})
     
 
