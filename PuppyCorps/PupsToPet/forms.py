@@ -3,6 +3,7 @@ from .models import Pet, Event, Owner
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm
+from datetimewidget.widgets import DateTimeWidget
 
 
 
@@ -10,11 +11,10 @@ class NewEventForm(forms.Form):
  
     name = forms.CharField()
     pets = forms.ModelMultipleChoiceField(Pet.objects.all())
-    start_time = forms.DateTimeField(help_text="Enter starting time in the form YYYY-MM-DD HH:MM.")
-    end_time = forms.DateTimeField(help_text="Enter the event ending timein the form YYYY-MM-DD HH:MM.")
+    start_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
+    end_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
     description = forms.CharField()
     location = forms.CharField()
-
 
     def clean_name(self):
         return self.cleaned_data['name']
@@ -24,6 +24,7 @@ class NewEventForm(forms.Form):
 
     def clean_location(self):
         return self.cleaned_data['location']
+
 
 class NewPetForm(forms.Form):
     pass
