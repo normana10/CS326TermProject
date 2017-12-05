@@ -7,9 +7,6 @@ from django.core.validators import validate_email
 import re
 
 
-
-
-
 class NewEventForm(forms.Form):
  
     name = forms.CharField()
