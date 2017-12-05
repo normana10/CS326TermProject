@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm
 from datetimewidget.widgets import DateTimeWidget
-
+import re
 
 
 class NewEventForm(forms.Form):
