@@ -3,6 +3,7 @@ from .models import Pet, Event, Owner
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm
+from datetimewidget.widgets import DateTimeWidget
 
 
 
@@ -10,11 +11,10 @@ class NewEventForm(forms.Form):
  
     name = forms.CharField()
     pets = forms.ModelMultipleChoiceField(Pet.objects.all())
-    start_time = forms.DateTimeField(help_text="Enter starting time in the form YYYY-MM-DD HH:MM.")
-    end_time = forms.DateTimeField(help_text="Enter the event ending timein the form YYYY-MM-DD HH:MM.")
+    start_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
+    end_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
     description = forms.CharField()
     location = forms.CharField()
-
 
     def clean_name(self):
         return self.cleaned_data['name']
@@ -22,8 +22,12 @@ class NewEventForm(forms.Form):
     def clean_description(self):
         return self.cleaned_data['description']
 
-    def clean_location(self):
-        return self.cleaned_data['location']
+    def clean_start_time(self):
+        return self.cleaned_data['start_time']
+    
+    def clean_end_time(self):
+        return self.cleaned_data['end_time']
+
 
 class NewPetForm(forms.Form):
     pass
@@ -155,9 +159,9 @@ class UpdateProfileForm(forms.ModelForm):
         data = self.cleaned_data['email']
         return data
 
-    class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'email']
+#    class Meta:
+#        model = User
+#        fields = ['first_name', 'last_name', 'email']
 
 
 class UpdateProfileExtendedForm(forms.ModelForm):
