@@ -6,3 +6,5 @@ whitenoise==3.3.1
 django-bootstrap3==9.1.0
 django-datetime-widget==0.9.3
 django-jquery==3.1.0
+django-widget-tweaks==1.4.1
+
