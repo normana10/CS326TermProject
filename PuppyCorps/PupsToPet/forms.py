@@ -9,12 +9,21 @@ from datetimewidget.widgets import DateTimeWidget
 
 class NewEventForm(forms.Form):
  
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop("request")
+        super(NewEventForm, self).__init__(*args, **kwargs)
+        self.fields['host'] = self.request.user
+        self.fields['pets'] = forms.ModelMultipleChoiceField(Pet.objects.all().filter(owner=self.request.user))
+
     name = forms.CharField()
-    pets = forms.ModelMultipleChoiceField(Pet.objects.all())
+#    pets = forms.ModelMultipleChoiceField(Pet.objects.all())
     start_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
     end_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
     description = forms.CharField()
     location = forms.CharField()
+
+    def clean(self):
+        print(self.request.user) 
 
     def clean_name(self):
         return self.cleaned_data['name']
