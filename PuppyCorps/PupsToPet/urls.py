@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^createevent$', views.createevent, name='createevent'),
 #    url(r'^eventdetail$', views.eventdetail, name='eventdetail') #not made
 #    url(r'^login$', views.login, name='login'),
-	url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^forgotpassword$', views.forgotpassword, name='forgotpassword'),
     url(r'^findevent$', views.findevent, name='findevent'),
     url(r'^doginfo$', views.doginfo, name='doginfo'),

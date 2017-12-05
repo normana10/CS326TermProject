@@ -91,7 +91,8 @@ img {
 	border: 3px solid black;
 	border-radius: 5px;
 	float: left;
-	width: 140px;
+	width: 180px;
+	overflow: scroll;
 }
 
 #pet-information {
@@ -100,8 +101,8 @@ img {
 	border: 3px solid black;
 	border-radius: 5px;
 	float: left;
-	width: 140px;
-	height: 100px;
+	width: 180px;
+	height: 150px;
 	overflow: scroll;
 }
 
