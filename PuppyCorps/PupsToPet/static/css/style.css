@@ -92,6 +92,7 @@ img {
 	border-radius: 5px;
 	float: left;
 	width: 180px;
+	overflow: scroll;
 }
 
 #pet-information {
