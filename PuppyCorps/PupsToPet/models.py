@@ -6,12 +6,21 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 #We will need code that lets the user upload pictures of themselves/their pets
+class Disposition(models.Model):
+    """
+    Defines Personality/Disposition model (e.g. happy, sad, glad, etc.)
+
+    """
+    disposition = models.CharField(max_length=15)
+
+
+
 
 class Breed(models.Model):
     """
     Defines Breed model (e.g. German Sheperd, Golden Retriever, Poodle)
     """
-    breed = models.CharField(max_length=200, help_text="Enter a dog breed (e.g. German Sheperd, Golden Retriever, Poodle)")
+    breed = models.CharField(max_length=30, help_text="Enter a dog breed (e.g. German Sheperd, Golden Retriever, Poodle)")
 
     def __str__(self):
         """

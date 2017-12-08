@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 
 class NewEventForm(forms.Form):
- 
+
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop("request")
         super(NewEventForm, self).__init__(*args, **kwargs)
@@ -29,7 +29,7 @@ class NewEventForm(forms.Form):
     location = forms.CharField()
 
     def clean(self):
-        print(self.request.user) 
+        print(self.request.user)
 
     def clean_name(self):
         return self.cleaned_data['name']
@@ -39,7 +39,7 @@ class NewEventForm(forms.Form):
 
     def clean_start_time(self):
         return self.cleaned_data['start_time']
-    
+
     def clean_end_time(self):
         return self.cleaned_data['end_time']
 
@@ -52,6 +52,8 @@ class NewPetForm(forms.Form):
     gender = forms.ChoiceField(choices=[('Male','Male'),('Female','Female')], label="What is your pet's gender?")
     size = forms.ChoiceField(choices=[('small','Small'),('medium','Medium'),('large','Large')], label="What is your pet's size?")
 
+    disposition = forms.CharField(label="Tell us about your pet's personality. What are they like?")
+    additional_notes = forms.CharField(label="Is there anything else we should know about your pet? Write it down below!", required="False")
 
     def clean_name(self):
         data = self.cleaned_data['name']
@@ -71,7 +73,7 @@ class NewPetForm(forms.Form):
     def clean_size(self):
         data = self.cleaned_data['size']
         return data
-    
+
 
  #   def CreateEvent(self):
  #       return Event.objects.create(name = eventName, pets = pets, start_time = start_time, end_time = end_time, description = description, location = location)
@@ -85,7 +87,7 @@ class CreateAccountForm(forms.Form):
             )
     email = forms.EmailField()
     password = forms.CharField( widget=forms.PasswordInput() )
-    confirm_password= forms.CharField( widget=forms.PasswordInput() ) 
+    confirm_password= forms.CharField( widget=forms.PasswordInput() )
     profile_picture = forms.ImageField(label='Upload a profile picture!', required=False)
 
 
@@ -104,7 +106,7 @@ class CreateAccountForm(forms.Form):
     def clean_email(self):
         email_passed = self.cleaned_data['email']
         return email_passed
-    
+
     def clean_gender(self):
         gender = self.cleaned_data['gender']
         return gender
@@ -115,7 +117,7 @@ class CreateAccountForm(forms.Form):
 
     def clean_confirm_password(self):
         confirmed_pwd = self.cleaned_data['confirm_password']
-        return confirmed_pwd 
+        return confirmed_pwd
 
     def clean_profile_picture(self):
         picture_passed = self.cleaned_data['profile_picture']
@@ -123,7 +125,7 @@ class CreateAccountForm(forms.Form):
 
     def clean(self):
         password = self.cleaned_data['password']
-        confirmed_password = self.cleaned_data['confirm_password'] 
+        confirmed_password = self.cleaned_data['confirm_password']
         firstname = self.cleaned_data['first_name']
         lastname = self.cleaned_data['last_name']
         username = self.cleaned_data['username']
@@ -139,7 +141,7 @@ class CreateAccountForm(forms.Form):
 
         if (len(username) > 25):
             raise ValidationError(_('Error: Username is too long. Must be between 6 to 25 characters.'))
-        
+
         if (re.search(r"\s", str(username))):
             raise ValidationError(_('Error: Username cannot contain spaces.'))
 
@@ -167,7 +169,7 @@ class CreateAccountForm(forms.Form):
 
 
 class UpdateProfileForm(forms.ModelForm):
-        
+
     def clean_first_name(self):
         data = self.cleaned_data['first_name']
         return data
@@ -175,7 +177,7 @@ class UpdateProfileForm(forms.ModelForm):
     def clean_last_name(self):
         data = self.cleaned_data['last_name']
         return data
-    
+
     def clean_email(self):
         data = self.cleaned_data['email']
         return data
@@ -186,19 +188,11 @@ class UpdateProfileForm(forms.ModelForm):
 
 
 class UpdateProfileExtendedForm(forms.ModelForm):
-        
+
     def clean_gender(self):
         gender = self.cleaned_data['gender']
         return gender
-    
+
     class Meta:
         model = Owner
         fields = ['gender']
-
-
-
-
-
-
-
-
