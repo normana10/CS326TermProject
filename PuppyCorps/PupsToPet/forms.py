@@ -45,13 +45,13 @@ class NewEventForm(forms.Form):
 
 
 class NewPetForm(forms.Form):
-    pass
-    name = forms.CharField()
-    age = forms.IntegerField()
-    service = forms.ChoiceField(choices=[('True','Yes'),('False','No')])
-    vaccinated = forms.ChoiceField(choices=[('True','Yes'),('False','No')])
-    gender = forms.ChoiceField(choices=[('Male','Male'),('Female','Female')])
-    size = forms.ChoiceField(choices=[('small','Small'),('medium','Medium'),('large','Large')])
+    name = forms.CharField(label="Your pet's name")
+    age = forms.IntegerField(label="Your pet's age")
+    service = forms.ChoiceField(choices=[('True','Yes'),('False','No')],label="Is your pet a service animal?")
+    vaccinated = forms.ChoiceField(choices=[('True','Yes'),('False','No')], label="Is your pet vaccinated?")
+    gender = forms.ChoiceField(choices=[('Male','Male'),('Female','Female')], label="What is your pet's gender?")
+    size = forms.ChoiceField(choices=[('small','Small'),('medium','Medium'),('large','Large')], label="What is your pet's size?")
+
 
     def clean_name(self):
         data = self.cleaned_data['name']
