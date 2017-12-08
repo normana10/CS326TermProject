@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm
 from datetimewidget.widgets import DateTimeWidget
 import re
+from django.contrib.auth.models import User
 
 
 class NewEventForm(forms.Form):
@@ -16,7 +17,7 @@ class NewEventForm(forms.Form):
         # self.fields['host'] = currentOwner
         # self.fields['pets'] = forms.ModelMultipleChoiceField(Pet.objects.all().filter(owner=currentOwner))
         if len(Pet.objects.all().filter(owner=currentOwner)) == 0:
-            self.fields['pets'] = forms.MultipleChoiceField([("YOU HAVE NO PETS","YOU HAVE NO PETS")])
+            self.fields['pets'] = forms.MultipleChoiceField([("You have no pets.","You have no pets.")])
         else:
             self.fields['pets'] = forms.ModelMultipleChoiceField(Pet.objects.all().filter(owner=currentOwner))
 
@@ -127,6 +128,12 @@ class CreateAccountForm(forms.Form):
         lastname = self.cleaned_data['last_name']
         username = self.cleaned_data['username']
 
+        # Check that username is not already taken
+        #if User.objects.filter(username.exists()):
+         #   raise ValidationError(_('Error: Username is already taken.'))
+
+
+
         if (len(username) < 6):
             raise ValidationError(_('Error: Username is too short. Must be between 6 to 25 characters.'))
 
@@ -173,9 +180,9 @@ class UpdateProfileForm(forms.ModelForm):
         data = self.cleaned_data['email']
         return data
 
-#    class Meta:
-#        model = User
-#        fields = ['first_name', 'last_name', 'email']
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
 
 
 class UpdateProfileExtendedForm(forms.ModelForm):

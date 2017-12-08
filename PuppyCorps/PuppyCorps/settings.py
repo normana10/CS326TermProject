@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'datetimewidget',
     'jquery',
     'bootstrap3'
+    'widget_tweaks',
+    
     #'django.contrib.easy_maps',
 ]
 
