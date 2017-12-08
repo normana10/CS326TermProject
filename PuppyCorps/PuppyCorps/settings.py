@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'PupsToPet.apps.PupstopetConfig',
     'datetimewidget',
     'jquery',
-    'bootstrap3'
+    'bootstrap3',
     'widget_tweaks',
     
     #'django.contrib.easy_maps',
@@ -135,7 +135,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'dashboard'
+
 
 
 #MEDIA_ROOT = "/PupsToPet/static/images/profile_pictures/root/media/"
