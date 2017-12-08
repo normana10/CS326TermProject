@@ -52,8 +52,8 @@
 
 
 {% endblock %}
-{% block content %}
 
+{% block content %}
 <div="main-wrap">
 <div>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -62,72 +62,12 @@
 </div>
 
 
-<div class="container">
-  <div class="row">
-    {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
-    
-    {% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-      {% else %}
-      <p>Please login to see this page.</p>
-      {% endif %}
-      {% endif %}
-      
-      <div id="login-page">
-        <div>
-          <h1>Login</h1>
-          <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            
-            
-            {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-            {% endfor %}
-            
-            {% for field in form.visible_fields %}
-            <div class="form-group">
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {{ field|add_class:'form-control' }}
-              
-            </div>
-            {% endfor %}
-            
-            
-            
-            <div class="form-group">
-              <!-- <button>Submit</button> -->
-                <input type="submit" value="login"/>
-		<!-- <input type="hidden" name="next" value="{{ next }}" />-->
-            </div>
-          </div>
-          
-          <br>
-         <!--
-	  <a href="{% url 'forgotpassword' %}">
-            <h4>Forgot Password?</h4>
-          </a>
-	 -->
-          
-          <!--
-          <a href="{% url 'dashboard' %}">
-          <h4>&#8592;Back to main page</h4>
-        </a>
-      -->
-      
-    </form>
-  </div>
+<div>
+
+	<p> You have successfully logged out!</p>  
+
+	<a href="{% url 'login'%}">Click here to login again.</a>
 </div>
 
-
-</div>
-
-<!-- </div> -->
-</div>
-</div>
 {% endblock %}
-
 
