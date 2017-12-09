@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'jquery',
     'bootstrap3',
     'widget_tweaks',
-    
+    'crispy_forms',
+
     #'django.contrib.easy_maps',
 ]
 
@@ -137,8 +138,6 @@ STATIC_URL = '/static/'
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = 'dashboard'
 
-
-
 #MEDIA_ROOT = "/PupsToPet/static/images/profile_pictures/root/media/"
 
 MEDIA_URL = '/media/'
@@ -168,8 +167,6 @@ STATIC_URL = '/static/'
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -178,3 +175,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
+
+# below, we get the bootstrap3 template plate which tells Crispy forms we are using bootstrap 3 so set that up when you run our program. 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

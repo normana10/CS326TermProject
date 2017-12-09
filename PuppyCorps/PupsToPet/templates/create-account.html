@@ -13,7 +13,7 @@
 
 <!-- <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    
+
 {% endblock %}
 
 {% block navbar %}
@@ -44,7 +44,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Login</a>
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
       </li>
 
     </ul>
@@ -55,41 +55,41 @@
 {% endblock %}
 
 {% block content %}
-
     <!-- Page Content -->
 
     <div class="container">
       <div class="row">
-	      <!-- <div class="col-lg-12 text-center">	-->
-
-	<div class=createaccount>
-	  <form action="" method="post">
-        	{% csrf_token %}
-
-		<h1 class="mt-5">Create an Account with Us Today!</h1>
-		
-		
-			<!--	{{ form.as_p }}-->
-		{% for hidden in form.hidden_fields %}
-  			{{ hidden }}
-		{% endfor %}
-
-		{% for field in form.visible_fields %}
-  		   <div class="form-group">
-    			<label for="{{ field.id_for_label }}">{{ field.label }}</label>
-			{{ field|add_class:'form-control' }}
-   		   </div>
-		{% endfor %}
-
-		
-    		<div class="form-group">
-			<input class="btn" type="submit" name="Submit" value="Submit" />
-		</div>
-    	  </form>
-	</div>
+        <div class="offset-1 col-md-10">
+          <div class=createaccount>
+            <form action="" method="post">
+              {% csrf_token %}
+              {{ form.errors }}
+              <div class="page-header">
+                <h1 class="mt-2">Create an Account with Us Today!</h1>
+              </div>
+              <!--	{{ form.as_p }}-->
+              {% for hidden in form.hidden_fields %}
+              {{ hidden }}
+              {% endfor %}
 
 
-	<!-- </div> -->
+
+              {% for field in form.visible_fields %}
+              <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field|add_class:'form-control' }}
+              </div>
+              {% endfor %}
+
+
+              <div class="form-group">
+                <input class="btn" type="submit" name="Submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <!-- </div> -->
       </div>
     </div>
 
@@ -100,5 +100,3 @@
 
 
 {% endblock %}
-
-

@@ -52,8 +52,8 @@ class NewPetForm(forms.Form):
     gender = forms.ChoiceField(choices=[('Male','Male'),('Female','Female')], label="What is your pet's gender?")
     size = forms.ChoiceField(choices=[('small','Small'),('medium','Medium'),('large','Large')], label="What is your pet's size?")
 
-    disposition = forms.CharField(label="Tell us about your pet's personality. What are they like?")
-    additional_notes = forms.CharField(label="Is there anything else we should know about your pet? Write it down below!", required="False")
+    disposition = forms.CharField(label="What is your pet like? Choose from the options below. Choose one or many! Or start typing and the disposition will show up (ex: happy, sad, energetic, etc)")
+    additional_notes = forms.CharField(required="False", label="Is there anything else we should know about your pet? Write it down below!")
 
     def clean_name(self):
         data = self.cleaned_data['name']
@@ -73,13 +73,26 @@ class NewPetForm(forms.Form):
     def clean_size(self):
         data = self.cleaned_data['size']
         return data
+    def clean_disposition(self):
+        data = self.cleaned_data['disposition']
+        return data
+    def clean_additional_notes(self):
+        data = self.cleaned_data['additional_notes']
+        return data
+
+
+    def clean(self):
+        age = self.cleaned_data['age']
+
+        if (age < 0):
+            raise ValidationError(_('Error: Invalid age! It cannot be a negative number!'))
 
 
  #   def CreateEvent(self):
  #       return Event.objects.create(name = eventName, pets = pets, start_time = start_time, end_time = end_time, description = description, location = location)
 
 class CreateAccountForm(forms.Form):
-    username = forms.CharField(error_messages={'required': 'Please enter a valid username'})
+    username = forms.CharField(error_messages={'required': 'Please enter a valid username. No spaces and at least 6 to 25 characters.'})
     first_name = forms.CharField()
     last_name = forms.CharField()
     gender = forms.ChoiceField(
