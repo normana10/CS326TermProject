@@ -96,12 +96,15 @@ class CreateAccountForm(forms.Form):
     first_name = forms.CharField()
     last_name = forms.CharField()
     gender = forms.ChoiceField(
-            choices=[('M','Male'),('F','Female'),('SCB','Space Cowboy'), ('SCG', 'Space Cowgirl'), ('SB', 'Space Bear')]
-            )
+            choices=[(
+            'M','Male'),
+            ('F','Female'),
+            ('SB', 'Space Bear')
+            ])
     email = forms.EmailField()
     password = forms.CharField( widget=forms.PasswordInput() )
     confirm_password= forms.CharField( widget=forms.PasswordInput() )
-    profile_picture = forms.ImageField(label='Upload a profile picture!', required=False)
+    #profile_picture = forms.ImageField(label='Upload a profile picture!', required=False)
 
 
     def clean_username(self):
@@ -132,9 +135,9 @@ class CreateAccountForm(forms.Form):
         confirmed_pwd = self.cleaned_data['confirm_password']
         return confirmed_pwd
 
-    def clean_profile_picture(self):
-        picture_passed = self.cleaned_data['profile_picture']
-        return picture_passed
+    #def clean_profile_picture(self):
+     #   picture_passed = self.cleaned_data['profile_picture']
+      #  return picture_passed
 
     def clean(self):
         password = self.cleaned_data['password']
@@ -146,8 +149,6 @@ class CreateAccountForm(forms.Form):
         # Check that username is not already taken
         #if User.objects.filter(username.exists()):
          #   raise ValidationError(_('Error: Username is already taken.'))
-
-
 
         if (len(username) < 6):
             raise ValidationError(_('Error: Username is too short. Must be between 6 to 25 characters.'))
@@ -179,10 +180,9 @@ class CreateAccountForm(forms.Form):
         if (str(username.lower()) in str(password).lower()):
             raise ValidationError(_('Error(103): Password cannot contain your name/username.'))
 
-
-
 class UpdateProfileForm(forms.ModelForm):
-
+# When a user creates an account, prefill this form with that info.
+# When a user updates this form, update their info & make sure it stays in this form when the user views it.
     def clean_first_name(self):
         data = self.cleaned_data['first_name']
         return data
@@ -195,6 +195,18 @@ class UpdateProfileForm(forms.ModelForm):
         data = self.cleaned_data['email']
         return data
 
+    def clean(self):
+        first_name = self.cleaned_data['first_name']
+        last_name = self.cleaned_data['last_name']
+
+        if (len(first_name) == 1):
+            raise ValidationError(_('Error: Your first name cannot just contain 1 letter.'))
+        if (len(last_name) == 1):
+            raise ValidationError(_('Error: Your last name cannot just contain 1 letter.'))
+
+        if (any(char.isdigit() for char in str(firstname)) != False):
+            raise ValidationError(_('Error: Your first name may not contain any numbers'))
+
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
@@ -203,9 +215,24 @@ class UpdateProfileForm(forms.ModelForm):
 class UpdateProfileExtendedForm(forms.ModelForm):
 
     def clean_gender(self):
-        gender = self.cleaned_data['gender']
-        return gender
+        data = self.cleaned_data['gender']
+        return data
+
+   # def clean_happiness(self):
+    #    data = self.cleaned_data['happiness']
+     #   return data
+
+    #def clean_happiness(self):
+    #    data = self.cleaned_data['happiness']
+
+   # def clean_hobbies(self):
+    #    data = self.cleaned_data['hobbies']
+
+
+    #def clean_profile_picture(self):
+     #   data = self.cleaned_data['profile_picture']
 
     class Meta:
         model = Owner
+ #       fields = ['gender', 'hobbies', 'profile_picture']
         fields = ['gender']

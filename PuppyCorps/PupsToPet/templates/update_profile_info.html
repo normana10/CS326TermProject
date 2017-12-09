@@ -27,7 +27,6 @@
         <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
       </li>
 
-
       <li class="nav-item">
         <a class="nav-link" href="{% url 'createpet' %}">Add a Pet</a>
       </li>
@@ -36,15 +35,13 @@
         <a class="nav-link" href="{% url 'createevent' %}">Add an Event</a>
       </li>
 
-
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'findevent' %}">Search for Specific Events</a>
+        <a class="nav-link" href="{% url 'findevent' %}">See every event planned to happen</a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
       </li>
-
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,51 +64,63 @@
 
 
 {% block content %}
-
+<!-- the JavaScript below makes sure the nav bar is responsive-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 
+<div class="container">
+  <div class="row">
+    <div class="offset-2 col-lg-8">
 
-<form action="" method="post">
-  {% csrf_token %}
-  <h1>Update Your Account Info Down Below!</h1>
-  <table border="1" width="100%">
-    {% for hidden in form_user.hidden_fields %}
-    {{ hidden }}
-    {% endfor %}
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form_user.errors }}
+        {{ form_extended.errors }}
 
-    {% for hidden in form_extended.hidden_fields %}
-    {{ hidden }}
-    {% endfor %}
+        <div class="page-header">
+          <h1 class="mt-2">Update Your Profile Down Below!</h1>
+        </div>
+
+        <table border="1" width="100%">
+          {% for hidden in form_user.hidden_fields %}
+          {{ hidden }}
+          {% endfor %}
+
+          {% for hidden in form_extended.hidden_fields %}
+          {{ hidden }}
+          {% endfor %}
+
+          {% for field in form_user.visible_fields %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field|add_class:'form-control' }}
+
+            {% for error in field.errors %}
+            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% endfor %}
+
+          {% for field in form_extended.visible_fields %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field|add_class:'form-control' }}
+            {% for error in field.errors %}
+            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% endfor %}
 
 
-    {% for field in form_user.visible_fields %}
-    <div class="form-group">
-      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-      {{ field|add_class:'form-control' }}
+          <div class="form-group">
+            <input class="btn" type="submit" name="Update" value="Update Profile" />
+          </div>
 
-      {% for error in field.errors %}
-      <span class="help-block">{{ error }}</span>
-      {% endfor %}
+        </form>
+      </div>
     </div>
-    {% endfor %}
+  </div>
 
-    {% for field in form_extended.visible_fields %}
-    <div class="form-group">
-      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-      {{ field|add_class:'form-control' }}
-      {% for error in field.errors %}
-      <span class="help-block">{{ error }}</span>
-      {% endfor %}
-    </div>
-    {% endfor %}
-
-
-    <div class="form-group">
-      <input class="btn" type="submit" name="Update" value="Update Profile" />
-    </div>
-
-  </form>
 {% endblock %}

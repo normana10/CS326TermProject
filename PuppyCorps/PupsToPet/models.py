@@ -13,8 +13,10 @@ class Disposition(models.Model):
     """
     disposition = models.CharField(max_length=15)
 
-
-
+    def _str_(self):
+        """
+        String for representing the Disposition of a pet.
+        """
 
 class Breed(models.Model):
     """
@@ -51,7 +53,7 @@ class Pet(models.Model):
 
     # ManyToManyField used because a pet can contain one or many breeds (they can be pure-bred or mixed).
     # Breed class has already been defined so we can specify the object below.
-    breed = models.ManyToManyField(Breed, help_text="Your pet might be pure-bred or mixed! Select the breed(s) for this pet.")     
+    breed = models.ManyToManyField(Breed, help_text="Your pet might be pure-bred or mixed! Select the breed(s) for this pet.")
 
     # Methods
     def get_absolute_url(self):
@@ -59,7 +61,7 @@ class Pet(models.Model):
          Returns the url to access a particular instance of MyModelName.
          """
          return reverse('pet-detail', args=[str(self.ID)])
-    
+
     def __str__(self):
         """
         String for representing the Pet object (in Admin site etc.)
@@ -77,31 +79,23 @@ class Owner(models.Model):
     # Defines Owner model
     ID = models.UUIDField(
             primary_key=True,
-            default=uuid.uuid4, 
+            default=uuid.uuid4,
             help_text="Owner's unique id"
             )
     # first_name = models.CharField(max_length=50,null=True,help_text="Owner's first name")
     # last_name = models.CharField(max_length=50,null=True,help_text="Owner's last name")
     # username = models.CharField(max_length=50,null=True,help_text="Owner's username")
     # email = models.EmailField(null=True, help_text="email address")
-    # pet_owner_status = models.BooleanField(default=False, help_text="Are you a dog owner?")
     # user contains username, first_name, last_name, and email
-    user = models.OneToOneField(
-            User, on_delete=models.CASCADE
-            )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     MALE = 'M'
     FEMALE = 'F'
-    SPACE_COWBOY = 'SCB'
-    SPACE_COWGIRL = 'SCG'
     SPACE_BEAR ='SB'
-   
 
     GENDER_CHOICES = (
-            (MALE, 'Male'), 
-            (FEMALE, 'Female'), 
-            (SPACE_COWBOY, 'Space Cowboy'),
-            (SPACE_COWGIRL, 'Space Cowgirl'),
+            (MALE, 'Male'),
+            (FEMALE, 'Female'),
             (SPACE_BEAR, 'Space Bear'),
             )
     gender = models.CharField(
@@ -109,14 +103,18 @@ class Owner(models.Model):
             choices=GENDER_CHOICES,
             default=SPACE_BEAR,
             )
-    
+
+    #happiness = models.CharField(max_length=300)
+
+    #hobbies = models.CharField(max_length=300)
+
     #profile_picture = models.ImageField(upload_to='static/images/profile_pictures')
     def get_absolute_url(self):
         """
         Returns the url to access a particular owner instance.
         """
         return reverse('owner-detail', args=[str(self.ID)])
-        
+
     # Methods
     def __str__(self):
         """
@@ -125,7 +123,7 @@ class Owner(models.Model):
         if self.user != None:
             return '%s: %s, %s' % (self.user.username, self.user.last_name, self.user.first_name)
         return '%s' % self.ID
-        
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

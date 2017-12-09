@@ -8,7 +8,6 @@
         
         {% block styles %}
         
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
         {% endblock %}
@@ -22,7 +21,7 @@
             {% else %}
                 <a href="{% url 'about' %}">
             {% endif %}
-                           </a>
+                </a>
             {% block navbar %}{% endblock %}
         </nav>
         {% block content %}{% endblock %}

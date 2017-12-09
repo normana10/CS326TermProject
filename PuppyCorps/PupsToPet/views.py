@@ -171,6 +171,8 @@ def UpdateProfile(request):
             user.save()
 
             owner.gender = request.POST['gender']
+            #owner.gender = request.POST['happiness']
+
             owner.save()
             return HttpResponseRedirect(reverse('dashboard'))
     

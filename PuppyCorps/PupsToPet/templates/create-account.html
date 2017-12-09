@@ -3,7 +3,6 @@
 
 {% load static %}
 
-
 {% block title %}<title>PupsToPet | Create an Account</title>{% endblock%}
 
 {% block styles %}
@@ -18,7 +17,7 @@
 
 {% block navbar %}
 
-   <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -72,15 +71,12 @@
               {{ hidden }}
               {% endfor %}
 
-
-
               {% for field in form.visible_fields %}
               <div class="form-group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field|add_class:'form-control' }}
               </div>
               {% endfor %}
-
 
               <div class="form-group">
                 <input class="btn" type="submit" name="Submit" value="Submit" />
