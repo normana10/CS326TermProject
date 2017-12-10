@@ -29,7 +29,7 @@ def about(request):
         context={'events':events},
     )
 
-@login_required
+#@login_required
 def dashboard(request):
     events=Event.objects.all()
     if request.user.is_authenticated():
