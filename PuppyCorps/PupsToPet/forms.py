@@ -42,6 +42,16 @@ class NewEventForm(forms.Form):
 
     def clean_end_time(self):
         return self.cleaned_data['end_time']
+        
+class FilterEventForm(forms.Form):
+    name=forms.CharField()
+    ownername=forms.CharField()
+    minstart=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
+    maxend=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
+    #centerx
+    #centery
+    #radius
+    
 
 
 class NewPetForm(forms.Form):
