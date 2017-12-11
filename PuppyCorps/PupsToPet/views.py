@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 # Create your views here.
+from .forms import *
+
 
 from .models import Pet, Owner, Event, Breed, User
 
@@ -108,19 +110,30 @@ def createevent(request):
     return render(request, 'create-event.html', {'form': form})
     
 
-from .forms import NewPetForm
 
 def createpet(request):
     if request.method == 'POST':
         form = NewPetForm(request.POST)
         
         if form.is_valid():
-            pet = Pet.objects.create(name = form.clean_name(), age = form.clean_age(), owner = Owner.objects.all().filter(user_id=request.user.id)[0], service = form.clean_service(), vaccinated = form.clean_vaccinated(), gender = form.clean_gender(), size = form.clean_size())
+            pet = Pet.objects.create(name = form.clean_name(), age = form.clean_age(), owner = Owner.objects.all().filter(user_id=request.user.id)[0], service = form.clean_service(), vaccinated = form.clean_vaccinated(), gender = form.clean_gender(), size = form.clean_size(), breed = [form.clean_breed()], disposition = form.clean_disposition(), additional_notes = form.clean_additional_notes())
             return HttpResponseRedirect(reverse('dashboard'))
 
     else:
         form = NewPetForm(initial = {})
     return render(request, 'createpet.html', {'form': form})
+
+def createbreed(request):
+    if request.method == 'POST':
+        form = NewBreedForm(request.POST)
+        
+        if form.is_valid():
+            breed = Breed.objects.create(breed = form.clean_breed())
+            return HttpResponseRedirect(reverse('createpet'))
+
+    else:
+        form = NewBreedForm(initial = {})
+    return render(request, 'createbreed.html', {'form': form})
 
 
 from .forms import CreateAccountForm

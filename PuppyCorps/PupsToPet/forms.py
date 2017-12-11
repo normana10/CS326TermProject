@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pet, Event, Owner
+from .models import Pet, Event, Owner, Breed
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm
@@ -51,6 +51,7 @@ class NewPetForm(forms.Form):
     vaccinated = forms.ChoiceField(choices=[('True','Yes'),('False','No')], label="Is your pet vaccinated?")
     gender = forms.ChoiceField(choices=[('Male','Male'),('Female','Female')], label="What is your pet's gender?")
     size = forms.ChoiceField(choices=[('small','Small'),('medium','Medium'),('large','Large')], label="What is your pet's size?")
+    breed = forms.ModelChoiceField(Breed.objects.order_by('breed'), label="What breed is your pet? ")
 
     disposition = forms.CharField(label="What is your pet like? Choose from the options below. Choose one or many! Or start typing and the disposition will show up (ex: happy, sad, energetic, etc)")
     additional_notes = forms.CharField(required="False", label="Is there anything else we should know about your pet? Write it down below!")
@@ -73,6 +74,9 @@ class NewPetForm(forms.Form):
     def clean_size(self):
         data = self.cleaned_data['size']
         return data
+    def clean_breed(self):
+        data = self.cleaned_data['breed']
+        return data
     def clean_disposition(self):
         data = self.cleaned_data['disposition']
         return data
@@ -86,6 +90,13 @@ class NewPetForm(forms.Form):
 
         if (age < 0):
             raise ValidationError(_('Error: Invalid age! It cannot be a negative number!'))
+
+class NewBreedForm(forms.Form):
+    breed = forms.CharField(label="Your New Breed!")
+
+    def clean_breed(self):
+        data = self.cleaned_data['breed']
+        return data
 
 
  #   def CreateEvent(self):
