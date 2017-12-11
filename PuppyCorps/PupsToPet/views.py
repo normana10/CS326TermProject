@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.db.models import Q
+from django.contrib.auth.models import Group
 
 # Create your views here.
 from .forms import *
@@ -167,6 +168,9 @@ def CreateAccount(request):
             new_user.first_name = form.cleaned_data.get('first_name')
             new_user.last_name = form.cleaned_data.get('last_name')
             new_user.save()   
+            
+            ourgroup=Group.objects.get(name='basicuser')
+            ourgroup.user_set.add(new_user)
 
             return HttpResponseRedirect(reverse('dashboard'))
 
