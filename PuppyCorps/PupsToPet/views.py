@@ -12,6 +12,8 @@ from .forms import *
 
 from .models import Pet, Owner, Event, Breed, User
 from .forms import FilterEventForm
+from django.views.generic.edit import DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 def about(request):
     """
@@ -132,6 +134,10 @@ def createpet(request):
     else:
         form = NewPetForm(initial = {})
     return render(request, 'createpet.html', {'form': form})
+class petDelete(DeleteView):
+    model = Pet
+    success_url = reverse_lazy('dashboard')
+
 
 def createbreed(request):
     if request.method == 'POST':

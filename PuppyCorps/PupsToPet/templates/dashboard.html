@@ -197,6 +197,10 @@
                 <h6>breed: {{dog.display_breed}}</h6>
                 <h6>size: {{dog.size}}</h6>
             </li>
+            <form action="{% url 'delete_pet' dog.pk %}" method="POST">
+              {% csrf_token %}
+              <button type="submit">Delete</button>
+            </form>
             {% endfor %}
         </ul>
         <a href="{% url 'createpet' %}">
