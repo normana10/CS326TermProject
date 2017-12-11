@@ -46,13 +46,29 @@ def dashboard(request):
     if request.method == 'POST':
         form = FilterEventForm(request.POST)
         if form.is_valid():
-            events=events.filter(Q(name__icontains=form.cleaned_data.get('name')),
-                Q(host__user__username__icontains=form.cleaned_data.get('ownername'))
-                |Q(host__user__first_name__icontains=form.cleaned_data.get('ownername'))
-                |Q(host__user__last_name__icontains=form.cleaned_data.get('ownername')),
-                Q(start_time__gte=form.cleaned_data.get('minstart')),
-                Q(end_time__lte=form.cleaned_data.get('maxend'))
-                )
+            
+            if not (form.cleaned_data.get('name') is None or form.cleaned_data.get('name')==""):
+                print('filter name')
+                events=events.filter(name__icontains=form.cleaned_data.get('name'))
+            if not (form.cleaned_data.get('ownername') is None or form.cleaned_data.get('ownername')==""):
+                print('filter ownername')
+                events=events.filter(Q(host__user__username__icontains=form.cleaned_data.get('ownername'))
+                    |Q(host__user__first_name__icontains=form.cleaned_data.get('ownername'))
+                    |Q(host__user__last_name__icontains=form.cleaned_data.get('ownername')))
+            if not form.cleaned_data.get('minstart') is None:
+                print('minstart')
+                events=events.filter(start_time__gte=form.cleaned_data.get('minstart'))
+            if not form.cleaned_data.get('maxend') is None:
+                print('maxend')
+                events=events.filter(end_time__lte=form.cleaned_data.get('maxend'))
+            
+            #events=events.filter(Q(name__icontains=form.cleaned_data.get('name')),
+            #    Q(host__user__username__icontains=form.cleaned_data.get('ownername'))
+            #    |Q(host__user__first_name__icontains=form.cleaned_data.get('ownername'))
+            #    |Q(host__user__last_name__icontains=form.cleaned_data.get('ownername')),
+            #    Q(start_time__gte=form.cleaned_data.get('minstart')),
+            #    Q(end_time__lte=form.cleaned_data.get('maxend'))
+            #    )
     return render(
         request,
         'dashboard.html',

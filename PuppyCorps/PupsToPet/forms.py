@@ -44,10 +44,10 @@ class NewEventForm(forms.Form):
         return self.cleaned_data['end_time']
         
 class FilterEventForm(forms.Form):
-    name=forms.CharField()
-    ownername=forms.CharField()
-    minstart=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
-    maxend=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
+    name=forms.CharField(required=False)
+    ownername=forms.CharField(required=False)
+    minstart=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False)
+    maxend=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False)
     #centerx
     #centery
     #radius
