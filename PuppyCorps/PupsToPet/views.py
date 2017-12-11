@@ -4,12 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 
 # Create your views here.
 from .forms import *
 
 
 from .models import Pet, Owner, Event, Breed, User
+from .forms import FilterEventForm
 
 def about(request):
     """
@@ -38,6 +40,16 @@ def dashboard(request):
         dogs=request.user.owner.pet_set.all()
     else:
         dogs=None
+    if request.method == 'POST':
+        form = FilterEventForm(request.POST)
+        if form.is_valid():
+            events=events.filter(Q(name__icontains=form.cleaned_data.get('name')),
+                Q(host__user__username__icontains=form.cleaned_data.get('ownername'))
+                |Q(host__user__first_name__icontains=form.cleaned_data.get('ownername'))
+                |Q(host__user__last_name__icontains=form.cleaned_data.get('ownername')),
+                Q(start_time__gte=form.cleaned_data.get('minstart')),
+                Q(end_time__lte=form.cleaned_data.get('maxend'))
+                )
     return render(
         request,
         'dashboard.html',
@@ -65,10 +77,8 @@ def forgotpassword(request):
 #    )
     
 def findevent(request):
-    return render(
-        request,
-        'find-event.html',
-    )
+    form = FilterEventForm(initial = {})
+    return render(request,'find-event.html',{'form': form})
     
 def userinfo(request):
     return render(
