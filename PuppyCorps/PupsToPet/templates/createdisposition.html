@@ -36,6 +36,9 @@
         <a class="nav-link" href="{% url 'createevent' %}">Add an Event</a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'viewownevents' %}">Your events</a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{% url 'findevent' %}">Search for Specific Events</a>
@@ -54,7 +57,7 @@
           <a class="dropdown-item" href="{% url 'updateprofile' %}">Update Your Personal Info</a>
           <!--<a class="dropdown-item" href="#">Delete Your Account</a>
 	  <a class="dropdown-item" href="#">Change Password</a>-->
-          <a class="dropdown-item" href="about">About PupsToPet</a>
+          <a class="dropdown-item" href="{% url 'about' %}">About PupsToPet</a>
 
         </div>
       </li>
