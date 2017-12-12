@@ -200,7 +200,7 @@
             {{ form.errors }}
 
             <h1 class="mt-2">Add an Event Down Below!</h1>
-            
+
             {% for hidden in form.hidden_fields %}
             {{ hidden }}
             {% endfor %}
@@ -211,7 +211,7 @@
               {{ field|add_class:'form-control' }}
             </div>
             {% endfor %}
-            
+
 			<input id="query" type="text" name="">
 			<button type="button" onclick="getLocation()">Set to current location</button>
 			<div style="float: right; width: 50%">
@@ -266,7 +266,7 @@
 
 					// map.fitBounds(bounds);
 				});
-				
+
 				map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 				var x = document.getElementById("id_location");
 				function getLocation() {
