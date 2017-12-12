@@ -89,12 +89,6 @@
               <label for="{{ field.id_for_label }}">{{ field.label }}</label>
               {{ field|add_class:'form-control' }}
             </div>
-            {% if field.name == "breed" %}
-              <a href="{% url 'createbreed' %}">(Add your pet's breed here!)</a>
-            {% endif %}
-            {% if field.name == "disposition" %}
-              <a href="{% url 'createdisposition' %}">(Add new dispositions here!)</a>
-            {% endif %}
             {% endfor %}
 
             <div class="form-group">
