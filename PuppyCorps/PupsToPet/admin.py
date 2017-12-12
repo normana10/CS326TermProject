@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pet, Owner, Event, Breed
+from .models import Pet, Owner, Event, Breed, Disposition
 
 # Register your models here.
 
@@ -7,6 +7,7 @@ from .models import Pet, Owner, Event, Breed
 #admin.site.register(Owner)
 #admin.site.register(Event)
 admin.site.register(Breed)
+admin.site.register(Disposition)
 
 
 # Define the Pet admin class
