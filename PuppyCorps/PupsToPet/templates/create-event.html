@@ -79,7 +79,6 @@
 
 {{form.media}}
 
-<<<<<<< HEAD
 <div class="container">
   <div class="row">
     <div class="offset-1 col-md-10">
@@ -190,112 +189,5 @@
       </div>
     </div>
   </div>
-=======
-
-<div class="container">
-<div class="row">
-<div class="offset-2 col-md-8">
-		<form action="" method="post">
-            {% csrf_token %}
-            {{ form.errors }}
-
-            <h1 class="mt-2">Add an Event Down Below!</h1>
-
-            {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-            {% endfor %}
-
-            {% for field in form.visible_fields %}
-            <div class="form-group">
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {{ field|add_class:'form-control' }}
-            </div>
-            {% endfor %}
-
-			<input id="query" type="text" name="">
-			<button type="button" onclick="getLocation()">Set to current location</button>
-			<div style="float: right; width: 50%">
-				<div id="map"></div>
-
-				<style>
-				#map {
-					height: 400px;
-					width: 350px;
-				}
-				</style>
-				<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCQgbR5jdBj36wI9-6SpCOpaBr-Rj14L70"></script>
-				<script>
-				var mapOptions = {
-					zoom: 4,
-					zoom: 14,
-					center: new google.maps.LatLng(42.391138, -72.526812),
-					mapTypeId: 'satellite',
-				}
-				var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(42.391138, -72.526812),
-					map: map,
-					draggable: true,
-					title: "Drag me!",
-				});
-
-				google.maps.event.addListener(marker, 'mouseup', function (event) {
-					document.getElementById("id_location").value = event.latLng.lat() + "," + event.latLng.lng();
-				});
-
-				google.maps.event.addListener(marker, 'mousedown', function (event) {
-					document.getElementById("id_location").value = event.latLng.lat() + "," + event.latLng.lng();
-				});
-
-				var input = document.getElementById('query')
-				var searchBox = new google.maps.places.SearchBox(input);
-				map.addListener('bounds_changed', function () {
-					searchBox.setBounds(map.getBounds());
-				});
-				searchBox.addListener('places_changed', function () {
-					var places = searchBox.getPlaces();
-					if (places.length == 0) {
-						return;
-					}
-					// For each place, get the icon, name and location.
-					// var bounds = new google.maps.LatLngBounds();
-
-					marker.setPosition(places[0].geometry.location);
-					map.setCenter(places[0].geometry.location);
-					document.getElementById("id_location").value = places[0].geometry.location.lat() + "," + places[0].geometry.location.lng();
-
-					// map.fitBounds(bounds);
-				});
-
-				map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-				var x = document.getElementById("id_location");
-				function getLocation() {
-					if (navigator.geolocation) {
-						navigator.geolocation.getCurrentPosition(showPosition);
-					} else {
-						x.innerHTML = "Geolocation is not supported by this browser.";
-					}
-				}
-				function showPosition(position) {
-					x.value = position.coords.latitude +
-					"," + position.coords.longitude;
-					var pos = {
-						lat: position.coords.latitude,
-						lng: position.coords.longitude
-					};
-					marker.setPosition(pos);
-				}
-				// getLocation();
-				</script>
-				<br>
-			</div>
-			<br style="clear: both;">
-			<div class="form-group">
-              <input class="btn" type="submit" name="Submit" value="Submit" />
-            </div>
-		</form>
-</div>
-</div>
->>>>>>> d4c3384769d0f70a8e06057146840452e726ed7f
 </div>
 {% endblock %}
