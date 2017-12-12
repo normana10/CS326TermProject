@@ -13,10 +13,6 @@ class Disposition(models.Model):
     """
     disposition = models.CharField(max_length=15)
 
-    def _str_(self):
-        """
-        String for representing the Disposition of a pet.
-        """
 
 class Breed(models.Model):
     """

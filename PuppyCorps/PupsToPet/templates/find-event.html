@@ -78,7 +78,7 @@
     </nav>
 {% endif %}
 {% endblock %}
-    
+
 {% block content %}
 
 
@@ -91,17 +91,24 @@
 
 {{form.media}}
 
-
-<div id="create-event-page">
-	<div class="login-modal" style="height:100%;width:70%">
+<div class="container">
+  <div class="row">
+    <div class="offset-1 col-md-10">
+      <div class=findevent>
 		<form action = "{% url 'dashboard' %}" method = "post">
+      <h1 class="mt-2">Is there an event you want to find? Use the search tool down below.</h1>
+      <p>Specify the <i><b>event name</b></i> and <i><b>host</b></i> for better search results!</p>
 			{% csrf_token %}
 			<table>
 				{{ form }}
 			</table>
-			
+
 			<input type="submit" value="Submit"/>
 		</form>
 	</div>
 </div>
+</div>
+</div>
+
+
 {% endblock %}
