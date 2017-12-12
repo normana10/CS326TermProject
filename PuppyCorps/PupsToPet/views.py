@@ -10,7 +10,6 @@ from django.contrib.auth.models import Group
 # Create your views here.
 from .forms import *
 
-
 from .models import Pet, Owner, Event, Breed, User, Disposition
 from .forms import FilterEventForm
 from django.views.generic.edit import DeleteView
@@ -74,8 +73,6 @@ def dashboard(request):
         'dashboard.html',
         context={'events':events,'dogs':dogs},
     )
-
-
 
 def login(request):
    return render(
@@ -180,11 +177,7 @@ def createdisposition(request):
         form = NewDispositionForm(initial = {})
     return render(request, 'createdisposition.html', {'form': form})
 
-
-
-
 from .forms import CreateAccountForm
-
 def CreateAccount(request):
 
     if request.method == 'POST':
