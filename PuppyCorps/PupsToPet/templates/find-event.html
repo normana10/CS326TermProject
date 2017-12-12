@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}<title>PupsToPet | Find Events</title>{% endblock %}
 
@@ -91,7 +92,37 @@
 
 {{form.media}}
 
+<div class="container">
+<div class="row">
+<div class="offset-2 col-md-8">
+        <form action="{% url 'dashboard' %}" method="post">
+            {% csrf_token %}
+            {{ form.errors }}
 
+            <h1 class="mt-2">Search for and event with specific Criteria</h1>
+
+            <!--	{{ form.as_p }}-->
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+            <div class="form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field|add_class:'form-control' }}
+            </div>
+            {% endfor %}
+
+            <div class="form-group">
+              <input class="btn" type="submit" name="Submit" value="Submit" />
+            </div>
+          </form>
+</div>
+</div>
+</div>
+
+
+<!--
 <div id="create-event-page">
 	<div class="login-modal" style="height:100%;width:70%">
 		<form action = "{% url 'dashboard' %}" method = "post">
@@ -104,4 +135,5 @@
 		</form>
 	</div>
 </div>
+-->
 {% endblock %}
