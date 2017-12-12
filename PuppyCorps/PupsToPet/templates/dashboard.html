@@ -69,13 +69,9 @@
   </div>
 </nav>
 
-
-
-
 {% else %}
 
-
-   <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -114,13 +110,56 @@
 
 {% block content %}
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-<div id="page-content">
-    <!-- <iframe
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      {% if user.is_authenticated %}
+      <h2>Howdy {{user.username}}</h2>
+      <div id="personal-information">
+        <h4>Your Information:</h4>
+        <h6>{{user.get_full_name}}</h6>
+        <h6>{{user.email}}</h6>
+      </div>
+      <div id="pet-information">
+        <h4>Your Pet Information:</h4>
+        <div style="overflow: auto; height:200px">
+          <ul>
+            {% for dog in dogs %}
+            <li>
+              <h5>{{dog.name}}</h5>
+              <h6>breed: {{dog.display_breed}}</h6>
+              <h6>size: {{dog.size}}</h6>
+            </li>
+            <form action="{% url 'delete_pet' dog.pk %}" method="POST">
+              {% csrf_token %}
+              <button type="submit">Delete</button>
+            </form>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <a href="{% url 'createpet' %}">
+          <button>
+            Add Pet!
+          </button>
+        </a>
+      </div>
+
+      {% endif %}
+    </div>
+
+    <div class="col-9">
+
+      <center><h4>Current Events!<h4><p>(click on a pup to get more info about an event)</p></center>
+
+      <div id="page-content">
+        <!-- <iframe
         width="80%"
         height="450"
         frameborder="0" style="border:0"
@@ -128,109 +167,90 @@
         &center=42.391138,-72.526812
         &zoom=14
         &maptype=satellite" allowfullscreen>
-    </iframe> -->
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQgbR5jdBj36wI9-6SpCOpaBr-Rj14L70&callback=initMap">
+      </iframe> -->
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQgbR5jdBj36wI9-6SpCOpaBr-Rj14L70&callback=initMap">
     </script>
-    <div id="map" style="height: 450px;width: 75%"></div>
+    <div id="map" style="height: 450px;width: 100%"></div>
     <script>
-        var map;
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 14,
-                center: new google.maps.LatLng(42.391138,-72.526812),
-                mapTypeId: 'satellite'
-                });
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: new google.maps.LatLng(42.391138,-72.526812),
+        mapTypeId: 'satellite'
+      });
 
-            var iconBase = "{% static 'images/' %}";
-            // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-            var icons = {
-                pupper: {
-                    icon: iconBase + 'pupClipArt.png'
-                },
-            //  parking: {
-            //      icon: iconBase + 'parking_lot_maps.png'
-            //  },
-            //  library: {
-            //      icon: iconBase + 'library_maps.png'
-            //  },
-            //  info: {
-            //      icon: iconBase + 'info-i_maps.png'
-            //  }
-            };
+      var iconBase = "{% static 'images/' %}";
+      // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+      var icons = {
+        pupper: {
+          icon: iconBase + 'pupClipArt.png'
+        },
+        //  parking: {
+        //      icon: iconBase + 'parking_lot_maps.png'
+        //  },
+        //  library: {
+        //      icon: iconBase + 'library_maps.png'
+        //  },
+        //  info: {
+        //      icon: iconBase + 'info-i_maps.png'
+        //  }
+      };
 
-            // var features = [
-            //     {% for event in events %}
-            //         {
-            //             position: new google.maps.LatLng({{ event.location }}),
-            //             type: 'pupper'
-            //         },  
-            //     {% endfor %}
-            // ];
-            // Create markers.
-            // features.forEach(function(feature) {
-            var infowindow = new google.maps.InfoWindow();
-            {% for event in events %}
-                var marker = new google.maps.Marker({
-                position: new google.maps.LatLng({{ event.location }}),
-                icon: icons['pupper'].icon,
-                map: map
-                });
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.setContent('<div><strong>' + '{{ event.name }}' + '</strong><br>' + 'Host: ' + '{{ event.host }}' + '<br>Starts:' + '{{ event.start_time }}' + '<br>' + 'Ends:{{ event.end_time }}' + '<br>Description:<br>' + '{{ event.description }}' + '</div>');
-                    infowindow.open(map, this);
-                });
-            {% endfor %}
-            // });
-        }
-    </script>
+      // var features = [
+      //     {% for event in events %}
+      //         {
+      //             position: new google.maps.LatLng({{ event.location }}),
+      //             type: 'pupper'
+      //         },
+      //     {% endfor %}
+      // ];
+      // Create markers.
+      // features.forEach(function(feature) {
+      var infowindow = new google.maps.InfoWindow();
+      {% for event in events %}
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng({{ event.location }}),
+        icon: icons['pupper'].icon,
+        map: map
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent('<div><strong>' + '{{ event.name }}' + '</strong><br>' + 'Host: ' + '{{ event.host }}' + '<br>Starts:' + '{{ event.start_time }}' + '<br>' + 'Ends:{{ event.end_time }}' + '<br>Description:<br>' + '{{ event.description }}' + '</div>');
+        infowindow.open(map, this);
+      });
+      {% endfor %}
+      // });
+    }
+  </script>
 
-    {% if user.is_authenticated %}
-    <h2>Howdy {{user.username}}</h2>
-    <div id="personal-information">
-        <h4>Your Information:</h4>
-        <h6>{{user.get_full_name}}</h6>
-        <h6>{{user.email}}</h6>
-    </div>
-    <div id="pet-information">
-        <h4>Your Pet Information:</h4>
-        <ul>
-            {% for dog in dogs %}
-            <li>
-                <h5>{{dog.name}}</h5>
-                <h6>breed: {{dog.display_breed}}</h6>
-                <h6>size: {{dog.size}}</h6>
-            </li>
-            <form action="{% url 'delete_pet' dog.pk %}" method="POST">
-              {% csrf_token %}
-              <button type="submit">Delete</button>
-            </form>
-            {% endfor %}
-        </ul>
-        <a href="{% url 'createpet' %}">
-            <button>
-                Add Pet!
-            </button>
-        </a>
-    </div>
-    
-    {% endif %}
-    
-    <div style="clear: both;"></div>
-    
-    <div style="padding-top:10px;padding-left:5px">
-        <h2>Event Information</h2>
-        {% for eve in events %}
-        <div style="border: 3px solid black;margin: 10px;width: 400px;background-color: rgb(200, 249, 255);;">
-              <h3><strong>{{eve.id}}</strong></h3>
-              <p><strong>Name: </strong>{{eve.name}}</p>
-              <p><strong>Host: </strong>{{eve.host}}</p>
-              <p><strong>Description: </strong>{{eve.description}}</p>
-              <p><strong>Time: </strong>{{eve.start_time}} - {{eve.end_time}}</p>
-              <p><strong>Location: </strong>{{eve.location}}</p>
-              <br>
-        </div>
-        {% endfor %}
-    </div>
 </div>
+</div> <!--End of map div-->
+
+<div class="row">
+  <div class="col">
+    <br>
+    <br>
+    <center>
+    <h5>All events are listed Below. If you don't want to scroll through it all, use the search option in the navigation bar</h5>
+    <div style="overflow: auto; height:300px; width:100%">
+    <div style="padding-top:10px;padding-left:5px">
+      <h2>Event Information</h2>
+      {% for eve in events %}
+      <div style="border: 3px solid black;margin: 10px;width: 100%;background-color: rgb(200, 249, 255);;">
+        <h3><strong>{{eve.id}}</strong></h3>
+        <p><strong>Name: </strong>{{eve.name}}</p>
+        <p><strong>Host: </strong>{{eve.host}}</p>
+        <p><strong>Description: </strong>{{eve.description}}</p>
+        <p><strong>Time: </strong>{{eve.start_time}} - {{eve.end_time}}</p>
+        <p><strong>Location: </strong>{{eve.location}}</p>
+        <br>
+      </div>
+      {% endfor %}
+    </div>
+  </div><!--End div scroll bar-->
+</center>
+</div><!--End div row-->
+</div> <!--End div container-->
+
 {% endblock %}

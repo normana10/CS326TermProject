@@ -93,7 +93,7 @@
               {{ field|add_class:'form-control' }}
             </div>
             {% if field.name == "breed" %}
-              <a href="{% url 'createbreed' %}">(Add your pet's breed here!)</a>
+              <a href="{% url 'createbreed' %}">(Is your breed not listed? Add your pet's breed here. Ex: Alaskan Malamute, Basset Hound)</a>
             {% endif %}
             {% if field.name == "disposition" %}
               <a href="{% url 'createdisposition' %}">(Add new dispositions here!)</a>

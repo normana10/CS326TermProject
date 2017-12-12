@@ -1,6 +1,5 @@
 {% extends "base_generic.html" %}
 {% load static %}
-{% load widget_tweaks %}
 
 {% block title %}<title>PupsToPet | Find Events</title>{% endblock %}
 
@@ -32,9 +31,6 @@
             <a class="nav-link" href="{% url 'createevent' %}">Add an Event</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'viewownevents' %}">Your events</a>
-          </li>
-        <li class="nav-item">
             <a class="nav-link" href="{% url 'findevent' %}">Search for Specific Events</a>
         </li>
         <li class="nav-item">
@@ -48,7 +44,7 @@
                 <a class="dropdown-item" href="{% url 'updateprofile' %}">Update Your Personal Info</a>
                 <!--<a class="dropdown-item" href="#">Delete Your Account</a>
                 <a class="dropdown-item" href="#">Change Password</a>-->
-                <a class="dropdown-item" href="{% url 'about' %}">About PupsToPet</a>
+                <a class="dropdown-item" href="about">About PupsToPet</a>
             </div>
         </li>
         </ul>
@@ -82,7 +78,7 @@
     </nav>
 {% endif %}
 {% endblock %}
-    
+
 {% block content %}
 
 
@@ -96,47 +92,21 @@
 {{form.media}}
 
 <div class="container">
-<div class="row">
-<div class="offset-2 col-md-8">
-        <form action="{% url 'dashboard' %}" method="post">
-            {% csrf_token %}
-            {{ form.errors }}
-
-            <h1 class="mt-2">Search for an event</h1>
-
-            <!--	{{ form.as_p }}-->
-            {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-            {% endfor %}
-
-            {% for field in form.visible_fields %}
-            <div class="form-group">
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {{ field|add_class:'form-control' }}
-            </div>
-            {% endfor %}
-
-            <div class="form-group">
-              <input class="btn" type="submit" name="Submit" value="Submit" />
-            </div>
-          </form>
-</div>
-</div>
-</div>
-
-
-<!--
-<div id="create-event-page">
-	<div class="login-modal" style="height:100%;width:70%">
+  <div class="row">
+    <div class="offset-1 col-md-10">
+      <div class=findevent>
 		<form action = "{% url 'dashboard' %}" method = "post">
+      <h1 class="mt-2">Is there an event you want to find? Use the search tool down below.</h1>
+      <p>Specify the <i><b>event name</b></i> and <i><b>host</b></i> for better search results!</p>
 			{% csrf_token %}
 			<table>
 				{{ form }}
 			</table>
-			
+
 			<input type="submit" value="Submit"/>
 		</form>
 	</div>
 </div>
--->
+</div>
+</div>
 {% endblock %}

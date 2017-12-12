@@ -21,12 +21,12 @@ class NewEventForm(forms.Form):
         else:
             self.fields['pets'] = forms.ModelMultipleChoiceField(Pet.objects.all().filter(owner=currentOwner))
 
-    name = forms.CharField()
+    name = forms.CharField(label="Event's Name. (Tip: Give your event a clear name. For example: 'Come meet me and my dog, chill and destress')")
 #    pets = forms.ModelMultipleChoiceField(Pet.objects.all())
-    start_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
-    end_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
-    description = forms.CharField()
-    location = forms.CharField()
+    start_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3), label="Choose a Start Time For Your Event")
+    end_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3), label="Choose It's End Time")
+    description = forms.CharField(label="Add an Event Description. (In the description, write the exact address of where the event will be held and which of your pets you are bringing. If you have more things you want to say, add it here!)")
+    location = forms.CharField(label="Event's Location. (To choose a location, don't type it in right down below. Do you see the map on the page? There's a text box in it that says 'Enter a query'). Type in the exact address of where you want your event to be THERE, HIT ENTER, and it will add the coordinates to the location text box.")
 
     def clean(self):
         print(self.request.user)
@@ -42,17 +42,22 @@ class NewEventForm(forms.Form):
 
     def clean_end_time(self):
         return self.cleaned_data['end_time']
-        
+
 class FilterEventForm(forms.Form):
+<<<<<<< HEAD
+    name=forms.CharField(required=False, label="Event Name")
+    ownername=forms.CharField(required=False, label="Event Host")
+    start_time=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False)
+    end_time=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False)
+=======
     name=forms.CharField(required=False,label="Name of Event")
     ownername=forms.CharField(required=False,label="Name of Host")
     minstart=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False,label="Earliest Time")
     maxend=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),label="Latest Time")
+>>>>>>> d4c3384769d0f70a8e06057146840452e726ed7f
     #centerx
     #centery
     #radius
-    
-
 
 class NewPetForm(forms.Form):
     name = forms.CharField(label="Your pet's name")

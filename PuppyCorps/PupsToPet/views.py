@@ -28,7 +28,7 @@ def about(request):
     num_event = Event.objects.all().count()
     # Available books (status = 'a')
     #num_instances_available=BookInstance.objects.filter(status__exact='a').count()
-    
+
     # Render the HTML template index.html with the data in the context variable
     return render(
         request,
@@ -46,7 +46,7 @@ def dashboard(request):
     if request.method == 'POST':
         form = FilterEventForm(request.POST)
         if form.is_valid():
-            
+
             if not (form.cleaned_data.get('name') is None or form.cleaned_data.get('name')==""):
                 print('filter name')
                 events=events.filter(name__icontains=form.cleaned_data.get('name'))
@@ -61,7 +61,7 @@ def dashboard(request):
             if not form.cleaned_data.get('maxend') is None:
                 print('maxend')
                 events=events.filter(end_time__lte=form.cleaned_data.get('maxend'))
-            
+
             #events=events.filter(Q(name__icontains=form.cleaned_data.get('name')),
             #    Q(host__user__username__icontains=form.cleaned_data.get('ownername'))
             #    |Q(host__user__first_name__icontains=form.cleaned_data.get('ownername'))
@@ -74,37 +74,37 @@ def dashboard(request):
         'dashboard.html',
         context={'events':events,'dogs':dogs},
     )
-    
 
-    
+
+
 def login(request):
    return render(
        request,
        'log-in.html',
    )
-    
+
 def forgotpassword(request):
     return render(
         request,
         'forgot-password.html',
     )
-    
+
 #def createevent(request):
 #    return render(
 #        request,
 #       'create-event.html',
 #    )
-    
+
 def findevent(request):
     form = FilterEventForm(initial = {})
     return render(request,'find-event.html',{'form': form})
-    
+
 def userinfo(request):
     return render(
         request,
         'userinfo.html',
     )
-    
+
 def doginfo(request):
     return render(
         request,
@@ -124,10 +124,10 @@ from django.core.urlresolvers import reverse
 def createevent(request):
     if request.method == 'POST':
         form = NewEventForm(request.POST, request=request)
-        
+
         if form.is_valid():
-            eve = Event.objects.create(name = form.cleaned_data.get('name'), 
-                                        description = form.cleaned_data.get('description'), 
+            eve = Event.objects.create(name = form.cleaned_data.get('name'),
+                                        description = form.cleaned_data.get('description'),
                                         location = form.cleaned_data.get('location'),
                                         start_time = form.cleaned_data.get('start_time'),
                                         end_time = form.cleaned_data.get('end_time'),
@@ -137,13 +137,13 @@ def createevent(request):
     else:
         form = NewEventForm(request=request)
     return render(request, 'create-event.html', {'form': form})
-    
+
 
 
 def createpet(request):
     if request.method == 'POST':
         form = NewPetForm(request.POST)
-        
+
         if form.is_valid():
             pet = Pet.objects.create(name = form.clean_name(), age = form.clean_age(), owner = Owner.objects.all().filter(user_id=request.user.id)[0], service = form.clean_service(), vaccinated = form.clean_vaccinated(), gender = form.clean_gender(), size = form.clean_size(), breed = [form.clean_breed()], disposition = form.clean_disposition(), additional_notes = form.clean_additional_notes())
             return HttpResponseRedirect(reverse('dashboard'))
@@ -159,7 +159,7 @@ class petDelete(DeleteView):
 def createbreed(request):
     if request.method == 'POST':
         form = NewBreedForm(request.POST)
-        
+
         if form.is_valid():
             breed = Breed.objects.create(breed = form.clean_breed())
             return HttpResponseRedirect(reverse('createpet'))
@@ -171,7 +171,7 @@ def createbreed(request):
 def createdisposition(request):
     if request.method == 'POST':
         form = NewDispositionForm(request.POST)
-        
+
         if form.is_valid():
             disposition = Disposition.objects.create(disposition = form.clean_disposition())
             return HttpResponseRedirect(reverse('createpet'))
@@ -180,7 +180,7 @@ def createdisposition(request):
         form = NewDispositionForm(initial = {})
     return render(request, 'createdisposition.html', {'form': form})
 
-    
+
 
 
 from .forms import CreateAccountForm
@@ -188,17 +188,17 @@ from .forms import CreateAccountForm
 def CreateAccount(request):
 
     if request.method == 'POST':
-        form = CreateAccountForm(request.POST) 
+        form = CreateAccountForm(request.POST)
         if form.is_valid():
-            new_user = User.objects.create_user( 
-                    str(form.cleaned_data.get('username')), 
-                    str(form.cleaned_data.get('email')), 
+            new_user = User.objects.create_user(
+                    str(form.cleaned_data.get('username')),
+                    str(form.cleaned_data.get('email')),
                     str(form.cleaned_data.get('password'))
                     )
             new_user.first_name = form.cleaned_data.get('first_name')
             new_user.last_name = form.cleaned_data.get('last_name')
-            new_user.save()   
-            
+            new_user.save()
+
             ourgroup=Group.objects.get(name='basicuser')
             ourgroup.user_set.add(new_user)
 
@@ -206,15 +206,15 @@ def CreateAccount(request):
 
     else:
         form = CreateAccountForm(initial = {})
-    
+
     return render(
-            request, 
-            'create-account.html', 
+            request,
+            'create-account.html',
             {'form': form}
     )
 
 from .forms import UpdateProfileForm
-from .forms import UpdateProfileExtendedForm    
+from .forms import UpdateProfileExtendedForm
 
 @login_required
 def UpdateProfile(request):
@@ -238,15 +238,15 @@ def UpdateProfile(request):
 
             owner.save()
             return HttpResponseRedirect(reverse('dashboard'))
-    
+
     else:
         u=Owner.objects.get(user=request.user)
         form_user = UpdateProfileForm(instance=u)
         form_extended = UpdateProfileExtendedForm(instance=u)
-        
+
 
     return render(
-            request, 
+            request,
             'update_profile_info.html',
             {'form_user': form_user,'form_extended': form_extended}
             )
@@ -254,5 +254,5 @@ def UpdateProfile(request):
 @login_required
 def viewownevents(request):
     ownEvents = Event.objects.filter(host__user__username=request.user)
-    
+
     return render(request, 'view_own_events.html', {'ownEvents':ownEvents})
