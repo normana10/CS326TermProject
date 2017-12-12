@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pet, Event, Owner, Breed
+from .models import Pet, Event, Owner, Breed, Disposition
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm
@@ -44,10 +44,17 @@ class NewEventForm(forms.Form):
         return self.cleaned_data['end_time']
 
 class FilterEventForm(forms.Form):
+<<<<<<< HEAD
     name=forms.CharField(required=False, label="Event Name")
     ownername=forms.CharField(required=False, label="Event Host")
     start_time=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False)
     end_time=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False)
+=======
+    name=forms.CharField(required=False,label="Name of Event")
+    ownername=forms.CharField(required=False,label="Name of Host")
+    minstart=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False,label="Earliest Time")
+    maxend=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),label="Latest Time")
+>>>>>>> d4c3384769d0f70a8e06057146840452e726ed7f
     #centerx
     #centery
     #radius
@@ -61,7 +68,7 @@ class NewPetForm(forms.Form):
     size = forms.ChoiceField(choices=[('small','Small'),('medium','Medium'),('large','Large')], label="What is your pet's size?")
     breed = forms.ModelChoiceField(Breed.objects.order_by('breed'), label="What breed is your pet? ")
 
-    disposition = forms.CharField(label="What is your pet like? Choose from the options below. Choose one or many! Or start typing and the disposition will show up (ex: happy, sad, energetic, etc)")
+    disposition = forms.ModelMultipleChoiceField(Disposition.objects.order_by('disposition'), label="What is your pet like? Choose from the options below. Choose one or many! Or start typing and the disposition will show up (ex: happy, sad, energetic, etc)")
     additional_notes = forms.CharField(required="False", label="Is there anything else we should know about your pet? Write it down below!")
 
     def clean_name(self):
@@ -104,6 +111,14 @@ class NewBreedForm(forms.Form):
 
     def clean_breed(self):
         data = self.cleaned_data['breed']
+        return data
+
+
+class NewDispositionForm(forms.Form):
+    disposition = forms.CharField(label="Your New Disposition!")
+
+    def clean_disposition(self):
+        data = self.cleaned_data['disposition']
         return data
 
 

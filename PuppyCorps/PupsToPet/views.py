@@ -11,7 +11,7 @@ from django.contrib.auth.models import Group
 from .forms import *
 
 
-from .models import Pet, Owner, Event, Breed, User
+from .models import Pet, Owner, Event, Breed, User, Disposition
 from .forms import FilterEventForm
 from django.views.generic.edit import DeleteView
 from django.core.urlresolvers import reverse_lazy
@@ -168,6 +168,20 @@ def createbreed(request):
         form = NewBreedForm(initial = {})
     return render(request, 'createbreed.html', {'form': form})
 
+def createdisposition(request):
+    if request.method == 'POST':
+        form = NewDispositionForm(request.POST)
+
+        if form.is_valid():
+            disposition = Disposition.objects.create(disposition = form.clean_disposition())
+            return HttpResponseRedirect(reverse('createpet'))
+
+    else:
+        form = NewDispositionForm(initial = {})
+    return render(request, 'createdisposition.html', {'form': form})
+
+
+
 
 from .forms import CreateAccountForm
 
@@ -236,3 +250,9 @@ def UpdateProfile(request):
             'update_profile_info.html',
             {'form_user': form_user,'form_extended': form_extended}
             )
+
+@login_required
+def viewownevents(request):
+    ownEvents = Event.objects.filter(host__user__username=request.user)
+
+    return render(request, 'view_own_events.html', {'ownEvents':ownEvents})
