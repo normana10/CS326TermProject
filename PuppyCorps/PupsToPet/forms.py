@@ -232,7 +232,7 @@ class UpdateProfileForm(forms.ModelForm):
         if (len(last_name) == 1):
             raise ValidationError(_('Error: Your last name cannot just contain 1 letter.'))
 
-        if (any(char.isdigit() for char in str(firstname)) != False):
+        if (any(char.isdigit() for char in str(first_name)) != False):
             raise ValidationError(_('Error: Your first name may not contain any numbers'))
 
     class Meta:

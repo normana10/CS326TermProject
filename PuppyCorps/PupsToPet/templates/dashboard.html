@@ -11,11 +11,14 @@
 <!-- <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+<link href="{% static 'css/THAO.css' %}" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text|Playfair+Display|Quicksand" rel="stylesheet">
+
+
 {% endblock %}
 
 {% block navbar %}
 {% if user.is_authenticated %}
-
 
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,18 +120,20 @@
 
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col sideone">
 
       {% if user.is_authenticated %}
-      <h2>Howdy {{user.username}}</h2>
+      <h2>Howdy {{user.username}}!</h2>
       <div id="personal-information">
-        <h4>Your Information:</h4>
+        <h2>Your Information:</h2>
         <h6>{{user.get_full_name}}</h6>
         <h6>{{user.email}}</h6>
+
       </div>
       <div id="pet-information">
-        <h4>Your Pet Information:</h4>
-        <div style="overflow: auto; height:200px">
+        <div>
+        <h2>Your Pet Information:</h2>
+        <div style="overflow: auto; height:315px">
           <ul>
             {% for dog in dogs %}
             <li>
@@ -151,10 +156,19 @@
         </a>
       </div>
 
+
+      </div> <!--end of Your Pet Information-->
+
+      {% else %}
+    <div class="sideone_else">
+      <h3>Hello there! </h3>
+      <p>We hope you enjoy viewing our site. Create an account today if you want to plan and create pet-related events!</p>
+    </div>
+
       {% endif %}
     </div>
 
-    <div class="col-9">
+    <div class="col-9 sidetwo">
 
       <center><h4>Current Events!<h4><p>(click on a pup to get more info about an event)</p></center>
 
@@ -223,21 +237,23 @@
       // });
     }
   </script>
-
 </div>
 </div> <!--End of map div-->
+</div><!--End div row-->
+</div> <!--End div container-->
 
+<div class="container">
 <div class="row">
-  <div class="col">
+  <div class="col sidethree">
     <br>
     <br>
     <center>
-    <h5>All events are listed Below. If you don't want to scroll through it all, use the search option in the navigation bar</h5>
+    <h1>(All events are listed Below. If you don't want to scroll through it all, use the search option in the navigation bar)</h1>
     <div style="overflow: auto; height:300px; width:100%">
     <div style="padding-top:10px;padding-left:5px">
       <h2>Event Information</h2>
       {% for eve in events %}
-      <div style="border: 3px solid black;margin: 10px;width: 100%;background-color: rgb(200, 249, 255);;">
+      <div style="border: 3px solid #BEE5BF;margin: 10px;width: 100%;background-color: #DAFFEF;;">
         <h3><strong>{{eve.id}}</strong></h3>
         <p><strong>Name: </strong>{{eve.name}}</p>
         <p><strong>Host: </strong>{{eve.host}}</p>
@@ -250,7 +266,11 @@
     </div>
   </div><!--End div scroll bar-->
 </center>
-</div><!--End div row-->
-</div> <!--End div container-->
+</div>
+</div>
+</div>
+
+
+
 
 {% endblock %}
