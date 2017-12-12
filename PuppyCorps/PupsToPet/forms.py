@@ -44,17 +44,11 @@ class NewEventForm(forms.Form):
         return self.cleaned_data['end_time']
 
 class FilterEventForm(forms.Form):
-<<<<<<< HEAD
-    name=forms.CharField(required=False, label="Event Name")
-    ownername=forms.CharField(required=False, label="Event Host")
-    start_time=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False)
-    end_time=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False)
-=======
+
     name=forms.CharField(required=False,label="Name of Event")
     ownername=forms.CharField(required=False,label="Name of Host")
     minstart=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False,label="Earliest Time")
     maxend=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),label="Latest Time")
->>>>>>> d4c3384769d0f70a8e06057146840452e726ed7f
     #centerx
     #centery
     #radius
@@ -238,7 +232,7 @@ class UpdateProfileForm(forms.ModelForm):
         if (len(last_name) == 1):
             raise ValidationError(_('Error: Your last name cannot just contain 1 letter.'))
 
-        if (any(char.isdigit() for char in str(firstname)) != False):
+        if (any(char.isdigit() for char in str(first_name)) != False):
             raise ValidationError(_('Error: Your first name may not contain any numbers'))
 
     class Meta:

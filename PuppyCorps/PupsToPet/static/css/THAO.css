@@ -1,4 +1,70 @@
-#map {
-  min-height: 450px;
-  width: 100%;
+.sideone {
+background: #FDFFFC;
+border: 2px solid #BEE5BF;
+
+}
+
+.sideone h2 {
+font-size: 25px;
+font-family: 'Playfair Display', serif;
+}
+
+#personal-information h6{
+  font-family: 'Quicksand', sans-serif;
+}
+
+#pet-information ul{
+  font-family: 'Quicksand', sans-serif;
+}
+
+#pet-information button{
+  font-family: 'Playfair Display', serif;
+}
+
+.sidetwo {
+  background: #FDFFFC;
+  border: 2px solid #BEE5BF;
+
+}
+.sideone_else p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+}
+.sideone_else h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 35px;
+  font-style: italic;
+}
+
+
+.sidetwo h4 {
+  font-family: 'Playfair Display', serif;
+}
+
+.sidetwo p {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+}
+
+.sidethree {
+  background: #FDFFFC;
+  border: 2px solid #BEE5BF;
+}
+
+.sidethree h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+
+}
+
+.sidethree p {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+
+}
+
+.sidethree h2 {
+  font-family: 'Playfair Display', serif;
+
 }
