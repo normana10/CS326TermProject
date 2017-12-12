@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^createpet$', views.createpet, name='createpet'),
     url(r'^createbreed$', views.createbreed, name='createbreed'),
     url(r'^delete/(?P<pk>[0-9a-f-]+)/delete/$', views.petDelete.as_view(), name="delete_pet"),
+    url(r'^viewownevents$', views.viewownevents, name='viewownevents'),
     ]

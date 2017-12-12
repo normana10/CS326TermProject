@@ -237,3 +237,8 @@ def UpdateProfile(request):
             {'form_user': form_user,'form_extended': form_extended}
             )
 
+@login_required
+def viewownevents(request):
+    ownEvents = Event.objects.filter(host__user__username=request.user)
+    
+    return render(request, 'view_own_events.html', {'ownEvents':ownEvents})
