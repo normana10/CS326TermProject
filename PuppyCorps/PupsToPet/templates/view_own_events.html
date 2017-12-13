@@ -11,6 +11,10 @@
 <!-- <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+<link href="{% static 'css/updateinfo.css' %}" rel="stylesheet" type="text/css">
+
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text|Playfair+Display|Quicksand" rel="stylesheet">
+
 {% endblock %}
 
 {% block navbar %}
@@ -37,7 +41,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'viewownevents' %}">Events You Made</a>
+        <a class="nav-link" href="{% url 'viewownevents' %}">Your Events</a>
       </li>
 
       <li class="nav-item">
@@ -74,17 +78,23 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<h1>Your Events</h1>
-{% for eve in ownEvents %}
-<div style="border: 3px solid black;margin: 10px;width: 400px;background-color: rgb(200, 249, 255);;">
+
+<div class="orientviewevents">
+  <center><h1>All the Events You've Made</h1></center>
+  <div class="scroll">
+    {% for eve in ownEvents %}
+    <div class="viewownevents">
       <h3><strong>{{eve.id}}</strong></h3>
       <p><strong>Name: </strong>{{eve.name}}</p>
       <p><strong>Description: </strong>{{eve.description}}</p>
       <p><strong>Time: </strong>{{eve.start_time}} - {{eve.end_time}}</p>
       <p><strong>Location: </strong>{{eve.location}}</p>
+
       <br>
+    </div>
+    {% endfor %}
+  </div>
 </div>
-{% endfor %}
 
 
 {% endblock %}
