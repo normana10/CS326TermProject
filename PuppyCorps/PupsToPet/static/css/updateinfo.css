@@ -1,0 +1,36 @@
+/*   update_profile_info page    */
+
+.updateinfo{
+  font-family: 'Playfair Display', serif;
+  border: 2px solid #DCCDE8;
+  padding: 50px;
+  background: #FDFFFC;
+
+}
+
+.updateinfo p{
+  font-family: 'Quicksand', sans-serif;
+
+}
+
+.buttonupdate{
+  font-family: 'Quicksand', sans-serif;
+}
+.updateinfo h1{
+  text-decoration: underline;
+
+}
+
+.createevent {
+  font-family: 'Playfair Display', serif;
+  border: 4px outset #BEE5BF;
+  padding: 50px;
+  background: #FDFFFC;
+
+
+}
+
+.createevent h1 {
+  text-decoration: underline;
+  text-align: center;
+}

@@ -21,12 +21,12 @@ class NewEventForm(forms.Form):
         else:
             self.fields['pets'] = forms.ModelMultipleChoiceField(Pet.objects.all().filter(owner=currentOwner))
 
-    name = forms.CharField(label="Event's Name. (Tip: Give your event a clear name. For example: 'Come meet me and my dog, chill and destress')")
+    name = forms.CharField(label="Event's Name (Tip: Give your event a clear name. For example: 'Come meet me and my dog, chill and destress')")
 #    pets = forms.ModelMultipleChoiceField(Pet.objects.all())
-    start_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3), label="Choose a Start Time For Your Event")
-    end_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3), label="Choose It's End Time")
-    description = forms.CharField(label="Add an Event Description. (In the description, write the exact address of where the event will be held and which of your pets you are bringing. If you have more things you want to say, add it here!)")
-    location = forms.CharField(label="Event's Location. (To choose a location, don't type it in right down below. Do you see the map on the page? There's a text box in it that says 'Enter a query'). Type in the exact address of where you want your event to be THERE, HIT ENTER, and it will add the coordinates to the location text box.")
+    start_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3), label="Start Time of Your Event (There's 2 buttons on the right. Use the right-most one to select your time)")
+    end_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3), label="Event End Time (Again, use the right most button)")
+    description = forms.CharField(label="Add an Event Description (Preferably: Write the exact address of where the event will be held and which of your pets you are bringing. If you have more things you want to say, add it here!)")
+    location = forms.CharField(label="Event's Location (To choose a location, don't type it in right down below. Do you see the map on the page? There's a text box in it that says 'Enter a query'). Type in the exact address of where you want your event to be RIGHT THERE, THEN HIT ENTER, and it will add the coordinates to the location text box.")
 
     def clean(self):
         print(self.request.user)
