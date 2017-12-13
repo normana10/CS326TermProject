@@ -25,7 +25,7 @@
   font-family: 'Playfair Display', serif;
   border: 4px outset #BEE5BF;
   padding: 50px;
-  background: #FDFFFC;
+  background: #F7F7FF;
 
 
 }
@@ -33,4 +33,24 @@
 .createevent h1 {
   text-decoration: underline;
   text-align: center;
+}
+
+.createpet {
+  font-family: 'Playfair Display', serif;
+  border: 4px outset #C2BBF0;
+  padding: 50px;
+  background: #FEFCFD;
+}
+
+.createpet h1 {
+  text-decoration: underline;
+  text-align: center;
+  padding-bottom: 15px;
+
+
+}
+
+.createpet input {
+  font-family: 'Quicksand', sans-serif;
+
 }

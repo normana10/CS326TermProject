@@ -36,6 +36,9 @@
         <a class="nav-link" href="{% url 'createevent' %}">Add an Event</a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'viewownevents' %}">Events You Made</a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{% url 'findevent' %}">Search for Specific Events</a>
@@ -79,7 +82,7 @@
       <p><strong>Description: </strong>{{eve.description}}</p>
       <p><strong>Time: </strong>{{eve.start_time}} - {{eve.end_time}}</p>
       <p><strong>Location: </strong>{{eve.location}}</p>
-      <br> 
+      <br>
 </div>
 {% endfor %}
 

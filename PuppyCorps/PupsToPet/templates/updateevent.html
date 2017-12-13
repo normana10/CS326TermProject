@@ -37,7 +37,7 @@
       </li>
 
 			<li class="nav-item">
-        <a class="nav-link" href="{% url 'viewownevents' %}">Your events</a>
+        <a class="nav-link" href="{% url 'viewownevents' %}">Events You Made</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'findevent' %}">Search for Specific Events</a>
@@ -135,7 +135,7 @@
 
 					// map.fitBounds(bounds);
 				});
-				
+
 				map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 				var x = document.getElementById("id_location");
 				function getLocation() {

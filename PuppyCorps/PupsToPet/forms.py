@@ -246,17 +246,6 @@ class UpdateProfileExtendedForm(forms.ModelForm):
         data = self.cleaned_data['gender']
         return data
 
-   # def clean_happiness(self):
-    #    data = self.cleaned_data['happiness']
-     #   return data
-
-    #def clean_happiness(self):
-    #    data = self.cleaned_data['happiness']
-
-   # def clean_hobbies(self):
-    #    data = self.cleaned_data['hobbies']
-
-
     #def clean_profile_picture(self):
      #   data = self.cleaned_data['profile_picture']
 
