@@ -11,6 +11,10 @@
 <!-- <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+<link href="{% static 'css/updateinfo.css' %}" rel="stylesheet" type="text/css">
+
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text|Playfair+Display|Quicksand" rel="stylesheet">
+
 {% endblock %}
 
 {% block navbar %}
@@ -37,11 +41,11 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'viewownevents' %}">Your Events</a>
+        <a class="nav-link" href="{% url 'findevent' %}">Search for Specific Events</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'findevent' %}">Search for Specific Events</a>
+        <a class="nav-link" href="{% url 'viewownevents' %}">Your Events</a>
       </li>
 
       <li class="nav-item">
@@ -75,29 +79,30 @@
 <div class="container">
   <div class="row">
     <div class="offset-2 col-md-8">
+      <div class="createbreed">
+        <form action="" method="post">
+          {% csrf_token %}
+          {{ form.errors }}
 
-      <form action="" method="post">
-        {% csrf_token %}
-        {{ form.errors }}
+          <h1 class="mt-2">Add Your Pet's Breed Down Below!</h1>
 
-        <h1 class="mt-2">Add Your Pet Down Below!</h1>
+          <!--	{{ form.as_p }}-->
+          {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+          {% endfor %}
 
-        <!--	{{ form.as_p }}-->
-        {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-        {% endfor %}
+          {% for field in form.visible_fields %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field|add_class:'form-control' }}
+          </div>
+          {% endfor %}
 
-        {% for field in form.visible_fields %}
-        <div class="form-group">
-          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-          {{ field|add_class:'form-control' }}
-        </div>
-        {% endfor %}
-
-        <div class="form-group">
-          <input class="btn" type="submit" name="Submit" value="Submit" />
-        </div>
-      </form>
+          <div class="form-group">
+            <input class="btn" type="submit" name="Submit" value="Submit" />
+          </div>
+        </form>
+      </div>
     </div>
     <!-- </div> -->
   </div>

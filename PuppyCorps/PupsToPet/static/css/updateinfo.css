@@ -139,3 +139,34 @@ padding-right: 50px;
   background: #FEFCFD;
 
 }
+
+.createbreed {
+  font-family: 'Playfair Display', serif;
+  background: #FDFFFC;
+  border: 2px solid #BEE5BF;
+  padding: 50px;
+
+}
+
+.createbreed h1 {
+  font-style: italic;
+  font-size: 30px;
+  padding-bottom: 20px;
+
+
+}
+.disposition {
+  font-family: 'Playfair Display', serif;
+  background: #FEFCFD;
+  border: 2px outset #BEE5BF;
+  padding: 50px;
+  font-size: 20px;
+
+}
+
+.disposition h1 {
+  font-size: 30px;
+  padding-bottom: 20px;
+  font-style: italic;
+
+}
