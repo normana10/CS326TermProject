@@ -11,11 +11,13 @@
 <!-- <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+<link href="{% static 'css/updateinfo.css' %}" rel="stylesheet" type="text/css">
+
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text|Playfair+Display|Quicksand" rel="stylesheet">
 {% endblock %}
 
 {% block navbar %}
 {% if user.is_authenticated %}
-
 
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,13 +67,9 @@
   </div>
 </nav>
 
-
-
-
 {% else %}
 
-
-   <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -93,7 +91,7 @@
 
 
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'findevent' %}">Find Events</a>
+        <a class="nav-link" href="{% url 'findevent' %}">Search for Specific Events</a>
       </li>
 
       <li class="nav-item">
@@ -110,108 +108,59 @@
 
 {% block content %}
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<div id="index-page-content"> <!-- COMMENT: index-page-content is really just the about page-->
-    <!-- <iframe
-        width="600"
-        height="450"
-        frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBYB8_cGZklsYTdCQNga90YNrCsX3-NnDE
-        &center=42.391138,-72.526812
-        &zoom=14
-        &maptype=satellite" allowfullscreen>
-    </iframe> -->
-    <div id="map"></div>
-    <script>
-        var map;
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 14,
-                center: new google.maps.LatLng(42.391138,-72.526812),
-                mapTypeId: 'satellite'
-                });
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-            var iconBase = "{% static 'images/' %}";
-            // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-            var icons = {
-                pupper: {
-                    icon: iconBase + 'pupClipArt.png'
-                },
-            // 	parking: {
-            // 		icon: iconBase + 'parking_lot_maps.png'
-            // 	},
-            // 	library: {
-            // 		icon: iconBase + 'library_maps.png'
-            // 	},
-            // 	info: {
-            // 		icon: iconBase + 'info-i_maps.png'
-            // 	}
-            };
 
-            // var features = [
-            //     {% for event in events %}
-            //         {
-            //             position: new google.maps.LatLng({{ event.location }}),
-            //             type: 'pupper'
-            //         },  
-            //     {% endfor %}
-            // ];
-            // Create markers.
-            // features.forEach(function(feature) {
-            var infowindow = new google.maps.InfoWindow();
-            {% for event in events %}
-                var marker = new google.maps.Marker({
-                position: new google.maps.LatLng({{ event.location }}),
-                icon: icons['pupper'].icon,
-                map: map
-                });
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.setContent('<div><strong>' + '{{ event.name }}' + '</strong><br>' + 'Host: ' + '{{ event.host }}' + '<br>Starts:' + '{{ event.start_time }}' + '<br>' + 'Ends:{{ event.end_time }}' + '<br>Description:<br>' + '{{ event.description }}' + '</div>');
-                    infowindow.open(map, this);
-                });
-            {% endfor %}
-            // });
-        }
-    </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQgbR5jdBj36wI9-6SpCOpaBr-Rj14L70&callback=initMap">
-    </script>
+<div class="container aboutpage">
+  <div class="row">
+  <!--
+    <div class="w3-content w3-section" style="max-width:500px">
+      <img class="mySlides" src="{% static 'images/1.jpg' %}" style="width:100%">
+      <img class="mySlides" src="{% static 'images/2.jpg' %}" style="width:100%">
+      <img class="mySlides" src="{% static 'images/3.jpg' %}" style="width:100%">
+      <img class="mySlides" src="{% static 'images/4.jpg' %}" style="width:100%">
+    </div>
+  -->
+  <div class="col">
+    <h1><center>Welcome to PupsToPet!</center></h1>
+      <center><img class="pic" src="{% static 'images/1.jpg' %}"></center>
 
-    <h2>Welcome to PupsToPet!</h2>
-    <br>
-    <h3>What we do</h3>
-    <a href="images/1.jpg"><img src="{% static 'images/1.jpg' %}"></a>
+
+    <h3>Who are we?</h3>
     <p>
-        We are a company that loves pets and pet owners alike! We know that a love of pets unites people across any barriers, so we build applications that makes it easier for pet owners share their furry creatures with the public.
+      We are a company that loves pets and pet owners alike! We know that a love of pets unites people across any barriers, so we build applications that makes it easier for pet owners share their furry creatures with the public.
     </p>
     <br>
-    <h3>How it works</h3>
-    <a href="images/2.jpg"><img src="{% static 'images/2.jpg' %}"></a>
+    <h3>How our site works</h3>
+
     <p>
-        Using the map on the dashboard, you can view various events set up by pet owners! From here, you can view where they will be, when they will take place, and which pets will be present.
+      Navigating to the dashboard, you can view various events on the map set up by different pet owners! From there, you can view what the events are about, the host of the event, where the events will be, and when they will take place.
     </p>
     <p>
-        You can also register an account with out app, which will allow you create events and add pets of your own!
-    </p>
-    <br>
-    <h3>Why</h3>
-    <a href="images/3.jpg"><img src="{% static 'images/3.jpg' %}"></a>
-    <p>
-        Pets are an integral part of our everyday lives; pet lovers love to meet new pets, and pet owners love sharing their critters with the world. This website serves to connect the two groups to form a more complete community of pet lovers!
+      You can also register for an account with our app, which will allow you to create events and add pets of your own!
     </p>
     <br>
-    <h3>How can you contribute</h3>
-    <a href="images/4.jpg"><img src="{% static 'images/4.jpg' %}"></a>
+    <h3>Why were we created?</h3>
+
     <p>
-        Spread the word about our website! The more people that know about us, the more pets that are shared, and the more pets you get to pet!
+      Pets are an integral part of our everyday lives; pet lovers love to meet new pets, and pet owners love sharing their critters with the world. This website serves to connect the two groups to form a more complete community of pet lovers!
+    </p>
+    <br>
+    <h3>How can you contribute?</h3>
+
+    <p>
+      Spread the word about our website! The more people that know about us, the more pets that are shared, and the more pets you get to pet and play with! Not too mention, the more people you get to meet! :D
     </p>
     <br>
     <h3>Wee!</h3>
-    <a href="images/5.jpg"><img src="{% static 'images/5.jpg' %}"></a>
+
     <p>
-        Thank you for visiting our website, and we hoep that you enjoy your time here!
+      Thank you for visiting our website, and we hope that you enjoy your time here!<br>
+      <br>Warmest Regards,<br>
+      The Makers of PupsToPet
     </p>
+  </div>
 </div>
 {% endblock %}

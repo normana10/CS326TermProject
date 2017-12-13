@@ -120,7 +120,7 @@ class NewDispositionForm(forms.Form):
  #       return Event.objects.create(name = eventName, pets = pets, start_time = start_time, end_time = end_time, description = description, location = location)
 
 class CreateAccountForm(forms.Form):
-    username = forms.CharField(error_messages={'required': 'Please enter a valid username. No spaces and at least 6 to 25 characters.'})
+    username = forms.CharField(label="Create a Username (Must be at least 6 characters, have no spaces & have at least 1 number)", error_messages={'required': 'Please enter a valid username. No spaces and at least 6 to 25 character'})
     first_name = forms.CharField()
     last_name = forms.CharField()
     gender = forms.ChoiceField(
@@ -130,8 +130,8 @@ class CreateAccountForm(forms.Form):
             ('SB', 'Space Bear')
             ])
     email = forms.EmailField()
-    password = forms.CharField( widget=forms.PasswordInput() )
-    confirm_password= forms.CharField( widget=forms.PasswordInput() )
+    password = forms.CharField( label="Create a Password (Must have at least 6 characters)", widget=forms.PasswordInput() )
+    confirm_password= forms.CharField( label="Confirm Your Password", widget=forms.PasswordInput() )
     #profile_picture = forms.ImageField(label='Upload a profile picture!', required=False)
 
 
@@ -187,8 +187,8 @@ class CreateAccountForm(forms.Form):
         if (re.search(r"\s", str(username))):
             raise ValidationError(_('Error: Username cannot contain spaces.'))
 
-        if (any(char.isdigit() for char in str(username)) != True):
-            raise ValidationError(_('Error: Username must contain at least 1 number.'))
+        # if (any(char.isdigit() for char in str(username)) != True):
+        #     raise ValidationError(_('Error: Username must contain at least 1 number.'))
 
         if (password != confirmed_password):
             raise ValidationError(_('Error: Passwords do not match.'))
@@ -196,17 +196,18 @@ class CreateAccountForm(forms.Form):
         if (len(password) < 6):
             raise ValidationError(_('Error: Password is too short. Must contain at least 6 characters'))
 
-        if (any(char.isdigit() for char in str(password)) != True):
-            raise ValidationError(_('Error: Password must contain at least 1 number.'))
+        # if (any(char.isdigit() for char in str(password)) != True):
+        #     raise ValidationError(_('Error: Password must contain at least 1 number.'))
 
-        if (str(firstname.lower()) in str(password).lower()):
-            raise ValidationError(_('Error(101): Password cannot contain your name/username.'))
-
-        if (str(lastname.lower()) in str(password).lower()):
-            raise ValidationError(_('Error(102): Password cannot contain your name/username.'))
-
-        if (str(username.lower()) in str(password).lower()):
-            raise ValidationError(_('Error(103): Password cannot contain your name/username.'))
+        #
+        # if (str(firstname.lower()) in str(password).lower()):
+        #     raise ValidationError(_('Error(101): Password cannot contain your name/username.'))
+        #
+        # if (str(lastname.lower()) in str(password).lower()):
+        #     raise ValidationError(_('Error(102): Password cannot contain your name/username.'))
+        #
+        # if (str(username.lower()) in str(password).lower()):
+        #     raise ValidationError(_('Error(103): Password cannot contain your name/username.'))
 
 class UpdateProfileForm(forms.ModelForm):
 # When a user creates an account, prefill this form with that info.
