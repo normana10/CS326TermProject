@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}<title>PupsToPet | Find Events</title>{% endblock %}
 
@@ -112,11 +113,22 @@
           <p>Specify the <i><b>event name</b></i> and <i><b>host</b></i> for better search results!</p>
           <p>Even specifying just the host name is great too!</p>
           {% csrf_token %}
-          <table>
-            {{ form }}
-          </table>
+          {{ form.errors }}
+          
+          {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+          {% endfor %}
 
-          <input type="submit" value="Submit"/>
+          {% for field in form.visible_fields %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field|add_class:'form-control' }}
+          </div>
+          {% endfor %}
+
+          <div class="form-group">
+            <input class="btn" type="submit" name="Submit" value="Submit" />
+          </div>
         </form>
       </div>
     </div>
