@@ -23,7 +23,7 @@ class NewEventForm(forms.Form):
 
     name = forms.CharField(label="Event's Name (Tip: Give your event a clear name. For example: 'Come meet me and my dog, chill and destress')")
 #    pets = forms.ModelMultipleChoiceField(Pet.objects.all())
-    start_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3), label="Start Time of Your Event (There's 2 buttons on the right. Use the right-most one to select your time)")
+    start_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3), label="Start Time of Your Event (There're 2 buttons on the right. Use the right-most one to select your time)")
     end_time = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3), label="Event End Time (Again, use the right most button)")
     description = forms.CharField(label="Add an Event Description (Preferably: Write the exact address of where the event will be held and which of your pets you are bringing. If you have more things you want to say, add it here!)")
     location = forms.CharField(label="Event's Location (To choose a location, don't type it in right down below. Do you see the map on the page? There's a text box in it that says 'Enter a query'). Type in the exact address of where you want your event to be RIGHT THERE, THEN HIT ENTER, and it will add the coordinates to the location text box.")
@@ -45,10 +45,10 @@ class NewEventForm(forms.Form):
 
 class FilterEventForm(forms.Form):
 
-    name=forms.CharField(required=False,label="Name of Event")
-    ownername=forms.CharField(required=False,label="Name of Host")
-    minstart=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False,label="Earliest Time")
-    maxend=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),label="Latest Time")
+    name=forms.CharField(required=False,label="Name of the event (Will check if the event's name contains the input.)")
+    ownername=forms.CharField(required=False,label="Name of event's host (Will check if any of host's username, firstname, or lastname contain the input.)")
+    minstart=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False,label="Earliest Time (There're 2 buttons on the right. Use the right-most one to select your time)")
+    maxend=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),label="Latest Time (Again, use the right most button)")
     #centerx
     #centery
     #radius

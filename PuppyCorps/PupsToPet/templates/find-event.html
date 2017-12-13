@@ -110,8 +110,7 @@
       <div class=findevent>
         <form action = "{% url 'dashboard' %}" method = "post">
           <h1 class="mt-2">Is there an event you want to find? Use the search tool down below.</h1>
-          <p>Specify the <i><b>event name</b></i> and <i><b>host</b></i> for better search results!</p>
-          <p>Even specifying just the host name is great too!</p>
+          <p><b>Note</b>: Any field left blank will simply not be user to help filter events. Consequently, intering more information will result in a narrower search.</p>
           {% csrf_token %}
           {{ form.errors }}
           
