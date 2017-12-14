@@ -48,7 +48,7 @@ class FilterEventForm(forms.Form):
     name=forms.CharField(required=False,label="Name of the event (Will check if the event's name contains the input.)")
     ownername=forms.CharField(required=False,label="Name of event's host (Will check if any of host's username, firstname, or lastname contain the input.)")
     minstart=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False,label="Earliest Time (There're 2 buttons on the right. Use the right-most one to select your time)")
-    maxend=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),label="Latest Time (Again, use the right most button)")
+    maxend=forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3),required=False,label="Latest Time (Again, use the right most button)")
     #centerx
     #centery
     #radius
